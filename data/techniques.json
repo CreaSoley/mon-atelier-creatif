@@ -5,8 +5,7 @@
     "description": "Peinture à base d’eau, séchant rapidement, permettant des effets opaques ou transparents selon la dilution.",
     "materiel": "Peinture acrylique, pinceaux, spatules, toiles, papier épais, palette.",
     "niveau": ["débutant", "intermédiaire", "avancé"],
-    "image": "https://i.pinimg.com/736x/5c/ce/0e/5cce0e75e62c9f168b35cfb24f501491.jpg",
-    "lien": "#"
+    "image": "https://i.pinimg.com/736x/5c/ce/0e/5cce0e75e62c9f168b35cfb24f501491.jpg"
   },
   {
     "id": "T002",
@@ -14,8 +13,7 @@
     "description": "Peinture légère et transparente utilisant des pigments dilués dans l’eau, idéale pour les effets de fluidité.",
     "materiel": "Peintures aquarelles, pinceaux ronds souples, papier 300 g, palette, eau.",
     "niveau": ["débutant", "intermédiaire"],
-    "image": "https://i.pinimg.com/736x/ed/15/83/ed158364215401214b1207e3eec26a8d.jpg",
-    "lien": "#"
+    "image": "https://i.pinimg.com/736x/ed/15/83/ed158364215401214b1207e3eec26a8d.jpg"
   },
   {
     "id": "T003",
@@ -23,8 +21,7 @@
     "description": "Assemblage de papiers, images, tissus ou objets pour créer une composition artistique.",
     "materiel": "Ciseaux, colle, papiers variés, magazines, supports rigides.",
     "niveau": ["débutant"],
-    "image": "https://i.pinimg.com/736x/f7/59/91/f7599155a3acd8a1eb7ebbe8642cac80.jpg",
-    "lien": "#"
+    "image": "https://i.pinimg.com/736x/f7/59/91/f7599155a3acd8a1eb7ebbe8642cac80.jpg"
   },
   {
     "id": "T004",
@@ -32,8 +29,7 @@
     "description": "Impression monotype avec une plaque de gel pour créer des textures et motifs uniques.",
     "materiel": "Plaque Gelli, peinture acrylique, brayer (rouleau), pochoirs, papier.",
     "niveau": ["intermédiaire"],
-    "image": "https://i.pinimg.com/736x/9c/6a/e9/9c6ae98987557377026ff661e5a80647.jpg",
-    "lien": "#"
+    "image": "https://i.pinimg.com/736x/9c/6a/e9/9c6ae98987557377026ff661e5a80647.jpg"
   },
   {
     "id": "T005",
@@ -41,8 +37,7 @@
     "description": "Carnet artistique créé à partir de papiers recyclés, enveloppes, pages de livres, etc.",
     "materiel": "Papier recyclé, colle, agrafeuse, reliure, décorations, tampons.",
     "niveau": ["intermédiaire"],
-    "image": "https://i.pinimg.com/736x/07/44/28/07442820fd5c9800f060347bfabf7c4f.jpg",
-    "lien": "#"
+    "image": "https://i.pinimg.com/736x/07/44/28/07442820fd5c9800f060347bfabf7c4f.jpg"
   },
   {
     "id": "T006",
@@ -50,8 +45,7 @@
     "description": "Journal créatif mêlant dessin, collage, peinture et écriture pour exprimer ses émotions.",
     "materiel": "Carnet, peinture, feutres, colle, images, gesso, pochoirs.",
     "niveau": ["débutant", "intermédiaire", "avancé"],
-    "image": "https://i.pinimg.com/736x/76/0f/06/760f06c2159f886b51cd18433e5e2b3c.jpg",
-    "lien": "#"
+    "image": "https://i.pinimg.com/736x/76/0f/06/760f06c2159f886b51cd18433e5e2b3c.jpg"
   },
   {
     "id": "T007",
@@ -59,8 +53,7 @@
     "description": "Méthode de dessin répétitif et méditatif basée sur des motifs abstraits.",
     "materiel": "Feutres fins, papier, crayon, gomme.",
     "niveau": ["débutant"],
-    "image": "https://i.pinimg.com/736x/8a/c2/93/8ac293182309d9f8a6eb121fb7d3e119.jpg",
-    "lien": "#"
+    "image": "https://i.pinimg.com/736x/8a/c2/93/8ac293182309d9f8a6eb121fb7d3e119.jpg"
   },
   {
     "id": "T008",
@@ -68,8 +61,7 @@
     "description": "Technique consistant à créer du relief ou de la matière sur un support artistique.",
     "materiel": "Pâte de structure, gesso, spatule, pinceaux, tissus, papier texturé.",
     "niveau": ["intermédiaire"],
-    "image": "https://i.pinimg.com/736x/21/09/45/2109453fa77fe2e5f1a761b3701e59d8.jpg",
-    "lien": "#"
+    "image": "https://i.pinimg.com/736x/21/09/45/2109453fa77fe2e5f1a761b3701e59d8.jpg"
   },
   {
     "id": "T009",
@@ -77,8 +69,7 @@
     "description": "Application d’encres liquides sous forme de brume pour des effets de dégradés et fonds colorés.",
     "materiel": "Encres en spray, pochoirs, papier, gants, protection de surface.",
     "niveau": ["débutant", "intermédiaire"],
-    "image": "https://i.pinimg.com/1200x/e8/01/e7/e801e792b0b5b03d169e5a17f1df2b1f.jpg",
-    "lien": "#"
+    "image": "https://i.pinimg.com/1200x/e8/01/e7/e801e792b0b5b03d169e5a17f1df2b1f.jpg"
   },
   {
     "id": "T010",
@@ -86,8 +77,7 @@
     "description": "Utilisation de formes découpées pour reproduire des motifs avec peinture, encre ou pâte.",
     "materiel": "Pochoirs, peinture ou encre, pinceaux tamponneurs, ruban adhésif.",
     "niveau": ["débutant"],
-    "image": "https://i.pinimg.com/1200x/f6/ca/2b/f6ca2bc51c91d3a7170d74436b8b250c.jpg",
-    "lien": "#"
+    "image": "https://i.pinimg.com/1200x/f6/ca/2b/f6ca2bc51c91d3a7170d74436b8b250c.jpg"
   },
   {
     "id": "T011",
@@ -95,8 +85,7 @@
     "description": "Création de motifs répétés grâce à des tampons en caoutchouc ou silicone.",
     "materiel": "Tampons, encreurs, papier, lingettes nettoyantes.",
     "niveau": ["débutant"],
-    "image": "https://i.pinimg.com/736x/aa/c1/be/aac1be333ae07447be337bbb27cd83c0.jpg",
-    "lien": "#"
+    "image": "https://i.pinimg.com/736x/aa/c1/be/aac1be333ae07447be337bbb27cd83c0.jpg"
   },
   {
     "id": "T012",
@@ -104,7 +93,158 @@
     "description": "Assemblage original de pages pour créer des carnets ou albums personnalisés.",
     "materiel": "Aiguilles, fil, papier, carton, outils de perçage, colle.",
     "niveau": ["intermédiaire"],
-    "image": "https://i.pinimg.com/736x/5c/02/04/5c02041784007009ce4a247701f1e413.jpg",
-    "lien": "#"
+    "image": "https://i.pinimg.com/736x/5c/02/04/5c02041784007009ce4a247701f1e413.jpg"
+  },
+  {
+    "id": "T013",
+    "nom": "Upcycling / Recyclage",
+    "description": "Transformation d’objets ou matériaux destinés au rebut en créations artistiques.",
+    "materiel": "Objets récupérés, colle, peinture, papier, outils de découpe.",
+    "niveau": ["débutant", "intermédiaire"],
+    "image": "https://i.pinimg.com/1200x/55/ba/8b/55ba8b3d129148d6c0350ba63f7d6993.jpg"
+  },
+  {
+    "id": "T014",
+    "nom": "Peinture fluide (Pouring)",
+    "description": "Technique de peinture abstraite consistant à verser des mélanges fluides de peinture acrylique.",
+    "materiel": "Peintures acryliques, médium de lissage, gobelets, toiles, gants.",
+    "niveau": ["débutant"],
+    "image": "https://i.pinimg.com/1200x/2d/d4/0b/2dd40bedf5af6e9e83a70c604d3fcb1e.jpg"
+  },
+  {
+    "id": "T015",
+    "nom": "Encres à alcool",
+    "description": "Encres très pigmentées utilisées sur surfaces non poreuses pour des effets vibrants.",
+    "materiel": "Encres à alcool, papier synthétique (Yupo), applicateurs, alcool isopropylique.",
+    "niveau": ["intermédiaire"],
+    "image": "https://i.pinimg.com/736x/3f/84/3c/3f843cc4b94aa20425ac9a3f3289375a.jpg"
+  },
+  {
+    "id": "T016",
+    "nom": "Pâte de structure",
+    "description": "Produit épais utilisé pour créer des volumes et reliefs sur un support.",
+    "materiel": "Pâte de structure, spatule, pochoirs, peinture.",
+    "niveau": ["intermédiaire"],
+    "image": "https://i.pinimg.com/736x/3c/2d/47/3c2d479114fcc0b35f905bdd23c8af76.jpg"
+  },
+  {
+    "id": "T017",
+    "nom": "Découpage",
+    "description": "Technique décorative consistant à coller des images découpées pour imiter la peinture.",
+    "materiel": "Ciseaux fins, colle spéciale, papiers décoratifs, vernis colle, support.",
+    "niveau": ["débutant"],
+    "image": "https://i.pinimg.com/736x/27/e1/b4/27e1b463f9d3b583012564fb424ea189.jpg"
+  },
+  {
+    "id": "T018",
+    "nom": "ATC (Artist Trading Cards)",
+    "description": "Mini-cartes artistiques (6,4×8,9 cm) créées pour l’échange entre artistes.",
+    "materiel": "Papier cartonné, peinture, tampons, collage, marqueurs.",
+    "niveau": ["débutant", "intermédiaire"],
+    "image": "https://i.pinimg.com/1200x/00/91/d2/0091d2dc03ef2c1c39e79c712fc38062.jpg"
+  },
+  {
+    "id": "T019",
+    "nom": "Scrapbook / Scrapbooking",
+    "description": "Création de pages ou albums décorés à partir de photos et éléments de papeterie.",
+    "materiel": "Papiers imprimés, colle, ciseaux, embellissements, tampons, encre.",
+    "niveau": ["débutant", "intermédiaire"],
+    "image": "https://einatkessler.com/wp-content/uploads/2016/07/001-1-681x700.jpg"
+  },
+  {
+    "id": "T020",
+    "nom": "Altered Art",
+    "description": "Transformation d’un objet du quotidien en œuvre d’art originale et unique.",
+    "materiel": "Objets variés, colle, peinture, papiers, éléments décoratifs.",
+    "niveau": ["intermédiaire"],
+    "image": "https://i.pinimg.com/736x/92/68/25/9268254acaee74517b272be05a852236.jpg"
+  },
+  {
+    "id": "T021",
+    "nom": "Mixed Media / Art mixte",
+    "description": "Mélange de plusieurs techniques artistiques sur un même support.",
+    "materiel": "Peintures, papiers, encres, pâte de texture, colle, tissus, pochoirs.",
+    "niveau": ["intermédiaire", "avancé"],
+    "image": "https://i.pinimg.com/1200x/d8/1a/28/d81a286e0e022c9b9adfc92066587429.jpg"
+  },
+  {
+    "id": "T022",
+    "nom": "Marbrure japonaise (Suminagashi)",
+    "description": "Technique traditionnelle de marbrure à l’encre sur eau, donnant des motifs fluides.",
+    "materiel": "Encres spéciales, pinceaux, bac d’eau, papier absorbant.",
+    "niveau": ["intermédiaire"],
+    "image": "https://i.pinimg.com/736x/63/4b/ea/634beacd57570f1691590a8e54d75cb5.jpg"
+  },
+  {
+    "id": "T023",
+    "nom": "Peinture à l’huile",
+    "description": "Peinture riche en pigments liée à l’huile, offrant profondeur et textures.",
+    "materiel": "Peintures à l’huile, pinceaux, toiles, médiums, essence de térébenthine.",
+    "niveau": ["intermédiaire", "avancé"],
+    "image": "https://i0.wp.com/peinture-aquarelle-facile.com/wp-content/uploads/2025/05/paysage-coucher-de-soleil-IA.jpg?resize=683%2C1024&ssl=1"
+  },
+  {
+    "id": "T024",
+    "nom": "Origami",
+    "description": "Art du pliage du papier pour créer des formes et figures sans découpe ni colle.",
+    "materiel": "Feuilles de papier carrées, parfois pinces fines pour précision.",
+    "niveau": ["débutant", "intermédiaire", "avancé"],
+    "image": "https://i.pinimg.com/736x/97/0e/10/970e105f476a3cc9228fc7464dcc67f9.jpg"
+  },
+  {
+    "id": "T025",
+    "nom": "Micro-macramé",
+    "description": "Technique de nœuds fins pour bijoux ou décorations.",
+    "materiel": "Fils de nylon ou coton, perles, planche de macramé, épingles.",
+    "niveau": ["intermédiaire"],
+    "image": "https://i.pinimg.com/736x/f3/54/96/f35496e064aa5edb8491438402dd03a9.jpg"
+  },
+  {
+    "id": "T026",
+    "nom": "ZIA (Zentangle Inspired Art)",
+    "description": "Application libre et colorée de la méthode Zentangle pour créer des compositions artistiques.",
+    "materiel": "Feutres fins, papier, aquarelle ou encres, crayons de couleur.",
+    "niveau": ["intermédiaire"],
+    "image": "https://i.pinimg.com/1200x/45/63/98/456398b7975be8f231a04f19e64ba71d.jpg"
+  },
+  {
+    "id": "T027",
+    "nom": "Lettering moderne",
+    "description": "Le lettering moderne est l’art de dessiner les lettres avec expressivité — un mélange de typographie et de calligraphie contemporaine, souvent utilisé pour les citations, journaux créatifs ou affiches.",
+    "materiel": "Brush pens , Feutres fins ou liners, Crayons à papier et gomme, Papier lisse (éviter les papiers texturés pour préserver la pointe des feutres)",
+    "niveau": ["débutant", "intermédiaire"],
+    "image": "https://i.pinimg.com/736x/7b/cb/d3/7bcbd300221005c10f021f4198b59815.jpg"
+  },
+  {
+    "id": "T028",
+    "nom": "Sketchnotes",
+    "description": "Les sketchnotes combinent mots, dessins simples et symboles pour capturer visuellement des idées ou des prises de notes — un outil de pensée visuelle qui favorise la mémorisation et la créativité.",
+    "materiel": "Carnet ou cahier à pages blanches ou à points, Stylos noirs à pointe fine, Marqueurs de couleur, Crayons ou feutres à pointe brosse pour les titres, Règle ou pochoirs (facultatif)",
+    "niveau": ["débutant"],
+    "image": "https://i.pinimg.com/736x/b2/1f/a8/b21fa800f086740db153517bd2aad09e.jpg"
+  },
+  {
+    "id": "T029",
+    "nom": "Sumi-e / shui-mo hua",
+    "description": "art de la simplicité expressive, qui allie maîtrise du geste, équilibre du vide et du plein, et observation de la nature. Chaque coup de pinceau est à la fois technique et méditatif — un dialogue entre l’esprit, l’eau, l’encre et le papier.",
+    "materiel": "Gros pinceaux à pointe fine, Encre de Chine et pierre à encre, Papier de riz ou soie, Pierre ou encrier pour la dilution, feutre absorbant sous le papier",
+    "niveau": ["débutant", "intermédiaire"],
+    "image": "https://i.pinimg.com/1200x/10/4e/5f/104e5fd475840633fc26a756b105396b.jpg"
+  },
+  {
+    "id": "T030",
+    "nom": "Mandala",
+    "description": "acte méditatif : on avance du centre vers l’extérieur, comme un voyage intérieur. Chaque forme et couleur a une symbolique (le cercle = unité, le carré = stabilité, le lotus = éveil, etc.)",
+    "materiel": "Papier : épais et lisse (idéalement 180–250 g/m²).,Compas ou gabarit de cercles pour tracer la base. Règle et rapporteur pour diviser le cercle (symétrie). Crayon à papier pour les lignes guides. Feutres fins (0.1 à 0.5 mm) ou stylo à encre noire pour les contours.Crayons de couleur, feutres, aquarelle ou encre pour colorer. Gomme douce pour effacer les repères sans abîmer le papier.",
+    "niveau": ["débutant"],
+    "image": "https://i.pinimg.com/736x/a4/3c/7f/a43c7f67612638a480a444bc1d993c77.jpg"
+  },
+  {
+    "id": "T031",
+    "nom": "Coloriage artistique",
+    "description": "forme d’expression créative qui va bien au-delà du simple remplissage de zones avec des couleurs — c’est une pratique artistique, méditative et esthétique qui combine technique, émotion et composition visuelle.",
+    "materiel": "Crayons de couleur artistiques, Feutres à alcool, Pastels secs ou à l’huile pour les fonds texturés, Aquarelle ou encres colorées pour des effets de transparence, Stylos gel blancs ou noirs pour les détails et reflets, Papier épais (minimum 160 g/m²) adapté au médium choisi",
+    "niveau": ["débutant"],
+    "image": "https://i0.wp.com/cestquoicebruit.com/wp-content/uploads/2015/09/coloriage-anti-stress-adulte-love.jpg?resize=500%2C500&ssl=1"
   }
 ]
