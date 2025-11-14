@@ -2,7 +2,7 @@
   {
     "id": "C001",
     "nom": "Art Journal Love",
-    "url": "https://www.youtube.com/c/ArtJournalLove",
+    "url": "https://www.youtube.com/@ArtJournalLove",
     "techniques": ["Collage", "gel plate", "acrylique", "art journal"],
     "description": "Tutoriels art journal faciles, pages simples pour débutants",
     "niveau": ["Débutant", "Intermédiaire"],
@@ -11,7 +11,7 @@
   {
     "id": "C002",
     "nom": "France Papillon",
-    "url": "https://www.youtube.com/c/FrancePapillon",
+    "url": "https://www.youtube.com/@FrancePapillon",
     "techniques": ["Altered art", "art journal", "texture", "collage"],
     "description": "Art journal / mixed media vintage, tags, altered-books",
     "niveau": ["Intermédiaire"],
@@ -20,7 +20,7 @@
   {
     "id": "C003",
     "nom": "VinceH Scrap",
-    "url": "https://www.youtube.com/c/VinceHScrap",
+    "url": "https://www.youtube.com/@VinceHScrap",
     "techniques": ["Art journal", "scrap", "collage", "journaling"],
     "description": "Scrap + mixed media, art journal, bullet journal",
     "niveau": ["Débutant", "Intermédiaire"],
@@ -29,7 +29,7 @@
   {
     "id": "C004",
     "nom": "Marlène Arts",
-    "url": "https://www.youtube.com/c/MarleneArts",
+    "url": "https://www.youtube.com/@MarleneArts",
     "techniques": ["Aquarelle", "art journal", "colorisation"],
     "description": "Art journal, aquarelle & colorisation",
     "niveau": ["Débutant", "Intermédiaire"],
@@ -38,7 +38,7 @@
   {
     "id": "C005",
     "nom": "AnnLizB",
-    "url": "https://www.youtube.com/c/AnnLizB",
+    "url": "https://www.youtube.com/@AnnLizB",
     "techniques": ["Encres", "sprays", "collage", "art journal"],
     "description": "Techniques mixed media (encres, sprays, collages)",
     "niveau": ["Débutant", "Intermédiaire"],
@@ -47,7 +47,7 @@
   {
     "id": "C006",
     "nom": "Susanne Rose Art",
-    "url": "https://www.youtube.com/c/SusanneRoseArt",
+    "url": "https://www.youtube.com/@SusanneRoseArt",
     "techniques": ["Collage", "acrylique", "textures", "journaling intuitif"],
     "description": "Collages, textures, intuitive journaling",
     "niveau": ["Intermédiaire", "Avancé"],
@@ -56,7 +56,7 @@
   {
     "id": "C007",
     "nom": "MixedMedia Jenn",
-    "url": "https://www.youtube.com/c/MixedMediaJenn",
+    "url": "https://www.youtube.com/@MixedMediaJenn",
     "techniques": ["Art journal", "Artist trading cards", "collage", "mixed media"],
     "description": "Art journal, cartes d’artiste, mixed media",
     "niveau": ["Débutant", "Intermédiaire"],
@@ -65,7 +65,7 @@
   {
     "id": "C008",
     "nom": "Keren Tamir",
-    "url": "https://www.youtube.com/c/KerenTamir",
+    "url": "https://www.youtube.com/@KerenTamir",
     "techniques": ["Scrap/Mixed media", "collage", "textures", "papier"],
     "description": "Papier craft + mixed media, collage & textures",
     "niveau": ["Intermédiaire"],
@@ -74,7 +74,7 @@
   {
     "id": "C009",
     "nom": "Cat Hand",
-    "url": "https://www.youtube.com/c/CatHand",
+    "url": "https://www.youtube.com/@CatHand",
     "techniques": ["Art journal", "collage", "craft mixed media"],
     "description": "Mélange craft + art journal + mixed media",
     "niveau": ["Débutant", "Intermédiaire"],
@@ -83,7 +83,7 @@
   {
     "id": "C010",
     "nom": "Louise Heinzl",
-    "url": "https://www.youtube.com/c/LouiseHeinzl",
+    "url": "https://www.youtube.com/@LouiseHeinzl",
     "techniques": ["Gelli plate", "journal covers", "mixed media avancé"],
     "description": "Gelli-plate & mixed media journaling",
     "niveau": ["Intermédiaire", "Avancé"],
@@ -92,7 +92,7 @@
   {
     "id": "C011",
     "nom": "megjournals",
-    "url": "https://www.youtube.com/c/megjournals",
+    "url": "https://www.youtube.com/@megjournals",
     "techniques": ["Collage", "junk journal", "mixed media", "up-cycling"],
     "description": "Art journal, junk journal, DIY livre/carnet, recyclage",
     "niveau": ["Débutant", "Intermédiaire"],
@@ -101,7 +101,7 @@
   {
     "id": "C012",
     "nom": "Treasure Books",
-    "url": "https://www.youtube.com/c/TreasureBooks",
+    "url": "https://www.youtube.com/@TreasureBooks",
     "techniques": ["Collage", "textures", "junk journal", "recyclage"],
     "description": "Junk journal, utilisation de matériaux récupérés",
     "niveau": ["Intermédiaire"],
@@ -110,7 +110,7 @@
   {
     "id": "C013",
     "nom": "Susan McCreevy Artist",
-    "url": "https://www.youtube.com/c/SusanMcCreevyArtist",
+    "url": "https://www.youtube.com/@SusanMcCreevyArtist",
     "techniques": ["Gelli plate", "collage", "monoprint", "textures"],
     "description": "Monoprint/gel-plate, création de papiers collages",
     "niveau": ["Intermédiaire", "Avancé"],
@@ -119,7 +119,7 @@
   {
     "id": "C014",
     "nom": "Joie de fi",
-    "url": "https://www.youtube.com/c/JoiedeFi",
+    "url": "https://www.youtube.com/@JoiedeFi",
     "techniques": ["Collage", "junk journal", "mixed media doux"],
     "description": "Junk journal, style accessible et doux",
     "niveau": ["Débutant", "Intermédiaire"],
@@ -128,7 +128,7 @@
   {
     "id": "C015",
     "nom": "Lindsay Weirich",
-    "url": "https://www.youtube.com/c/LindsayWeirich",
+    "url": "https://www.youtube.com/@LindsayWeirich",
     "techniques": ["Art journal", "collage", "mixed media créatif"],
     "description": "Techniques mixed media et art journal créatif",
     "niveau": ["Intermédiaire"],
@@ -137,7 +137,7 @@
   {
     "id": "C016",
     "nom": "Teesha Moore",
-    "url": "https://www.youtube.com/c/TeeshaMoore",
+    "url": "https://www.youtube.com/@TeeshaMoore",
     "techniques": ["Art journal", "journaling", "collage", "mixed media"],
     "description": "Art journal, journaling créatif et collages",
     "niveau": ["Intermédiaire"],
@@ -146,7 +146,7 @@
   {
     "id": "C017",
     "nom": "Cathy Taylor",
-    "url": "https://www.youtube.com/c/CathyTaylor",
+    "url": "https://www.youtube.com/@CathyTaylor",
     "techniques": ["Collage", "journaling", "textures", "mixed media"],
     "description": "Mixed media et journaling avec textures et collage",
     "niveau": ["Intermédiaire", "Avancé"],
@@ -155,7 +155,7 @@
   {
     "id": "C018",
     "nom": "Aall & Create",
-    "url": "https://www.youtube.com/c/AallandCreate",
+    "url": "https://www.youtube.com/@AallandCreate",
     "techniques": ["Scrapbooking", "art journal", "mixed media", "journaling"],
     "description": "Techniques mixed media, scrapbooking, journaling",
     "niveau": ["Intermédiaire"],
@@ -164,7 +164,7 @@
   {
     "id": "C019",
     "nom": "AcrylicAddict",
-    "url": "https://www.youtube.com/c/AcrylicAddict",
+    "url": "https://www.youtube.com/@AcrylicAddict",
     "techniques": ["Acrylique", "mixed media", "art journal"],
     "description": "Acrylique, art journal, mixed media",
     "niveau": ["Débutant", "Intermédiaire"],
@@ -173,7 +173,7 @@
   {
     "id": "C020",
     "nom": "Dina Wakley",
-    "url": "https://www.youtube.com/c/DinaWakley",
+    "url": "https://www.youtube.com/@DinaWakley",
     "techniques": ["Gelli plate", "mixed media avancé", "journaling"],
     "description": "Techniques mixed media avancées, journaling, gelli plate",
     "niveau": ["Intermédiaire", "Avancé"],
@@ -182,7 +182,7 @@
   {
     "id": "C021",
     "nom": "Gina Lee Kim",
-    "url": "https://www.youtube.com/c/GinaLeeKim",
+    "url": "https://www.youtube.com/@GinaLeeKim",
     "techniques": ["Aquarelle", "art journal", "collage", "mixed media"],
     "description": "Aquarelle et art journal avec techniques fun et colorées",
     "niveau": ["Débutant", "Intermédiaire"],
@@ -191,7 +191,7 @@
   {
     "id": "C022",
     "nom": "Dina Wakley Media",
-    "url": "https://www.youtube.com/c/DinaWakleyMedia",
+    "url": "https://www.youtube.com/@DinaWakleyMedia",
     "techniques": ["Mixed media", "encres", "acrylique", "journaling"],
     "description": "Techniques mixed media, encres, peinture, journaling",
     "niveau": ["Intermédiaire"],
@@ -200,7 +200,7 @@
   {
     "id": "C023",
     "nom": "Tamara Laporte",
-    "url": "https://www.youtube.com/c/TamaraLaporte",
+    "url": "https://www.youtube.com/@TamaraLaporte",
     "techniques": ["Art journal", "collage", "peinture", "mixed media"],
     "description": "Art journal créatif, coaching artistique pour débutants et intermédiaires",
     "niveau": ["Débutant", "Intermédiaire"],
@@ -209,7 +209,7 @@
   {
     "id": "C024",
     "nom": "CreativeJournaling",
-    "url": "https://www.youtube.com/c/CreativeJournaling",
+    "url": "https://www.youtube.com/@CreativeJournaling",
     "techniques": ["Art journal", "collage", "mixed media", "journaling"],
     "description": "Pages journaling, mixed media et collages",
     "niveau": ["Débutant", "Intermédiaire"],
@@ -218,7 +218,7 @@
   {
     "id": "C025",
     "nom": "Claudine Hellmuth",
-    "url": "https://www.youtube.com/c/ClaudineHellmuth",
+    "url": "https://www.youtube.com/@ClaudineHellmuth",
     "techniques": ["Acrylique", "encres", "textures", "art journal"],
     "description": "Techniques de peinture, encres et acrylique, art journal",
     "niveau": ["Intermédiaire"],
@@ -227,7 +227,7 @@
   {
     "id": "C026",
     "nom": "Suzzanne D",
-    "url": "https://www.youtube.com/c/SuzzanneD",
+    "url": "https://www.youtube.com/@SuzzanneD",
     "techniques": ["Collage", "couleurs", "journaling", "mixed media"],
     "description": "Mixed media et journaling, collage et couleurs",
     "niveau": ["Intermédiaire"],
@@ -236,7 +236,7 @@
   {
     "id": "C027",
     "nom": "Jane Davenport",
-    "url": "https://www.youtube.com/c/JaneDavenport",
+    "url": "https://www.youtube.com/@JaneDavenport",
     "techniques": ["Peinture", "couleurs", "mixed media", "journaling"],
     "description": "Techniques de couleur, peinture, mixed media",
     "niveau": ["Débutant", "Intermédiaire"],
@@ -245,7 +245,7 @@
   {
     "id": "C028",
     "nom": "Ranger Ink",
-    "url": "https://www.youtube.com/c/RangerInk",
+    "url": "https://www.youtube.com/@RangerInk",
     "techniques": ["Scrap", "art journal", "mixed media"],
     "description": "Ressources, techniques de scrap et mixed media",
     "niveau": ["Intermédiaire"],
@@ -254,7 +254,7 @@
   {
     "id": "C029",
     "nom": "JournalFodder",
-    "url": "https://www.youtube.com/c/JournalFodder",
+    "url": "https://www.youtube.com/@JournalFodder",
     "techniques": ["Junk journal", "art journal", "collage", "vintage"],
     "description": "Junk journal et art journal, style vintage",
     "niveau": ["Intermédiaire"],
@@ -263,7 +263,7 @@
   {
     "id": "C030",
     "nom": "Artful Gathering",
-    "url": "https://www.youtube.com/c/ArtfulGathering",
+    "url": "https://www.youtube.com/@ArtfulGathering",
     "techniques": ["Art journal", "journaling", "mixed media", "textures"],
     "description": "Inspiration pour art journal et mixed media",
     "niveau": ["Avancé", "Intermédiaire"],
@@ -272,7 +272,7 @@
   {
     "id": "C031",
     "nom": "Jackie Bernardi",
-    "url": "https://www.youtube.com/c/JackieBernardi",
+    "url": "https://www.youtube.com/@JackieBernardi",
     "techniques": ["Art journal", "collage", "gelli plate", "peinture", "texture"],
     "description": "Tutoriels pour peindre du papier et l'utiliser ensuite en mixed media, collage et art journal.",
     "niveau": ["Débutant", "Intermédiaire"],
@@ -281,7 +281,7 @@
   {
     "id": "C032",
     "nom": "Auria Bohn",
-    "url": "https://www.youtube.com/@auriabohn",
+    "url": "https://www.youtube.com/@AuriaBohn",
     "techniques": ["Encres naturelles", "aquarelle", "acrylique", "collage", "gelli plate"],
     "description": "Artiste mixed media utilisant encres naturelles, aquarelle, acrylique et collage.",
     "niveau": ["Intermédiaire"],
@@ -290,7 +290,7 @@
   {
     "id": "C033",
     "nom": "Vikki Reed",
-    "url": "https://www.youtube.com/@VikkiReed",
+    "url": "https://www.youtube.com/@VikkiReedMixedMedia",
     "techniques": ["Gelli plate", "collage", "pochoirs", "upcycling"],
     "description": "Mixed media et upcycling : fonds colorés, collage, gelli plate et pochoirs.",
     "niveau": ["Intermédiaire"],
@@ -299,7 +299,7 @@
   {
     "id": "C034",
     "nom": "Susanne Rose",
-    "url": "https://www.youtube.com/c/SusanneRoseArt",
+    "url": "https://www.youtube.com/@SusanneRoseArt",
     "techniques": ["Collage", "acrylique", "texture", "journaling"],
     "description": "Art journal et mixed media : collages, textures et journaling accessibles.",
     "niveau": ["Intermédiaire", "Avancé"],
@@ -371,7 +371,7 @@
   {
     "id": "C042",
     "nom": "Les Récréations de Paula",
-    "url": "https://www.youtube.com/c/Lesr%C3%A9cr%C3%A9ationsdePaula",
+    "url": "https://www.youtube.com/@Lesr%C3%A9cr%C3%A9ationsdePaula",
     "techniques": ["Art journal", "journaling", "acrylique", "encres"],
     "description": "Chaîne francophone d’art journal et journaling émotionnel.",
     "niveau": ["Débutant", "Intermédiaire"],
@@ -488,7 +488,7 @@
   {
     "id": "C055",
     "nom": "Carolyn Dube",
-    "url": "https://youtube.com/@carolyndube?si=6-yXYS_t7dYDS_Fu",
+    "url": "https://www.youtube.com/@carolyndube",
     "techniques": ["pochoirs", "aquarelle", "huile", "collage", "journaling", "gelli plate", "encres", "sprays"],
     "description": "Approche ludique et libératrice du mixed media en explorant l’usage créatif des pochoirs, des matériaux récupérés et des techniques variées (collage, journaling, gel-prints, encres, sprays) pour transformer le chaos en œuvres colorées et expressives.",
     "niveau": ["Intermédiaire"],
