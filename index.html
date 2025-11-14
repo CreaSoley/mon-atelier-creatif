@@ -60,7 +60,7 @@
   <!-- 💬 DICTON DU JOUR -->
   <div class="box">
     <h2>💬 Proverbe du jour</h2>
-    <p id="dicton">Chargement...</p>
+    <p id="proverbes">Chargement...</p>
   </div>
 
   <!-- 🛠️ SÉLECTEUR DE TECHNIQUE CRÉATIVE -->
@@ -140,14 +140,14 @@
       });
   }
 
-  // --- 4. Dicton du jour (depuis CSV) ---
-  let dictons = [];
+  // --- 4. Proverbe du jour (depuis CSV) ---
+  let proverbes = [];
   function chargerDicton() {
-    fetch('assets/js/dictons.csv')
+    fetch('assets/js/proverbes.csv')
       .then(r => r.text())
       .then(csv => {
-        dictons = csv.trim().split('\n').filter(ligne => ligne.trim() !== '');
-        choisirDicton();
+        proverbes = csv.trim().split('\n').filter(ligne => ligne.trim() !== '');
+        choisirproverbe();
       })
       .catch(() => {
         document.getElementById("dicton").innerText = "Proverbe du jour indisponible (vérifier chemin CSV)";
@@ -208,5 +208,6 @@
 </body>
 
 </html>
+
 
 
