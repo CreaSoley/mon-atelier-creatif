@@ -142,8 +142,8 @@
 
   // --- 4. Proverbe du jour (depuis CSV) ---
   let proverbes = [];
-  function chargerDicton() {
-    fetch('assets/js/proverbes.csv')
+  function chargerProverbe() {
+   fetch('dictons.csv')
       .then(r => r.text())
       .then(csv => {
         proverbes = csv.trim().split('\n').filter(ligne => ligne.trim() !== '');
@@ -208,6 +208,7 @@
 </body>
 
 </html>
+
 
 
 
