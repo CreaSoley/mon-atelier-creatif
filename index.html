@@ -1,10 +1,9 @@
-html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
   <meta name="robots" content="noindex, nofollow" />
-  <title>Accueil - Mon Atelier Créatif</title>
+  <title>Accueil - Mon Atelier CrÃ©atif</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -36,56 +35,56 @@ html
 </head>
 <body>
 
-<!-- 🔒 Mot de passe -->
+<!-- ðŸ”’ Mot de passe -->
 <script>
   const mdp = "Art2025";
   const essai = prompt("Mot de passe familial ?");
   if (essai !== mdp) {
-    document.body.innerHTML = "<h1 style='color:red;text-align:center;margin:50px;'>Accès refusé</h1>";
+    document.body.innerHTML = "<h1 style='color:red;text-align:center;margin:50px;'>AccÃ¨s refusÃ©</h1>";
     throw new Error();
   }
 </script>
 
-<h1>✨ Bienvenue dans mon atelier</h1>
-<p>Un espace doux pour créer, expérimenter et partager.</p>
+<h1>âœ¨ Bienvenue dans mon atelier</h1>
+<p>Un espace doux pour crÃ©er, expÃ©rimenter et partager.</p>
 
-<!-- 🎨 Couleur du jour -->
+<!-- ðŸŽ¨ Couleur du jour -->
 <div class="box">
-  <h2>🎨 Couleur du jour</h2>
-  <button onclick="genererCouleur()">Générer</button>
+  <h2>ðŸŽ¨ Couleur du jour</h2>
+  <button onclick="genererCouleur()">GÃ©nÃ©rer</button>
   <div id="couleur" style="width:100px;height:80px;margin:10px;"></div>
   <p id="code"></p>
 </div>
 
-<!-- ⏰ Heure -->
+<!-- â° Heure -->
 <div class="box">
-  <h2>⏰ Heure actuelle</h2>
+  <h2>â° Heure actuelle</h2>
   <p id="heure"></p>
 </div>
 
-<!-- 🌤️ Météo (ville modifiable) -->
+<!-- ðŸŒ¤ï¸ MÃ©tÃ©o (ville modifiable) -->
 <div class="box">
-  <h2>🌤️ Météo à [Ville]</h2>
+  <h2>ðŸŒ¤ï¸ MÃ©tÃ©o Ã  [Ville]</h2>
   <p id="meteo">Chargement...</p>
 </div>
 
-<!-- 🗣️ Dicton du jour -->
+<!-- ðŸ—£ï¸ Dicton du jour -->
 <div class="box">
-  <h2>💬 Dicton du jour</h2>
+  <h2>ðŸ’¬ Dicton du jour</h2>
   <p id="dicton">Chargement...</p>
 </div>
 
-<!-- 🎲 Sélecteur de technique -->
+<!-- ðŸŽ² SÃ©lecteur de technique -->
 <div class="box">
-  <h2>🛠️ Quelle technique ce soir ?</h2>
-  <button onclick="choisirTechnique()">Découvrir</button>
+  <h2>ðŸ› ï¸ Quelle technique ce soir ?</h2>
+  <button onclick="choisirTechnique()">DÃ©couvrir</button>
   <p id="technique"></p>
   <p id="materiel"></p>
-  <p><a id="lien" style="display:none;" href="#">→ Voir la page</a></p>
+  <p><a id="lien" style="display:none;" href="#">â†’ Voir la page</a></p>
 </div>
 
 <footer>
-  Mon Atelier Créatif • 2025 • <a href="https://github.com/[ton-pseudo]/mon-atelier-creatif">Code source</a>
+  Mon Atelier CrÃ©atif â€¢ 2025 â€¢ <a href="https://github.com/[ton-pseudo]/mon-atelier-creatif">Code source</a>
 </footer>
 
 <script>
@@ -107,7 +106,7 @@ function mettreAJourHeure() {
 setInterval(mettreAJourHeure, 1000);
 mettreAJourHeure();
 
-// --- Météo (API gratuite Open-Meteo) ---
+// --- MÃ©tÃ©o (API gratuite Open-Meteo) ---
 fetch('https://api.open-meteo.com/v1/forecast?latitude=48.85&longitude=2.35&current=temperature_2m,weather_code&hourly=temperature_2m&daily=weather_code&timezone=Europe%2FParis')
   .then(r => r.json())
   .then(data => {
@@ -115,11 +114,11 @@ fetch('https://api.open-meteo.com/v1/forecast?latitude=48.85&longitude=2.35&curr
     const wc = data.current.weather_code;
     const weather = {
       0: "ciel clair", 1: "majoritairement clair", 2: "partiellement nuageux", 3: "nuageux",
-      45: "brouillard", 48: "brouillard givrant", 51: "bruine légère", 61: "pluie modérée"
+      45: "brouillard", 48: "brouillard givrant", 51: "bruine lÃ©gÃ¨re", 61: "pluie modÃ©rÃ©e"
     }[wc] || "temps inconnu";
-    document.getElementById("meteo").innerHTML = `${temp}°C • ${weather}`;
+    document.getElementById("meteo").innerHTML = `${temp}Â°C â€¢ ${weather}`;
   })
-  .catch(() => document.getElementById("meteo").innerText = "Météo non disponible");
+  .catch(() => document.getElementById("meteo").innerText = "MÃ©tÃ©o non disponible");
 
 // --- Dicton du jour (depuis CSV) ---
 let dictons = [];
@@ -137,12 +136,12 @@ function choisirDicton() {
   }
 }
 
-// --- Sélecteur de technique (depuis techniques.csv) ---
+// --- SÃ©lecteur de technique (depuis techniques.csv) ---
 let techniques = [];
 fetch('data/techniques.csv')
   .then(r => r.text())
   .then(csv => {
-    const lignes = csv.trim().split('\n').slice(1); // saute l'entête
+    const lignes = csv.trim().split('\n').slice(1); // saute l'entÃªte
     techniques = lignes.map(l => {
       const [t, m, d, n, u] = l.split(',');
       return { t: t.replace(/"/g,''), m: m.replace(/"/g,''), d: d.replace(/"/g,''), n: n.replace(/"/g,''), u: u.replace(/"/g,'') };
@@ -153,7 +152,7 @@ function choisirTechnique() {
   if (techniques.length > 0) {
     const tech = techniques[Math.floor(Math.random() * techniques.length)];
     document.getElementById("technique").innerHTML = `<strong>${tech.t}</strong>`;
-    document.getElementById("materiel").innerText = `Matériel : ${tech.m} | Durée : ${tech.d}`;
+    document.getElementById("materiel").innerText = `MatÃ©riel : ${tech.m} | DurÃ©e : ${tech.d}`;
     const lien = document.getElementById("lien");
     lien.href = tech.u;
     lien.style.display = "inline";
