@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
- <meta charset="UTF-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="noindex, nofollow" />
   <title>Mon Atelier CrÃ©atif</title>
   <link rel="stylesheet" href="assets/css/style.css" />
-  <style>
-   <script>
-  const motDePasse = "Art2025"; // â† Change-le si tu veux
+</head>
+<body>
+
+<!-- ðŸ”’ MOT DE PASSE FAMILIAL (bloque tout si erronÃ©) -->
+<script>
+  const motDePasse = "Art2025"; // â† Change ce mot de passe si tu veux
   const essai = prompt("Mot de passe familial ?");
 
   if (essai !== motDePasse) {
-    // On remplace TOUT le contenu de la page
     document.body.innerHTML = `
       <div style="
         text-align: center;
@@ -20,110 +22,73 @@
         color: red;
         font-family: Arial, sans-serif;
         padding: 20px;
+        line-height: 1.6;
       ">
         <h1>ðŸ” AccÃ¨s refusÃ©</h1>
         <p>Le mot de passe est incorrect.</p>
         <p>Veuillez rafraÃ®chir la page si vous souhaitez rÃ©essayer.</p>
       </div>
     `;
-    // On arrÃªte ici : plus rien ne s'exÃ©cute aprÃ¨s
     throw new Error("AccÃ¨s bloquÃ©");
   }
 </script>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 20px;
-      background: #faf7f0;
-      color: #333;
-      line-height: 1.6;
-    }
-    .box {
-      background: white;
-      padding: 20px;
-      margin: 20px 0;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    button {
-      background: #5d4037;
-      color: white;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    a { color: #8d6e63; text-decoration: underline; }
-    footer { text-align: center; margin-top: 50px; color: #777; font-size: 0.9em; }
-  </style>
-</head>
-<body>
 
-<!-- ðŸ”’ Mot de passe -->
-<script>
-  const mdp = "Art2025";
-  const essai = prompt("Mot de passe familial ?");
-  if (essai !== mdp) {
-    document.body.innerHTML = "<h1 style='color:red;text-align:center;margin:50px;'>AccÃ¨s refusÃ©</h1>";
-    throw new Error();
-  }
-</script>
-
+<!-- ðŸ  PAGE D'ACCUEIL -->
 <h1>âœ¨ Bienvenue dans mon atelier</h1>
 <p>Un espace doux pour crÃ©er, expÃ©rimenter et partager.</p>
 
-<!-- ðŸŽ¨ Couleur du jour -->
+<!-- ðŸŽ¨ COULEUR DU JOUR -->
 <div class="box">
   <h2>ðŸŽ¨ Couleur du jour</h2>
-  <button onclick="genererCouleur()">GÃ©nÃ©rer</button>
-  <div id="couleur" style="width:100px;height:80px;margin:10px;"></div>
+  <button onclick="genererCouleur()">GÃ©nÃ©rer une couleur</button>
+  <div id="couleur" style="width:100px; height:80px; margin:10px;"></div>
   <p id="code"></p>
 </div>
 
-<!-- â° Heure -->
+<!-- â° HEURE ACTUELLE -->
 <div class="box">
   <h2>â° Heure actuelle</h2>
   <p id="heure"></p>
 </div>
 
-<!-- ðŸŒ¤ï¸ MÃ©tÃ©o (ville modifiable) -->
+<!-- ðŸŒ¤ï¸ MÃ‰TÃ‰O (Paris par dÃ©faut - modifie latitude/longitude si besoin) -->
 <div class="box">
-  <h2>ðŸŒ¤ï¸ MÃ©tÃ©o Ã  [Ville]</h2>
+  <h2>ðŸŒ¤ï¸ MÃ©tÃ©o</h2>
   <p id="meteo">Chargement...</p>
 </div>
 
-<!-- ðŸ—£ï¸ Dicton du jour -->
+<!-- ðŸ—£ï¸ DICTON DU JOUR -->
 <div class="box">
   <h2>ðŸ’¬ Dicton du jour</h2>
   <p id="dicton">Chargement...</p>
 </div>
 
-<!-- ðŸŽ² SÃ©lecteur de technique -->
+<!-- ðŸŽ² SÃ‰LECTEUR DE TECHNIQUE CRÃ‰ATIVE -->
 <div class="box">
   <h2>ðŸ› ï¸ Quelle technique ce soir ?</h2>
   <button onclick="choisirTechnique()">DÃ©couvrir</button>
   <p id="technique"></p>
   <p id="materiel"></p>
-  <p><a id="lien" style="display:none;" href="#">â†’ Voir la page</a></p>
+  <p><a id="lien" style="display:none;" href="#">â†’ Voir la fiche complÃ¨te</a></p>
 </div>
 
 <footer>
-  Mon Atelier CrÃ©atif â€¢ 2025 â€¢ <a href="https://github.com/[ton-pseudo]/mon-atelier-creatif">Code source</a>
+  Mon Atelier CrÃ©atif â€¢ Un projet personnel â€¢ 2025
 </footer>
 
+<!-- âœ¨ SCRIPTS JS -->
 <script>
-// --- Couleur du jour ---
+// --- 1. Couleur du jour ---
 function genererCouleur() {
   const r = Math.floor(Math.random() * 256);
   const g = Math.floor(Math.random() * 256);
   const b = Math.floor(Math.random() * 256);
   const hex = "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
   document.getElementById("couleur").style.backgroundColor = `rgb(${r},${g},${b})`;
-  document.getElementById("code").innerText = hex;
+  document.getElementById("code").innerText = "Code HEX : " + hex;
 }
 
-// --- Heure dynamique ---
+// --- 2. Heure dynamique ---
 function mettreAJourHeure() {
   const now = new Date();
   document.getElementById("heure").innerText = now.toLocaleString('fr-FR');
@@ -131,58 +96,72 @@ function mettreAJourHeure() {
 setInterval(mettreAJourHeure, 1000);
 mettreAJourHeure();
 
-// --- MÃ©tÃ©o (API gratuite Open-Meteo) ---
-fetch('https://api.open-meteo.com/v1/forecast?latitude=48.85&longitude=2.35&current=temperature_2m,weather_code&hourly=temperature_2m&daily=weather_code&timezone=Europe%2FParis')
+// --- 3. MÃ©tÃ©o (via Open-Meteo) ---
+fetch('https://api.open-meteo.com/v1/forecast?latitude=48.85&longitude=2.35&current=temperature_2m,weather_code&timezone=Europe%2FParis')
   .then(r => r.json())
   .then(data => {
     const temp = data.current.temperature_2m;
     const wc = data.current.weather_code;
     const weather = {
-      0: "ciel clair", 1: "majoritairement clair", 2: "partiellement nuageux", 3: "nuageux",
-      45: "brouillard", 48: "brouillard givrant", 51: "bruine lÃ©gÃ¨re", 61: "pluie modÃ©rÃ©e"
-    }[wc] || "temps inconnu";
-    document.getElementById("meteo").innerHTML = `${temp}Â°C â€¢ ${weather}`;
+      0: "Ciel dÃ©gagÃ©", 1: "Ciel partiellement nuageux", 2: "Nuageux", 3: "TrÃ¨s nuageux",
+      45: "Brouillard", 48: "Brouillard givrant", 51: "Bruine lÃ©gÃ¨re", 61: "Pluie modÃ©rÃ©e"
+    }[wc] || "Temps inconnu";
+    document.getElementById("meteo").innerText = `${temp} Â°C â€¢ ${weather}`;
   })
-  .catch(() => document.getElementById("meteo").innerText = "MÃ©tÃ©o non disponible");
+  .catch(() => {
+    document.getElementById("meteo").innerText = "MÃ©tÃ©o non disponible";
+  });
 
-// --- Dicton du jour (depuis CSV) ---
+// --- 4. Dicton du jour (depuis CSV) ---
 let dictons = [];
 fetch('assets/js/dictons.csv')
   .then(r => r.text())
   .then(csv => {
-    dictons = csv.trim().split('\n').filter(l => l);
+    dictons = csv.trim().split('\n').filter(ligne => ligne.trim() !== '');
     choisirDicton();
+  })
+  .catch(() => {
+    document.getElementById("dicton").innerText = "Proverbe du jour indisponible";
   });
 
 function choisirDicton() {
   if (dictons.length > 0) {
     const alea = dictons[Math.floor(Math.random() * dictons.length)];
-    document.getElementById("dicton").innerText = alea;
+    document.getElementById("dicton").innerText = alea.trim();
   }
 }
 
-// --- SÃ©lecteur de technique (depuis techniques.csv) ---
+// --- 5. SÃ©lecteur de technique (depuis techniques.csv) ---
 let techniques = [];
 fetch('data/techniques.csv')
   .then(r => r.text())
   .then(csv => {
-    const lignes = csv.trim().split('\n').slice(1); // saute l'entÃªte
-    techniques = lignes.map(l => {
-      const [t, m, d, n, u] = l.split(',');
-      return { t: t.replace(/"/g,''), m: m.replace(/"/g,''), d: d.replace(/"/g,''), n: n.replace(/"/g,''), u: u.replace(/"/g,'') };
-    });
+    const lignes = csv.trim().split('\n').slice(1); // saute l'en-tÃªte
+    techniques = lignes
+      .filter(ligne => ligne.trim() !== '')
+      .map(ligne => {
+        const [t, m, d, n, u] = ligne.split(',').map(champ => champ.replace(/"/g, '').trim());
+        return { t, m, d, n, u };
+      });
+  })
+  .catch(() => {
+    document.getElementById("technique").innerText = "Erreur de chargement des techniques.";
   });
 
 function choisirTechnique() {
-  if (techniques.length > 0) {
-    const tech = techniques[Math.floor(Math.random() * techniques.length)];
-    document.getElementById("technique").innerHTML = `<strong>${tech.t}</strong>`;
-    document.getElementById("materiel").innerText = `MatÃ©riel : ${tech.m} | DurÃ©e : ${tech.d}`;
-    const lien = document.getElementById("lien");
-    lien.href = tech.u;
-    lien.style.display = "inline";
+  if (techniques.length === 0) {
+    document.getElementById("technique").innerText = "Chargement en coursâ€¦";
+    return;
   }
+
+  const tech = techniques[Math.floor(Math.random() * techniques.length)];
+  document.getElementById("technique").innerHTML = `<strong>${tech.t}</strong>`;
+  document.getElementById("materiel").innerText = `MatÃ©riel : ${tech.m} | DurÃ©e : ${tech.d}`;
+  const lien = document.getElementById("lien");
+  lien.href = tech.u;
+  lien.style.display = "inline";
 }
 </script>
+
 </body>
 </html>
