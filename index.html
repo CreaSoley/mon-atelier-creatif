@@ -69,7 +69,7 @@
     <button onclick="choisirTechnique()">Découvrir</button>
     <p id="technique"></p>
     <p id="materiel"></p>
-    <p><a id="lien" style="display:none;" href="#">→ Voir sur YouTube</a></p>
+    <p><a id="lien" style="display:none;" href="#">→ Voir la chaîne YouTube</a></p>
   </div>
 
   <footer>
@@ -97,7 +97,7 @@
     mettreAJourHeure();
     chargerMeteo();
     chargerDicton();
-    chargerTechniques(); // ✅ Nom corrigé
+    chargerTechniques(); // ✅ Fonction simple
   }
 
   // --- 1. Couleur du jour ---
@@ -178,7 +178,7 @@
       });
   }
 
-  // --- 5. SÉLECTEUR DE TECHNIQUE (basé sur techniques.csv, avec lien YouTube)
+  // --- 5. SÉLECTEUR DE TECHNIQUE (version simple et stable)
   let techniques = [];
 
   function chargerTechniques() {
@@ -189,7 +189,7 @@
         techniques = lignes
           .filter(ligne => ligne.trim() !== '')
           .map(ligne => {
-            const parts = ligne.split(';'); // séparateur : point-virgule
+            const parts = ligne.split(';');
             if (parts.length < 8) return null; // on attend 8 colonnes
 
             return {
@@ -199,14 +199,14 @@
               materiel: parts[3].replace(/"/g, '').trim(),
               niveau: parts[4].replace(/"/g, '').trim(),
               image: parts[5].replace(/"/g, '').trim(),
-              lien_youtube: parts[7].replace(/"/g, '').trim() // colonne 8 = lien YouTube
+              lien_youtube: parts[7].replace(/"/g, '').trim() // colonne 8
             };
           })
           .filter(Boolean);
       })
       .catch(err => {
         console.error("Erreur chargement techniques :", err);
-        document.getElementById("technique").innerText = "❌ Erreur de chargement des techniques.";
+        document.getElementById("technique").innerText = "❌ Erreur de chargement.";
       });
   }
 
@@ -225,53 +225,33 @@
 
     const tech = techniques[Math.floor(Math.random() * techniques.length)];
 
-    // Badges niveau
-    const badgesNiveau = tech.niveau
-      .split(',')
-      .map(n => n.trim())
-      .map(n => `<span style="background:#3b82f6; color:white; padding:2px 6px; margin:2px 3px; border-radius:4px; font-size:0.8em;">${n}</span>`)
-      .join("");
+    // Affichage du nom + niveau
+    techEl.innerHTML = `
+      <strong>${tech.nom}</strong><br>
+      <small>Niveau : <i>${tech.niveau}</i></small><br>
+      <em style="font-size:0.95em;">“${tech.description}”</em>
+    `;
 
-    // Image
+    matEl.innerText = `Matériel : ${tech.materiel}`;
+
+    // Gestion de l'image
     let img = document.getElementById("preview-technique");
     if (!img) {
       img = document.createElement("img");
       img.id = "preview-technique";
       img.alt = tech.nom;
-      img.style = `
-        width: 100%;
-        height: 200px;
-        object-fit: cover;
-        border-radius: 8px;
-        margin: 12px 0;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        object-position: center;
-      `;
+      img.style = "max-width: 100%; border-radius: 8px; margin: 12px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1);";
       matEl.insertAdjacentElement("afterend", img);
     }
     img.src = tech.image;
 
-    // Affichage
-    techEl.innerHTML = `
-      <strong style="font-size:1.3em;">${tech.nom}</strong><br>
-      ${badgesNiveau}<br>
-      <em style="font-size:0.95em; color:#555;">“${tech.description}”</em>
-    `;
-    matEl.innerText = `🖌️ Matériel : ${tech.materiel}`;
-
-    // 🔗 Lien YouTube (si présent)
+    // Lien YouTube
     if (tech.lien_youtube && tech.lien_youtube.startsWith('http')) {
       lienEl.href = tech.lien_youtube;
       lienEl.textContent = "▶️ Voir la chaîne YouTube";
       lienEl.target = "_blank";
       lienEl.rel = "noopener";
-      lienEl.style.cssText = `
-        display: inline-block;
-        margin-top: 10px;
-        color: #1e40af;
-        text-decoration: none;
-        font-weight: bold;
-      `;
+      lienEl.style.display = "inline";
     } else {
       lienEl.style.display = "none";
     }
