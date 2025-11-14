@@ -1,0 +1,515 @@
+[
+  {
+    "id": "C001",
+    "nom": "Art Journal Love",
+    "url": "https://www.youtube.com/c/ArtJournalLove",
+    "techniques": ["Collage", "gel plate", "acrylique", "art journal"],
+    "description": "Tutoriels art journal faciles, pages simples pour débutants",
+    "niveau": ["Débutant", "Intermédiaire"],
+    "langue": ["Anglais"]
+  },
+  {
+    "id": "C002",
+    "nom": "France Papillon",
+    "url": "https://www.youtube.com/c/FrancePapillon",
+    "techniques": ["Altered art", "art journal", "texture", "collage"],
+    "description": "Art journal / mixed media vintage, tags, altered-books",
+    "niveau": ["Intermédiaire"],
+    "langue": ["Français"]
+  },
+  {
+    "id": "C003",
+    "nom": "VinceH Scrap",
+    "url": "https://www.youtube.com/c/VinceHScrap",
+    "techniques": ["Art journal", "scrap", "collage", "journaling"],
+    "description": "Scrap + mixed media, art journal, bullet journal",
+    "niveau": ["Débutant", "Intermédiaire"],
+    "langue": ["Français"]
+  },
+  {
+    "id": "C004",
+    "nom": "Marlène Arts",
+    "url": "https://www.youtube.com/c/MarleneArts",
+    "techniques": ["Aquarelle", "art journal", "colorisation"],
+    "description": "Art journal, aquarelle & colorisation",
+    "niveau": ["Débutant", "Intermédiaire"],
+    "langue": ["Français"]
+  },
+  {
+    "id": "C005",
+    "nom": "AnnLizB",
+    "url": "https://www.youtube.com/c/AnnLizB",
+    "techniques": ["Encres", "sprays", "collage", "art journal"],
+    "description": "Techniques mixed media (encres, sprays, collages)",
+    "niveau": ["Débutant", "Intermédiaire"],
+    "langue": ["Français"]
+  },
+  {
+    "id": "C006",
+    "nom": "Susanne Rose Art",
+    "url": "https://www.youtube.com/c/SusanneRoseArt",
+    "techniques": ["Collage", "acrylique", "textures", "journaling intuitif"],
+    "description": "Collages, textures, intuitive journaling",
+    "niveau": ["Intermédiaire", "Avancé"],
+    "langue": ["Anglais"]
+  },
+  {
+    "id": "C007",
+    "nom": "MixedMedia Jenn",
+    "url": "https://www.youtube.com/c/MixedMediaJenn",
+    "techniques": ["Art journal", "Artist trading cards", "collage", "mixed media"],
+    "description": "Art journal, cartes d’artiste, mixed media",
+    "niveau": ["Débutant", "Intermédiaire"],
+    "langue": ["Anglais"]
+  },
+  {
+    "id": "C008",
+    "nom": "Keren Tamir",
+    "url": "https://www.youtube.com/c/KerenTamir",
+    "techniques": ["Scrap/Mixed media", "collage", "textures", "papier"],
+    "description": "Papier craft + mixed media, collage & textures",
+    "niveau": ["Intermédiaire"],
+    "langue": ["Anglais"]
+  },
+  {
+    "id": "C009",
+    "nom": "Cat Hand",
+    "url": "https://www.youtube.com/c/CatHand",
+    "techniques": ["Art journal", "collage", "craft mixed media"],
+    "description": "Mélange craft + art journal + mixed media",
+    "niveau": ["Débutant", "Intermédiaire"],
+    "langue": ["Anglais"]
+  },
+  {
+    "id": "C010",
+    "nom": "Louise Heinzl",
+    "url": "https://www.youtube.com/c/LouiseHeinzl",
+    "techniques": ["Gelli plate", "journal covers", "mixed media avancé"],
+    "description": "Gelli-plate & mixed media journaling",
+    "niveau": ["Intermédiaire", "Avancé"],
+    "langue": ["Allemand", "Anglais"]
+  },
+  {
+    "id": "C011",
+    "nom": "megjournals",
+    "url": "https://www.youtube.com/c/megjournals",
+    "techniques": ["Collage", "junk journal", "mixed media", "up-cycling"],
+    "description": "Art journal, junk journal, DIY livre/carnet, recyclage",
+    "niveau": ["Débutant", "Intermédiaire"],
+    "langue": ["Anglais"]
+  },
+  {
+    "id": "C012",
+    "nom": "Treasure Books",
+    "url": "https://www.youtube.com/c/TreasureBooks",
+    "techniques": ["Collage", "textures", "junk journal", "recyclage"],
+    "description": "Junk journal, utilisation de matériaux récupérés",
+    "niveau": ["Intermédiaire"],
+    "langue": ["Anglais"]
+  },
+  {
+    "id": "C013",
+    "nom": "Susan McCreevy Artist",
+    "url": "https://www.youtube.com/c/SusanMcCreevyArtist",
+    "techniques": ["Gelli plate", "collage", "monoprint", "textures"],
+    "description": "Monoprint/gel-plate, création de papiers collages",
+    "niveau": ["Intermédiaire", "Avancé"],
+    "langue": ["Anglais"]
+  },
+  {
+    "id": "C014",
+    "nom": "Joie de fi",
+    "url": "https://www.youtube.com/c/JoiedeFi",
+    "techniques": ["Collage", "junk journal", "mixed media doux"],
+    "description": "Junk journal, style accessible et doux",
+    "niveau": ["Débutant", "Intermédiaire"],
+    "langue": ["Anglais"]
+  },
+  {
+    "id": "C015",
+    "nom": "Lindsay Weirich",
+    "url": "https://www.youtube.com/c/LindsayWeirich",
+    "techniques": ["Art journal", "collage", "mixed media créatif"],
+    "description": "Techniques mixed media et art journal créatif",
+    "niveau": ["Intermédiaire"],
+    "langue": ["Anglais"]
+  },
+  {
+    "id": "C016",
+    "nom": "Teesha Moore",
+    "url": "https://www.youtube.com/c/TeeshaMoore",
+    "techniques": ["Art journal", "journaling", "collage", "mixed media"],
+    "description": "Art journal, journaling créatif et collages",
+    "niveau": ["Intermédiaire"],
+    "langue": ["Anglais"]
+  },
+  {
+    "id": "C017",
+    "nom": "Cathy Taylor",
+    "url": "https://www.youtube.com/c/CathyTaylor",
+    "techniques": ["Collage", "journaling", "textures", "mixed media"],
+    "description": "Mixed media et journaling avec textures et collage",
+    "niveau": ["Intermédiaire", "Avancé"],
+    "langue": ["Anglais"]
+  },
+  {
+    "id": "C018",
+    "nom": "Aall & Create",
+    "url": "https://www.youtube.com/c/AallandCreate",
+    "techniques": ["Scrapbooking", "art journal", "mixed media", "journaling"],
+    "description": "Techniques mixed media, scrapbooking, journaling",
+    "niveau": ["Intermédiaire"],
+    "langue": ["Anglais"]
+  },
+  {
+    "id": "C019",
+    "nom": "AcrylicAddict",
+    "url": "https://www.youtube.com/c/AcrylicAddict",
+    "techniques": ["Acrylique", "mixed media", "art journal"],
+    "description": "Acrylique, art journal, mixed media",
+    "niveau": ["Débutant", "Intermédiaire"],
+    "langue": ["Anglais"]
+  },
+  {
+    "id": "C020",
+    "nom": "Dina Wakley",
+    "url": "https://www.youtube.com/c/DinaWakley",
+    "techniques": ["Gelli plate", "mixed media avancé", "journaling"],
+    "description": "Techniques mixed media avancées, journaling, gelli plate",
+    "niveau": ["Intermédiaire", "Avancé"],
+    "langue": ["Anglais"]
+  },
+  {
+    "id": "C021",
+    "nom": "Gina Lee Kim",
+    "url": "https://www.youtube.com/c/GinaLeeKim",
+    "techniques": ["Aquarelle", "art journal", "collage", "mixed media"],
+    "description": "Aquarelle et art journal avec techniques fun et colorées",
+    "niveau": ["Débutant", "Intermédiaire"],
+    "langue": ["Anglais"]
+  },
+  {
+    "id": "C022",
+    "nom": "Dina Wakley Media",
+    "url": "https://www.youtube.com/c/DinaWakleyMedia",
+    "techniques": ["Mixed media", "encres", "acrylique", "journaling"],
+    "description": "Techniques mixed media, encres, peinture, journaling",
+    "niveau": ["Intermédiaire"],
+    "langue": ["Anglais"]
+  },
+  {
+    "id": "C023",
+    "nom": "Tamara Laporte",
+    "url": "https://www.youtube.com/c/TamaraLaporte",
+    "techniques": ["Art journal", "collage", "peinture", "mixed media"],
+    "description": "Art journal créatif, coaching artistique pour débutants et intermédiaires",
+    "niveau": ["Débutant", "Intermédiaire"],
+    "langue": ["Anglais"]
+  },
+  {
+    "id": "C024",
+    "nom": "CreativeJournaling",
+    "url": "https://www.youtube.com/c/CreativeJournaling",
+    "techniques": ["Art journal", "collage", "mixed media", "journaling"],
+    "description": "Pages journaling, mixed media et collages",
+    "niveau": ["Débutant", "Intermédiaire"],
+    "langue": ["Anglais"]
+  },
+  {
+    "id": "C025",
+    "nom": "Claudine Hellmuth",
+    "url": "https://www.youtube.com/c/ClaudineHellmuth",
+    "techniques": ["Acrylique", "encres", "textures", "art journal"],
+    "description": "Techniques de peinture, encres et acrylique, art journal",
+    "niveau": ["Intermédiaire"],
+    "langue": ["Anglais"]
+  },
+  {
+    "id": "C026",
+    "nom": "Suzzanne D",
+    "url": "https://www.youtube.com/c/SuzzanneD",
+    "techniques": ["Collage", "couleurs", "journaling", "mixed media"],
+    "description": "Mixed media et journaling, collage et couleurs",
+    "niveau": ["Intermédiaire"],
+    "langue": ["Anglais"]
+  },
+  {
+    "id": "C027",
+    "nom": "Jane Davenport",
+    "url": "https://www.youtube.com/c/JaneDavenport",
+    "techniques": ["Peinture", "couleurs", "mixed media", "journaling"],
+    "description": "Techniques de couleur, peinture, mixed media",
+    "niveau": ["Débutant", "Intermédiaire"],
+    "langue": ["Anglais"]
+  },
+  {
+    "id": "C028",
+    "nom": "Ranger Ink",
+    "url": "https://www.youtube.com/c/RangerInk",
+    "techniques": ["Scrap", "art journal", "mixed media"],
+    "description": "Ressources, techniques de scrap et mixed media",
+    "niveau": ["Intermédiaire"],
+    "langue": ["Anglais"]
+  },
+  {
+    "id": "C029",
+    "nom": "JournalFodder",
+    "url": "https://www.youtube.com/c/JournalFodder",
+    "techniques": ["Junk journal", "art journal", "collage", "vintage"],
+    "description": "Junk journal et art journal, style vintage",
+    "niveau": ["Intermédiaire"],
+    "langue": ["Anglais"]
+  },
+  {
+    "id": "C030",
+    "nom": "Artful Gathering",
+    "url": "https://www.youtube.com/c/ArtfulGathering",
+    "techniques": ["Art journal", "journaling", "mixed media", "textures"],
+    "description": "Inspiration pour art journal et mixed media",
+    "niveau": ["Avancé", "Intermédiaire"],
+    "langue": ["Anglais"]
+  },
+  {
+    "id": "C031",
+    "nom": "Jackie Bernardi",
+    "url": "https://www.youtube.com/c/JackieBernardi",
+    "techniques": ["Art journal", "collage", "gelli plate", "peinture", "texture"],
+    "description": "Tutoriels pour peindre du papier et l'utiliser ensuite en mixed media, collage et art journal.",
+    "niveau": ["Débutant", "Intermédiaire"],
+    "langue": ["Anglais"]
+  },
+  {
+    "id": "C032",
+    "nom": "Auria Bohn",
+    "url": "https://www.youtube.com/search?q=Auria+Bohn",
+    "techniques": ["Encres naturelles", "aquarelle", "acrylique", "collage", "gelli plate"],
+    "description": "Artiste mixed media utilisant encres naturelles, aquarelle, acrylique et collage.",
+    "niveau": ["Intermédiaire"],
+    "langue": ["Anglais"]
+  },
+  {
+    "id": "C033",
+    "nom": "Vikki Reed",
+    "url": "https://www.youtube.com/search?q=Vikki+Reed+Mixed+Media",
+    "techniques": ["Gelli plate", "collage", "pochoirs", "upcycling"],
+    "description": "Mixed media et upcycling : fonds colorés, collage, gelli plate et pochoirs.",
+    "niveau": ["Intermédiaire"],
+    "langue": ["Anglais"]
+  },
+  {
+    "id": "C034",
+    "nom": "Susanne Rose",
+    "url": "https://www.youtube.com/c/SusanneRoseArt",
+    "techniques": ["Collage", "acrylique", "texture", "journaling"],
+    "description": "Art journal et mixed media : collages, textures et journaling accessibles.",
+    "niveau": ["Intermédiaire", "Avancé"],
+    "langue": ["Anglais"]
+  },
+  {
+    "id": "C035",
+    "nom": "FroyleArt",
+    "url": "https://www.youtube.com/@FroyleArt",
+    "techniques": ["Collage", "gelli plate", "texture", "peinture acrylique"],
+    "description": "Tutoriels mixed media accessibles : collage, peinture et recyclage de papiers.",
+    "niveau": ["Débutant", "Intermédiaire"],
+    "langue": ["Anglais"]
+  },
+  {
+    "id": "C036",
+    "nom": "yeates Makes",
+    "url": "https://www.youtube.com/@yeatesmakes",
+    "techniques": ["Monoprint", "gelli printing", "art journal"],
+    "description": "Monoprint, gelli printing et techniques papier pour art journal.",
+    "niveau": ["Débutant", "Intermédiaire"],
+    "langue": ["Anglais"]
+  },
+  {
+    "id": "C037",
+    "nom": "Shawn Petite",
+    "url": "https://www.youtube.com/@ShawnPetite",
+    "techniques": ["Peinture acrylique", "texture", "collage", "journaling"],
+    "description": "Artiste et enseignante en mixed media : peinture, collage, texture et journaling.",
+    "niveau": ["Intermédiaire"],
+    "langue": ["Anglais"]
+  },
+  {
+    "id": "C038",
+    "nom": "Kit Bell",
+    "url": "https://www.youtube.com/@KitBellArtist",
+    "techniques": ["Gel printing", "acrylique", "botanique", "monoprint"],
+    "description": "Artiste canadienne en acrylique et mixed media, motifs botaniques via gel printing.",
+    "niveau": ["Intermédiaire"],
+    "langue": ["Anglais"]
+  },
+  {
+    "id": "C039",
+    "nom": "Amber K. Creative",
+    "url": "https://www.youtube.com/@AmberKCreative",
+    "techniques": ["Art journal", "acrylique", "encres", "collage", "texture"],
+    "description": "Mixed Media Art Journal – supplies, techniques & tutorials pour tous niveaux.",
+    "niveau": ["Débutant", "Intermédiaire"],
+    "langue": ["Anglais"]
+  },
+  {
+    "id": "C040",
+    "nom": "Willa Wanders",
+    "url": "https://www.youtube.com/@willawanders",
+    "techniques": ["Art journal", "collage", "création de papiers", "texture"],
+    "description": "Mixed media pour débutants : art journal, création de papiers, collage.",
+    "niveau": ["Débutant", "Intermédiaire"],
+    "langue": ["Anglais"]
+  },
+  {
+    "id": "C041",
+    "nom": "Tracy Anne Wilkinson",
+    "url": "https://www.youtube.com/@TracyAnneWilkinson",
+    "techniques": ["Zentangle", "dessin", "art textile", "mixed media"],
+    "description": "Artiste certifiée Zentangle®, explore aussi le mixed media et l'art textile.",
+    "niveau": ["Débutant", "Intermédiaire"],
+    "langue": ["Anglais"]
+  },
+  {
+    "id": "C042",
+    "nom": "Les Récréations de Paula",
+    "url": "https://www.youtube.com/c/Lesr%C3%A9cr%C3%A9ationsdePaula",
+    "techniques": ["Art journal", "journaling", "acrylique", "encres"],
+    "description": "Chaîne francophone d’art journal et journaling émotionnel.",
+    "niveau": ["Débutant", "Intermédiaire"],
+    "langue": ["Français"]
+  },
+  {
+    "id": "C043",
+    "nom": "Artsy Fartsy",
+    "url": "https://www.youtube.com/@TaraJacobsen",
+    "techniques": ["Collage", "peinture acrylique", "texture", "art journal"],
+    "description": "Collage de magazines, superpositions et textures avec humour et liberté.",
+    "niveau": ["Débutant", "Intermédiaire"],
+    "langue": ["Anglais"]
+  },
+  {
+    "id": "C044",
+    "nom": "ShanoukiArt",
+    "url": "https://www.youtube.com/@ShanoukiArt",
+    "techniques": ["Junk journal", "art journal", "collage", "layering"],
+    "description": "Papercraft, junk journal et mixed media créatif : découpage, collage, textures.",
+    "niveau": ["Débutant", "Intermédiaire"],
+    "langue": ["Anglais"]
+  },
+  {
+    "id": "C045",
+    "nom": "Sharon Dixon",
+    "url": "https://www.youtube.com/@SharonDixon22",
+    "techniques": ["Collage", "art journal", "peinture", "texture"],
+    "description": "Quelques vidéos de collage et art journal, techniques variées à préciser.",
+    "niveau": ["Débutant", "Intermédiaire"],
+    "langue": ["Anglais"]
+  },
+  {
+    "id": "C046",
+    "nom": "devonx4art",
+    "url": "https://www.youtube.com/@devonrex4",
+    "techniques": ["Acrylique", "texture", "peinture abstraite"],
+    "description": "Art abstrait et texturé, expérimentation de couleurs et de matériaux.",
+    "niveau": ["Intermédiaire"],
+    "langue": ["Anglais"]
+  },
+  {
+    "id": "C047",
+    "nom": "CDS-AbstractArt",
+    "url": "https://www.youtube.com/@Cdsabstractart",
+    "techniques": ["Acrylique fluide", "abstraction", "couleur"],
+    "description": "Peinture fluide et abstraite, compositions modernes et intuitives.",
+    "niveau": ["Intermédiaire"],
+    "langue": ["Anglais"]
+  },
+  {
+    "id": "C048",
+    "nom": "BlueLavaAart",
+    "url": "https://www.youtube.com/@bluelavaart",
+    "techniques": ["Acrylique", "texture", "abstraction"],
+    "description": "Peinture abstraite intuitive, travail des textures et des harmonies colorées.",
+    "niveau": ["Intermédiaire"],
+    "langue": ["Anglais"]
+  },
+  {
+    "id": "C049",
+    "nom": "Lieve Ericx",
+    "url": "https://www.youtube.com/@LieveEricx",
+    "techniques": ["Aquarelle", "collage", "dessin floral"],
+    "description": "Aquarelle et mixed media floral, approche sensible et intuitive.",
+    "niveau": ["Débutant", "Intermédiaire"],
+    "langue": ["Néerlandais", "Anglais"]
+  },
+  {
+    "id": "C050",
+    "nom": "Jesson Art",
+    "url": "https://www.youtube.com/@JessonArt",
+    "techniques": ["Collage", "peinture intuitive", "art abstrait"],
+    "description": "Mixed media intuitif combinant collage, peinture et dessin gestuel.",
+    "niveau": ["Intermédiaire"],
+    "langue": ["Anglais"]
+  },
+  {
+    "id": "C051",
+    "nom": "Hither and Yon Studio",
+    "url": "https://www.youtube.com/@hitherandyonstudio",
+    "techniques": ["Art journal", "collage", "tampons", "reliure"],
+    "description": "Journal d’artiste et mixed media : collages, tampons, reliure et carnets créatifs.",
+    "niveau": ["Débutant", "Intermédiaire"],
+    "langue": ["Anglais"]
+  },
+  {
+    "id": "C052",
+    "nom": "Treasure Books",
+    "url": "https://www.youtube.com/@TreasureBooks",
+    "techniques": ["Junk journal", "reliure", "papier recyclé", "collage"],
+    "description": "Junk journal & reliure créative : tutoriels pour carnets et embellissements papier.",
+    "niveau": ["Débutant", "Intermédiaire"],
+    "langue": ["Anglais"]
+  },
+  {
+    "id": "C053",
+    "nom": "Créa 'Dor",
+    "url": "https://www.youtube.com/@crea-dor",
+    "techniques": ["Scrapbooking", "collage", "peinture", "texture"],
+    "description": "Chaîne francophone autour du scrapbooking et du mixed media décoratif.",
+    "niveau": ["Débutant", "Intermédiaire"],
+    "langue": ["Français"]
+  },
+  {
+    "id": "C054",
+    "nom": "Miss Mioumioum",
+    "url": "https://www.youtube.com/@MissMioumioum",
+    "techniques": ["Art journal", "collage", "décoration papier"],
+    "description": "Chaîne francophone d’art journal et décoration papier, vidéos ludiques et colorées.",
+    "niveau": ["Débutant", "Intermédiaire"],
+    "langue": ["Français"]
+  },
+  {
+    "id": "C055",
+    "nom": "Carolyn Dube",
+    "url": "https://youtube.com/@carolyndube?si=6-yXYS_t7dYDS_Fu",
+    "techniques": ["pochoirs", "aquarelle", "huile", "collage", "journaling", "gelli plate", "encres", "sprays"],
+    "description": "Approche ludique et libératrice du mixed media en explorant l’usage créatif des pochoirs, des matériaux récupérés et des techniques variées (collage, journaling, gel-prints, encres, sprays) pour transformer le chaos en œuvres colorées et expressives.",
+    "niveau": ["Intermédiaire"],
+    "langue": ["Anglais"]
+  },
+  {
+    "id": "C056",
+    "nom": "Larkin Green Studio",
+    "url": "https://www.youtube.com/watch?v=nfvYNI0MmTI&list=PL3fDA44YlqruDua8il073dUR94WQDKNIT",
+    "techniques": ["sumi-e"],
+    "description": "Sumi-e : configuration du matériel (les « quatre trésors » : pinceau, encre, papier, pierre à encre), démonstrations de traits, compositions minimalistes.",
+    "niveau": [],
+    "langue": ["Anglais"]
+  },
+  {
+    "id": "C057",
+    "nom": "Peinture à l'encre de Chine",
+    "url": "https://www.youtube.com/@ShuiMoHua",
+    "techniques": ["peinture à l'encre chinoise"],
+    "description": "peinture à l'encre chinoise : les matériels traditionnels, les gestes de base, des démonstrations concrètes de paysages, fleurs, bambous.",
+    "niveau": [],
+    "langue": []
+  }
+]
