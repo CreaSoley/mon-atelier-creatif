@@ -137,22 +137,48 @@ function chargerDicton() {
     .catch(() => document.getElementById("proverbes").innerText = "Proverbe indisponible");
 }
 
-// --- 5. TECHNIQUES (version JSON – marche toujours, plus jamais d'erreur) ---
+// --- 5. SÉLECTEUR DE TECHNIQUE + CHAÎNES YOUTUBE ---
 let techniques = [];
+let chaines = [];
+let liens = [];
 
-function chargerTechniquesJSON() {
-  fetch('data/techniques.json')
-    .then(r => r.json())
-    .then(data => {
-      techniques = data;
-      choisirTechnique();
-    })
-    .catch(err => {
-      console.error(err);
-      document.getElementById("technique").innerHTML = `<em style="color:red;">Erreur chargement (vérifie data/techniques.json)</em>`;
+// Fonction pour charger TOUTES les données
+function chargerTechniques() {
+  Promise.all([
+    fetch('data/techniques.json').then(r => r.json()),
+    fetch('data/chaines.json').then(r => r.json()),
+    fetch('data/liens.csv').then(r => r.text())
+  ])
+  .then(([dataTech, dataChan, csvLiens]) => {
+    // Stocker les données
+    techniques = dataTech;
+    chaines = dataChan;
+
+    // Parser le CSV des liens
+    liens = csvLiens
+      .trim()
+      .split('\n')
+      .slice(1) // sauter l'en-tête
+      .map(ligne => {
+        const [techId, chanId] = ligne.split(';').map(item => item.trim());
+        return { technique_id: techId, chaine_id: chanId };
+      });
+
+    console.log("✅ Données chargées :", {
+      techniques: techniques.length,
+      chaines: chaines.length,
+      liens: liens.length
     });
+  })
+  .catch(err => {
+    console.error("❌ Erreur chargement des données :", err);
+    document.getElementById("technique").innerText = "❌ Erreur : données non chargées";
+    document.getElementById("materiel").innerText = "";
+    document.getElementById("lien").style.display = "none";
+  });
 }
 
+// Fonction appelée quand on clique sur "Découvrir"
 function choisirTechnique() {
   const techEl = document.getElementById("technique");
   const matEl = document.getElementById("materiel");
@@ -160,46 +186,54 @@ function choisirTechnique() {
 
   if (techniques.length === 0) {
     techEl.innerHTML = `<em>Chargement en cours…</em>`;
+    matEl.innerText = "";
+    lienEl.style.display = "none";
     return;
   }
 
+  // Choisir une technique aléatoire
   const tech = techniques[Math.floor(Math.random() * techniques.length)];
 
-  const badgesNiveau = tech.niveau.split(' • ').map(n => 
-    `<span style="background:#3b82f6; color:white; padding:2px 6px; margin:2px 3px; border-radius:4px; font-size:0.8em;">${n.trim()}</span>`
-  ).join("");
+  // Trouver les chaînes liées
+  const chainesLiees = liens
+    .filter(lien => lien.technique_id === tech.id)
+    .map(lien => chaines.find(c => c.id === lien.chaine_id))
+    .filter(Boolean);
 
+  // Choisir une chaîne au hasard (ou aucune)
+  const chaine = chainesLiees.length > 0 
+    ? chainesLiees[Math.floor(Math.random() * chainesLiees.length)]
+    : null;
+
+  // Affichage du nom + niveau
   techEl.innerHTML = `
-    <strong style="font-size:1.3em;">${tech.technique}</strong><br>
-    ${badgesNiveau}<br>
+    <strong style="font-size:1.3em;">${tech.nom}</strong><br>
+    <small style="line-height: 60px; position: relative; left: -100px; font-style: italic;">Niveau : ${tech.niveau.join(', ')}</small><br>
     <em style="font-size:0.95em; color:#555;">“${tech.description}”</em>
   `;
-  matEl.innerText = `🖌️ Matériel : ${tech.materiel}`;
 
-  if (tech.oeuvre) {
-    let img = document.getElementById("preview-technique");
-    if (!img) {
-      img = document.createElement("img");
-      img.id = "preview-technique";
-      img.loading = "lazy";
-      matEl.insertAdjacentElement("afterend", img);
-    }
-    img.src = tech.oeuvre;
-    img.alt = tech.technique;
-    img.style.cssText = "width:100%; height:400px; object-fit:cover; object-position:center; border-radius:15px; margin:20px 0; box-shadow:0 6px 20px rgba(0,0,0,0.15); display:block;";
+  // Matériel avec lettre resserrée
+  matEl.innerHTML = `Matériel : <span style="letter-spacing: -1px;">${tech.materiel}</span>`;
+
+  // Gestion de l'image
+  let img = document.getElementById("preview-technique");
+  if (!img) {
+    img = document.createElement("img");
+    img.id = "preview-technique";
+    img.alt = tech.nom;
+    img.style = "max-width: 100%; border-radius: 8px; margin: 12px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1);";
+    matEl.insertAdjacentElement("afterend", img);
   }
+  img.src = tech.image;
 
-  if (tech.lien_youtube && tech.lien_youtube.startsWith('http')) {
-    lienEl.href = tech.lien_youtube;
-    lienEl.textContent = "▶️ Voir sur YouTube";
+  // 🔗 Lien YouTube
+  if (chaine && chaine.url && chaine.url.startsWith('http')) {
+    lienEl.href = chaine.url;
+    lienEl.textContent = "▶️ Voir la chaîne YouTube";
     lienEl.target = "_blank";
-    lienEl.rel = "noopener noreferrer";
-    lienEl.style.display = "inline-block";
-    lienEl.style.cssText = "margin-top:15px; color:#ff0055; font-weight:bold; text-decoration:underline; cursor:pointer;";
+    lienEl.rel = "noopener";
+    lienEl.style.display = "inline";
   } else {
     lienEl.style.display = "none";
   }
 }
-</script>
-</body>
-</html>
