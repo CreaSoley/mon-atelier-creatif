@@ -1,110 +1,355 @@
+Super travail ! 🎉  
+Tu as déjà créé ton site sur GitHub Pages — c’est un grand pas.  
+Maintenant, tu veux **améliorer l’arborescence** de ton site avec :
+
+✅ Une **page d’accueil dynamique** (couleur du jour, météo, heure, dicton, sélecteur)  
+✅ Des **pages dédiées à chaque technique artistique**
+
+Et surtout : tu veux **utiliser un fichier Excel (ou CSV)** comme base pour le **sélecteur de techniques créatives**.
+
+Voici une solution **claire, progressive, 100 % gratuite**, adaptée à ton niveau et à ton Raspberry Pi.
+
+---
+
+## 🧩 Arborescence finale proposée
+
+```
+/
+├── index.html                 → Page d'accueil dynamique
+├── savonnerie.html            → Page dédiée
+├── peinture.html              → Page dédiée
+├── carterie.html              → Page dédiée
+├── bougies.html               → Page dédiée
+├── assets/
+│   ├── css/
+│   │   └── style.css          → Style commun
+│   ├── js/
+│   │   ├── main.js            → Scripts principaux
+│   │   └── dictons.csv        → Dictons du jour (texte simple)
+│   └── images/                → Tes photos
+└── data/
+    └── techniques.csv         → Liste des techniques (issu de ton Excel)
+```
+
+> ✅ Tout est gérable depuis GitHub, sans base de données.
+
+---
+
+# ✅ Étape par étape : améliorer ton site
+
+---
+
+## 🔹 1. Convertir ton Excel en CSV (pour le web)
+
+GitHub ne lit pas les `.xlsx`, mais il lit très bien les `.csv`.
+
+### 📌 Étapes :
+1. Ouvre ton fichier Excel
+2. Clique sur **Fichier > Enregistrer sous**
+3. Choisis le format : **CSV (Séparateur : virgule) \*.csv**
+4. Nom du fichier : `techniques.csv`
+5. Enregistre-le
+
+### Exemple de contenu (`techniques.csv`) :
+
+```csv
+technique,materiel,duree,niveau,url
+"Savon à froid","Huile, soude, moules","3h + 4 semaines","Intermédiaire","savonnerie.html"
+"Peinture acrylique","Toile, pinceaux, peinture","2-4h","Débutant","peinture.html"
+"Carterie","Papier, colle, rubans","1h","Facile","carterie.html"
+"Bougies végétales","Cire, mèche, huiles","2h","Facile","bougies.html"
+"Aquarelle","Aquarelle, papier grain","1-3h","Débutant","peinture.html"
+```
+
+> ✅ Tu pourras enrichir ce fichier plus tard (photos, descriptions…).
+
+---
+
+## 🔹 2. Créer la structure des pages
+
+Crée ces fichiers dans ton dépôt GitHub :
+
+- `index.html` → page d’accueil
+- `savonnerie.html`
+- `peinture.html`
+- `carterie.html`
+- `bougies.html`
+
+👉 Pour l’instant, remplis-les avec un modèle simple :
+
+```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
   <meta name="robots" content="noindex, nofollow" />
-  <meta name="googlebot" content="noindex, nofollow" />
-  <title>Mon Atelier Créatif</title>
+  <title>Savonnerie - Mon Atelier Créatif</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+<h1>🧼 Savonnerie artisanale</h1>
+<p>Technique que j'adore : fabrication de savons à froid, sans additif, selon la méthode traditionnelle.</p>
+<img src="assets/images/savon.jpg" width="400" alt="Mon savon maison">
+
+<a href="index.html">← Retour à l'accueil</a>
+
+</body>
+</html>
+```
+
+Répète pour chaque technique.
+
+---
+
+## 🔹 3. Page d’accueil : `index.html` (version enrichie)
+
+Voici un modèle complet avec :
+- 🎨 Couleur du jour
+- 🌤️ Météo (via API gratuite)
+- ⏰ Heure dynamique
+- 🗣️ Dicton du jour (depuis `dictons.csv`)
+- 🎲 Sélecteur de technique (depuis `techniques.csv`)
+
+---
+
+### 📄 Copie ce code dans `index.html`
+
+```html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Accueil - Mon Atelier Créatif</title>
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Segoe UI', sans-serif;
       max-width: 900px;
       margin: 40px auto;
       padding: 20px;
-      background-color: #f9f7f2;
+      background: #faf7f0;
       color: #333;
       line-height: 1.6;
     }
-    h1, h2 {
-      color: #5d4037;
-    }
-    .outil {
-      background: #fff8e1;
-      padding: 15px;
-      border-radius: 8px;
+    .box {
+      background: white;
+      padding: 20px;
       margin: 20px 0;
-      border: 1px dashed #ffb300;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
-    img {
-      max-width: 100%;
-      border-radius: 8px;
-      margin: 10px 0;
+    button {
+      background: #5d4037;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
     }
-    footer {
-      text-align: center;
-      margin-top: 50px;
-      color: #777;
-      font-size: 0.9em;
-    }
+    a { color: #8d6e63; text-decoration: underline; }
+    footer { text-align: center; margin-top: 50px; color: #777; font-size: 0.9em; }
   </style>
 </head>
 <body>
 
-<!-- 🔒 MOT DE PASSE FAMILIAL -->
+<!-- 🔒 Mot de passe -->
 <script>
-  const mdp = "KokoMango27*"; // ← Change ce mot de passe si tu veux
+  const mdp = "Art2025";
   const essai = prompt("Mot de passe familial ?");
   if (essai !== mdp) {
-    document.body.innerHTML = "<h1 style='color: red; text-align: center; margin-top: 50px;'>Accès refusé</h1>";
-    throw new Error("Accès bloqué");
+    document.body.innerHTML = "<h1 style='color:red;text-align:center;margin:50px;'>Accès refusé</h1>";
+    throw new Error();
   }
 </script>
 
 <h1>✨ Bienvenue dans mon atelier</h1>
-<p>Ce petit coin numérique partage mes créations artisanales et mes expériences en développement web. Merci d’être là ❤️</p>
+<p>Un espace doux pour créer, expérimenter et partager.</p>
 
-<!-- GALERIE DE CRÉATIONS -->
-<h2>Mes Créations</h2>
-
-<h3>Savons maison</h3>
-<img src="https://via.placeholder.com/400x300?text=Savon+Olive+Lavande" alt="Savon maison">
-<p><em>Savon à l’huile d’olive et lavande – Novembre 2025</em></p>
-
-<h3>Peintures</h3>
-<img src="https://via.placeholder.com/400x300?text=Peinture+Aquarelle" alt="Aquarelle">
-<p><em>Aquarelle – 'Forêt d’automne'</em></p>
-
-<!-- OUTILS INTERACTIFS -->
-<div class="outil">
+<!-- 🎨 Couleur du jour -->
+<div class="box">
   <h2>🎨 Couleur du jour</h2>
-  <button onclick="generer()">Générer une couleur</button>
-  <div id="boite" style="width:100px; height:80px; margin:10px;"></div>
+  <button onclick="genererCouleur()">Générer</button>
+  <div id="couleur" style="width:100px;height:80px;margin:10px;"></div>
   <p id="code"></p>
 </div>
 
-<div class="outil">
-  <h2>🛠️ Quelle technique ce soir ?</h2>
-  <button onclick="choisir()">Découvrir</button>
-  <p id="resultat"></p>
+<!-- ⏰ Heure -->
+<div class="box">
+  <h2>⏰ Heure actuelle</h2>
+  <p id="heure"></p>
 </div>
 
+<!-- 🌤️ Météo (ville modifiable) -->
+<div class="box">
+  <h2>🌤️ Météo à [Ville]</h2>
+  <p id="meteo">Chargement...</p>
+</div>
+
+<!-- 🗣️ Dicton du jour -->
+<div class="box">
+  <h2>💬 Dicton du jour</h2>
+  <p id="dicton">Chargement...</p>
+</div>
+
+<!-- 🎲 Sélecteur de technique -->
+<div class="box">
+  <h2>🛠️ Quelle technique ce soir ?</h2>
+  <button onclick="choisirTechnique()">Découvrir</button>
+  <p id="technique"></p>
+  <p id="materiel"></p>
+  <p><a id="lien" style="display:none;" href="#">→ Voir la page</a></p>
+</div>
+
+<footer>
+  Mon Atelier Créatif • 2025 • <a href="https://github.com/[ton-pseudo]/mon-atelier-creatif">Code source</a>
+</footer>
+
 <script>
-function generer() {
+// --- Couleur du jour ---
+function genererCouleur() {
   const r = Math.floor(Math.random() * 256);
   const g = Math.floor(Math.random() * 256);
   const b = Math.floor(Math.random() * 256);
   const hex = "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
-  document.getElementById("boite").style.backgroundColor = `rgb(${r},${g},${b})`;
-  document.getElementById("code").innerText = "Code HEX : " + hex;
+  document.getElementById("couleur").style.backgroundColor = `rgb(${r},${g},${b})`;
+  document.getElementById("code").innerText = hex;
 }
 
-function choisir() {
-  const techniques = [
-    "Savon surgras",
-    "Bougie végétale",
-    "Aquarelle",
-    "Dessin au fusain",
-    "Peinture acrylique",
-    "Carterie"
-  ];
-  const tech = techniques[Math.floor(Math.random() * techniques.length)];
-  document.getElementById("resultat").innerText = "👉 " + tech;
+// --- Heure dynamique ---
+function mettreAJourHeure() {
+  const now = new Date();
+  document.getElementById("heure").innerText = now.toLocaleString('fr-FR');
+}
+setInterval(mettreAJourHeure, 1000);
+mettreAJourHeure();
+
+// --- Météo (API gratuite Open-Meteo) ---
+fetch('https://api.open-meteo.com/v1/forecast?latitude=48.85&longitude=2.35&current=temperature_2m,weather_code&hourly=temperature_2m&daily=weather_code&timezone=Europe%2FParis')
+  .then(r => r.json())
+  .then(data => {
+    const temp = data.current.temperature_2m;
+    const wc = data.current.weather_code;
+    const weather = {
+      0: "ciel clair", 1: "majoritairement clair", 2: "partiellement nuageux", 3: "nuageux",
+      45: "brouillard", 48: "brouillard givrant", 51: "bruine légère", 61: "pluie modérée"
+    }[wc] || "temps inconnu";
+    document.getElementById("meteo").innerHTML = `${temp}°C • ${weather}`;
+  })
+  .catch(() => document.getElementById("meteo").innerText = "Météo non disponible");
+
+// --- Dicton du jour (depuis CSV) ---
+let dictons = [];
+fetch('assets/js/dictons.csv')
+  .then(r => r.text())
+  .then(csv => {
+    dictons = csv.trim().split('\n').filter(l => l);
+    choisirDicton();
+  });
+
+function choisirDicton() {
+  if (dictons.length > 0) {
+    const alea = dictons[Math.floor(Math.random() * dictons.length)];
+    document.getElementById("dicton").innerText = alea;
+  }
+}
+
+// --- Sélecteur de technique (depuis techniques.csv) ---
+let techniques = [];
+fetch('data/techniques.csv')
+  .then(r => r.text())
+  .then(csv => {
+    const lignes = csv.trim().split('\n').slice(1); // saute l'entête
+    techniques = lignes.map(l => {
+      const [t, m, d, n, u] = l.split(',');
+      return { t: t.replace(/"/g,''), m: m.replace(/"/g,''), d: d.replace(/"/g,''), n: n.replace(/"/g,''), u: u.replace(/"/g,'') };
+    });
+  });
+
+function choisirTechnique() {
+  if (techniques.length > 0) {
+    const tech = techniques[Math.floor(Math.random() * techniques.length)];
+    document.getElementById("technique").innerHTML = `<strong>${tech.t}</strong>`;
+    document.getElementById("materiel").innerText = `Matériel : ${tech.m} | Durée : ${tech.d}`;
+    const lien = document.getElementById("lien");
+    lien.href = tech.u;
+    lien.style.display = "inline";
+  }
 }
 </script>
-
-<footer>
-  Mon atelier créatif • Un projet personnel • 2025
-</footer>
-
 </body>
 </html>
+```
+
+---
+
+## 🔹 4. Ajouter les fichiers statiques
+
+### 📁 Crée ces fichiers sur GitHub :
+
+#### → `assets/js/dictons.csv`
+```
+"En avril, ne te découvre pas d'un fil"
+"Quand il pleut à la Saint-Médard, il pleut quarante jours plus tard"
+"À la Sainte-Anne, grand soleil, grand vin, grand blé"
+"Petit à petit, l'oiseau fait son nid"
+"Loin des yeux, loin du cœur"
+"Qui veut voyager loin ménage sa monture"
+```
+
+#### → `data/techniques.csv`  
+(Celui que tu as exporté depuis Excel)
+
+#### → `assets/css/style.css` (optionnel, pour un design plus fluide)
+
+```css
+body { margin: 40px auto; max-width: 900px; font-family: sans-serif; }
+.box { background: white; padding: 20px; margin: 20px 0; border-radius: 10px; }
+```
+
+---
+
+## 🔹 5. Mettre à jour ton site sur GitHub
+
+Pour chaque fichier :
+1. Va sur ton dépôt GitHub
+2. Clique sur "Add file" > "Upload files"
+3. Glisse-dépose tes fichiers (`index.html`, `savonnerie.html`, etc.)
+4. Clique sur "Commit changes"
+
+➡️ Ton site se met à jour automatiquement !
+
+---
+
+## 🔹 6. Résultat final
+
+Sur ta page d’accueil :
+- 🎨 Un bouton génère une couleur aléatoire
+- ⏰ L’heure s’affiche en temps réel
+- 🌤️ La météo de Paris (modifie latitude/longitude si besoin)
+- 🗣️ Un dicton aléatoire est chargé depuis le CSV
+- 🎲 Un bouton propose une technique aléatoire + lien vers sa page
+
+Et chaque technique a **sa propre page**, évolutive.
+
+---
+
+## ✅ Prochaines étapes (quand tu veux)
+
+| Idée | Comment |
+|------|--------|
+| Changer la ville pour la météo | Modifie `latitude` et `longitude` dans l’URL de l’API |
+| Ajouter une photo à chaque technique | Dans `techniques.csv`, ajoute une colonne `image` |
+| Faire un thème sombre | Ajoute un bouton "🌙/☀️" qui change le CSS |
+| Afficher la date + dicton du jour (fixe) | Utilise `new Date()` pour un dicton par jour |
+
+---
+
+## 💬 Je peux t’aider à :
+
+- Générer un **ZIP complet du site** (avec tous les fichiers)
+- Modifier la **ville pour la météo**
+- Transformer ton **Excel en CSV parfait**
+- Ajouter une **photo dans le sélecteur**
+
+Dis-moi ce dont tu as besoin, et je le fais pour toi. 💻💛
