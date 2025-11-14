@@ -189,47 +189,75 @@ function chargerDicton() {
     });
 }
 
-  // --- 5. Sélecteur de technique (depuis techniques.csv) ---
-  let techniques = [];
-  function chargerTechniques() {
-    // Attention : vérifie que ton fichier est bien dans le dossier "data"
-    fetch('data/techniques.csv')
-      .then(r => r.text())
-      .then(csv => {
-        const lignes = csv.trim().split('\n').slice(1); 
-        techniques = lignes
-          .filter(ligne => ligne.trim() !== '')
-          .map(ligne => {
-            const parts = ligne.split(',');
-            if(parts.length >= 3) {
-                return { 
-                    t: parts[0].replace(/"/g, '').trim(), 
-                    m: parts[1].replace(/"/g, '').trim(), 
-                    d: parts[2].replace(/"/g, '').trim(), 
-                    u: (parts[4] || "#").replace(/"/g, '').trim() 
-                };
-            }
-            return null;
-          }).filter(item => item !== null);
-      })
-      .catch(() => {
-        document.getElementById("technique").innerText = "Erreur de chargement des techniques.";
-      });
+ // --- 5. SÉLECTEUR DE TECHNIQUE (JSON enrichi) ---
+let techniques = [];
+
+function chargerTechniques() {
+  fetch('data/techniques.json')
+    .then(r => {
+      if (!r.ok) throw new Error("Fichier non trouvé");
+      return r.json();
+    })
+    .then(data => {
+      if (!Array.isArray(data) || data.length === 0) {
+        throw new Error("Données invalides ou vides");
+      }
+      techniques = data;
+    })
+    .catch(err => {
+      console.error("Erreur chargement techniques :", err);
+      const techEl = document.getElementById("technique");
+      const matEl = document.getElementById("materiel");
+      const lienEl = document.getElementById("lien");
+
+      techEl.innerHTML = `<em style="color:#999;">⚠️ Erreur : techniques non chargées</em>`;
+      matEl.innerText = "";
+      lienEl.style.display = "none";
+    });
+}
+
+function choisirTechnique() {
+  const techEl = document.getElementById("technique");
+  const matEl = document.getElementById("materiel");
+  const lienEl = document.getElementById("lien");
+
+  if (techniques.length === 0) {
+    techEl.innerHTML = `<em>Chargement en cours…</em>`;
+    matEl.innerText = "";
+    lienEl.style.display = "none";
+    return;
   }
 
-  function choisirTechnique() {
-    if (techniques.length === 0) {
-      document.getElementById("technique").innerText = "Chargement en cours ou fichier vide...";
-      return;
-    }
-    const tech = techniques[Math.floor(Math.random() * techniques.length)];
-    document.getElementById("technique").innerHTML = `<strong>${tech.t}</strong>`;
-    document.getElementById("materiel").innerText = `Matériel : ${tech.m} | Durée : ${tech.d}`;
-    const lien = document.getElementById("lien");
-    lien.href = tech.u;
-    lien.style.display = "inline";
+  const tech = techniques[Math.floor(Math.random() * techniques.length)];
+
+  // Affichage enrichi
+  techEl.innerHTML = `
+    <strong>${tech.nom}</strong><br>
+    <small>Niveau : <i>${tech.niveau.join(" • ")}</i></small><br>
+    <em style="font-size:0.95em;">“${tech.description}”</em>
+  `;
+
+  matEl.innerText = `Matériel : ${tech.materiel}`;
+
+  // Gestion de l'image
+  const imgId = "preview-technique";
+  let img = document.getElementById(imgId);
+  if (!img) {
+    img = document.createElement("img");
+    img.id = imgId;
+    img.alt = tech.nom;
+    img.style = "max-width: 100%; border-radius: 8px; margin: 12px 0; box-shadow: 0 2px 6px rgba(0,0,0,0.1);";
+    matEl.insertAdjacentElement("afterend", img);
+  }
+  img.src = tech.image;
+
+  // Lien
+  lienEl.href = tech.lien;
+  lienEl.textContent = "→ Explorer cette technique";
+  lienEl.style.display = "inline";
   }
 </script>
 
 </body>
 </html>
+
