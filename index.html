@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="googlebot" content="noindex, nofollow" />
+  <title>Mon Atelier Créatif</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+      background-color: #f9f7f2;
+      color: #333;
+      line-height: 1.6;
+    }
+    h1, h2 {
+      color: #5d4037;
+    }
+    .outil {
+      background: #fff8e1;
+      padding: 15px;
+      border-radius: 8px;
+      margin: 20px 0;
+      border: 1px dashed #ffb300;
+    }
+    img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin: 10px 0;
+    }
+    footer {
+      text-align: center;
+      margin-top: 50px;
+      color: #777;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+
+<!-- 🔒 MOT DE PASSE FAMILIAL -->
+<script>
+  const mdp = "KokoMango27*"; // ← Change ce mot de passe si tu veux
+  const essai = prompt("Mot de passe familial ?");
+  if (essai !== mdp) {
+    document.body.innerHTML = "<h1 style='color: red; text-align: center; margin-top: 50px;'>Accès refusé</h1>";
+    throw new Error("Accès bloqué");
+  }
+</script>
+
+<h1>✨ Bienvenue dans mon atelier</h1>
+<p>Ce petit coin numérique partage mes créations artisanales et mes expériences en développement web. Merci d’être là ❤️</p>
+
+<!-- GALERIE DE CRÉATIONS -->
+<h2>Mes Créations</h2>
+
+<h3>Savons maison</h3>
+<img src="https://via.placeholder.com/400x300?text=Savon+Olive+Lavande" alt="Savon maison">
+<p><em>Savon à l’huile d’olive et lavande – Novembre 2025</em></p>
+
+<h3>Peintures</h3>
+<img src="https://via.placeholder.com/400x300?text=Peinture+Aquarelle" alt="Aquarelle">
+<p><em>Aquarelle – 'Forêt d’automne'</em></p>
+
+<!-- OUTILS INTERACTIFS -->
+<div class="outil">
+  <h2>🎨 Couleur du jour</h2>
+  <button onclick="generer()">Générer une couleur</button>
+  <div id="boite" style="width:100px; height:80px; margin:10px;"></div>
+  <p id="code"></p>
+</div>
+
+<div class="outil">
+  <h2>🛠️ Quelle technique ce soir ?</h2>
+  <button onclick="choisir()">Découvrir</button>
+  <p id="resultat"></p>
+</div>
+
+<script>
+function generer() {
+  const r = Math.floor(Math.random() * 256);
+  const g = Math.floor(Math.random() * 256);
+  const b = Math.floor(Math.random() * 256);
+  const hex = "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+  document.getElementById("boite").style.backgroundColor = `rgb(${r},${g},${b})`;
+  document.getElementById("code").innerText = "Code HEX : " + hex;
+}
+
+function choisir() {
+  const techniques = [
+    "Savon surgras",
+    "Bougie végétale",
+    "Aquarelle",
+    "Dessin au fusain",
+    "Peinture acrylique",
+    "Carterie"
+  ];
+  const tech = techniques[Math.floor(Math.random() * techniques.length)];
+  document.getElementById("resultat").innerText = "👉 " + tech;
+}
+</script>
+
+<footer>
+  Mon atelier créatif • Un projet personnel • 2025
+</footer>
+
+</body>
+</html>
