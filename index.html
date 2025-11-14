@@ -60,6 +60,7 @@
   <!-- 💬 DICTON DU JOUR -->
   <div class="box">
     <h2>💬 Proverbe du jour</h2>
+    <!-- CORRECTION ICI : L'ID est bien "proverbes" au pluriel -->
     <p id="proverbes">Chargement...</p>
   </div>
 
@@ -81,19 +82,14 @@
 <!-- ✨ SCRIPTS JS -->
 <script>
   // --- 0. VÉRIFICATION MOT DE PASSE ---
-  // Note : Ce système n'est pas sécurisé à 100% (un expert peut voir le code),
-  // mais c'est suffisant pour un usage familial simple.
   const motDePasse = "KokoMango27*"; 
   const essai = prompt("Mot de passe familial ?");
 
   if (essai === motDePasse) {
-    // Si le mot de passe est bon, on affiche le site
     document.getElementById('contenu-site').style.display = 'block';
-    lancerScripts(); // On lance les fonctions seulement si connecté
+    lancerScripts();
   } else {
-    // Sinon, on affiche l'erreur
     document.getElementById('message-erreur').style.display = 'block';
-    // On change la couleur de fond pour marquer l'erreur
     document.body.style.backgroundColor = "#f8d7da";
   }
 
@@ -142,25 +138,19 @@
 
 // --- 4. Proverbe du jour (Basé sur la DATE, séparateur VIRGULE) ---
 function chargerDicton() {
+  // On cherche le fichier à la racine
   fetch('proverbes.csv')
     .then(r => r.text())
     .then(csv => {
-      // 1. Lecture du fichier
       const lignes = csv.trim().split('\n');
       
       const tousLesProverbes = lignes.map(ligne => {
-        // On découpe la ligne par les virgules
-        const parts = ligne.split(',');
+        const parts = ligne.split(','); // Séparateur virgule
         
         if (parts.length >= 3) {
-          // La date est le 1er élément
           const date = parts[0].trim();
-          
-          // L'auteur est le DERNIER élément
-          const auteur = parts[parts.length - 1].trim();
-          
-          // Le texte est TOUT ce qu'il y a entre la date et l'auteur
-          // (Cela permet d'avoir des virgules dans le proverbe sans bugger)
+          const auteur = parts[parts.length - 1].trim(); // Dernier élément = Auteur
+          // Tout ce qui est au milieu = Texte
           const texte = parts.slice(1, parts.length - 1).join(',').replace(/"/g, '').trim();
           
           return { date, texte, auteur };
@@ -168,28 +158,21 @@ function chargerDicton() {
         return null;
       }).filter(item => item !== null);
 
-      // 2. Trouver la date d'aujourd'hui (Format JJ/MM/AAAA)
-      // Important : Assure-toi que ton ordi/navigateur est bien à l'heure
+      // Date du jour format JJ/MM/AAAA
       const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
       const dateDuJour = new Date().toLocaleDateString('fr-FR', options); 
-      // Exemple de résultat attendu : "24/02/2025"
+      
+      console.log("Date cherchée :", dateDuJour); 
 
-      console.log("Date cherchée :", dateDuJour); // Pour t'aider à débuguer si besoin
-
-      // 3. Comparaison
       let choix = tousLesProverbes.find(p => p.date === dateDuJour);
 
-      // 4. Sécurité : Si la date n'est pas trouvée, on prend un hasard
       if (!choix && tousLesProverbes.length > 0) {
-        console.log("Pas de proverbe pour cette date, choix aléatoire.");
         choix = tousLesProverbes[Math.floor(Math.random() * tousLesProverbes.length)];
       }
 
-      // 5. Affichage
       if (choix) {
-        // ⚠️ Vérifie bien ici si ton ID HTML est "dicton" ou "proverbe"
-        const element = document.getElementById("dicton") || document.getElementById("proverbe");
-        
+        // CORRECTION IMPORTANTE : On vise l'ID "proverbes" (pluriel)
+        const element = document.getElementById("proverbes");
         if (element) {
             element.innerHTML = `
               <strong>« ${choix.texte} »</strong><br>
@@ -200,22 +183,23 @@ function chargerDicton() {
     })
     .catch(error => {
       console.error(error);
-      const el = document.getElementById("dicton") || document.getElementById("proverbe");
+      // En cas d'erreur, on affiche le message dans "proverbes"
+      const el = document.getElementById("proverbes");
       if(el) el.innerText = "Chargement du proverbe impossible.";
     });
 }
+
   // --- 5. Sélecteur de technique (depuis techniques.csv) ---
   let techniques = [];
   function chargerTechniques() {
+    // Attention : vérifie que ton fichier est bien dans le dossier "data"
     fetch('data/techniques.csv')
       .then(r => r.text())
       .then(csv => {
-        // Attention: Assure-toi que ton CSV a bien une ligne d'en-tête à ignorer
         const lignes = csv.trim().split('\n').slice(1); 
         techniques = lignes
           .filter(ligne => ligne.trim() !== '')
           .map(ligne => {
-            // Gestion simple des CSV
             const parts = ligne.split(',');
             if(parts.length >= 3) {
                 return { 
@@ -238,7 +222,6 @@ function chargerDicton() {
       document.getElementById("technique").innerText = "Chargement en cours ou fichier vide...";
       return;
     }
-
     const tech = techniques[Math.floor(Math.random() * techniques.length)];
     document.getElementById("technique").innerHTML = `<strong>${tech.t}</strong>`;
     document.getElementById("materiel").innerText = `Matériel : ${tech.m} | Durée : ${tech.d}`;
@@ -249,11 +232,4 @@ function chargerDicton() {
 </script>
 
 </body>
-
 </html>
-
-
-
-
-
-
