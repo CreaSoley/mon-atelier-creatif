@@ -1,4 +1,183 @@
-// --- 5. SÉLECTEUR DE TECHNIQUE (basé sur techniques.csv, avec lien YouTube)
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Mon Atelier Créatif</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    /* On cache le contenu du site par défaut pour la sécurité */
+    #contenu-site {
+      display: none;
+    }
+    /* Style simple pour le message d'erreur */
+    #message-erreur {
+      display: none;
+      text-align: center;
+      margin-top: 50px;
+      color: red;
+      font-family: Arial, sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+<!-- 🔒 GESTION DU MOT DE PASSE -->
+<div id="message-erreur">
+  <h1>🚫 Accès refusé</h1>
+  <p>Le mot de passe est incorrect.</p>
+  <p>Veuillez rafraîchir la page (F5) pour réessayer.</p>
+</div>
+
+<!-- LE CONTENU DU SITE (Caché par défaut) -->
+<div id="contenu-site">
+
+  <!-- 🏠 PAGE D'ACCUEIL -->
+  <h1>✨ Bienvenue dans mon atelier</h1>
+  <p>Un espace doux pour créer, expérimenter et partager.</p>
+
+  <!-- 🎨 COULEUR DU JOUR -->
+  <div class="box">
+    <h2>🎨 Couleur du jour</h2>
+    <button onclick="genererCouleur()">Générer une couleur</button>
+    <div id="couleur" style="width:100px; height:80px; margin:10px; border:1px solid #ccc;"></div>
+    <p id="code"></p>
+  </div>
+
+  <!-- ⏰ HEURE ACTUELLE -->
+  <div class="box">
+    <h2>⏰ Heure actuelle</h2>
+    <p id="heure"></p>
+  </div>
+
+  <!-- 🌥️ MÉTÉO -->
+  <div class="box">
+    <h2>🌥️ Météo</h2>
+    <p id="meteo">Chargement...</p>
+  </div>
+
+  <!-- 💬 DICTON DU JOUR -->
+  <div class="box">
+    <h2>💬 Proverbe du jour</h2>
+    <p id="proverbes">Chargement...</p>
+  </div>
+
+  <!-- 🛠️ SÉLECTEUR DE TECHNIQUE CRÉATIVE -->
+  <div class="box">
+    <h2>🛠️ Activité du jour ?</h2>
+    <button onclick="choisirTechnique()">Découvrir</button>
+    <p id="technique"></p>
+    <p id="materiel"></p>
+    <p><a id="lien" style="display:none;" href="#">→ Voir la chaîne YouTube</a></p>
+  </div>
+
+  <footer>
+    Mon Atelier Créatif • Un projet personnel • 2025
+  </footer>
+
+</div> <!-- Fin du contenu-site -->
+
+<!-- ✨ SCRIPTS JS -->
+<script>
+  // --- 0. VÉRIFICATION MOT DE PASSE ---
+  const motDePasse = "KokoMango27*"; 
+  const essai = prompt("Mot de passe familial ?");
+
+  if (essai === motDePasse) {
+    document.getElementById('contenu-site').style.display = 'block';
+    lancerScripts();
+  } else {
+    document.getElementById('message-erreur').style.display = 'block';
+    document.body.style.backgroundColor = "#f8d7da";
+  }
+
+  // --- FONCTIONS DU SITE ---
+  function lancerScripts() {
+    mettreAJourHeure();
+    chargerMeteo();
+    chargerDicton();
+    chargerTechniques(); // ✅ Charge les données créatives
+  }
+
+  // --- 1. Couleur du jour ---
+  function genererCouleur() {
+    const r = Math.floor(Math.random() * 256);
+    const g = Math.floor(Math.random() * 256);
+    const b = Math.floor(Math.random() * 256);
+    const hex = "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+    document.getElementById("couleur").style.backgroundColor = `rgb(${r},${g},${b})`;
+    document.getElementById("code").innerText = "Code HEX : " + hex;
+  }
+
+  // --- 2. Heure dynamique ---
+  function mettreAJourHeure() {
+    const now = new Date();
+    document.getElementById("heure").innerText = now.toLocaleString('fr-FR');
+  }
+  setInterval(mettreAJourHeure, 1000);
+
+  // --- 3. Météo (via Open-Meteo) ---
+  function chargerMeteo() {
+    fetch('https://api.open-meteo.com/v1/forecast?latitude=48.85&longitude=2.35&current=temperature_2m,weather_code&timezone=Europe%2FParis')
+      .then(r => r.json())
+      .then(data => {
+        const temp = data.current.temperature_2m;
+        const wc = data.current.weather_code;
+        const weather = {
+          0: "Ciel dégagé", 1: "Partiellement nuageux", 2: "Nuageux", 3: "Très nuageux",
+          45: "Brouillard", 48: "Brouillard givrant", 51: "Bruine légère", 61: "Pluie modérée"
+        }[wc] || "Temps inconnu";
+        document.getElementById("meteo").innerText = `${temp} °C • ${weather}`;
+      })
+      .catch(() => {
+        document.getElementById("meteo").innerText = "Météo non disponible";
+      });
+  }
+
+  // --- 4. Proverbe du jour (CSV, séparateur virgule) ---
+  function chargerDicton() {
+    fetch('proverbes.csv')
+      .then(r => r.text())
+      .then(csv => {
+        const lignes = csv.trim().split('\n');
+        
+        const tousLesProverbes = lignes.map(ligne => {
+          const parts = ligne.split(',');
+          if (parts.length >= 3) {
+            const date = parts[0].trim();
+            const auteur = parts[parts.length - 1].trim();
+            const texte = parts.slice(1, parts.length - 1).join(',').replace(/"/g, '').trim();
+            return { date, texte, auteur };
+          }
+          return null;
+        }).filter(item => item !== null);
+
+        const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+        const dateDuJour = new Date().toLocaleDateString('fr-FR', options); 
+
+        let choix = tousLesProverbes.find(p => p.date === dateDuJour);
+        if (!choix && tousLesProverbes.length > 0) {
+          choix = tousLesProverbes[Math.floor(Math.random() * tousLesProverbes.length)];
+        }
+
+        if (choix) {
+          const element = document.getElementById("proverbes");
+          if (element) {
+            element.innerHTML = `
+              <strong>« ${choix.texte} »</strong><br>
+              <span style="font-size:0.9em; color:#666; font-style:italic;">— ${choix.auteur}</span>
+            `;
+          }
+        }
+      })
+      .catch(error => {
+        console.error(error);
+        const el = document.getElementById("proverbes");
+        if(el) el.innerText = "Chargement du proverbe impossible.";
+      });
+  }
+  // --- 5. SÉLECTEUR DE TECHNIQUE (basé sur techniques.csv, avec lien YouTube)
 let techniques = [];
 
 function chargerTechniques() {
@@ -87,3 +266,4 @@ function choisirTechnique() {
     lienEl.style.display = "none";
   }
 }
+
