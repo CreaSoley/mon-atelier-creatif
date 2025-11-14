@@ -281,7 +281,7 @@
   {
     "id": "C032",
     "nom": "Auria Bohn",
-    "url": "https://www.youtube.com/search?q=Auria+Bohn",
+    "url": "https://www.youtube.com/@auriabohn",
     "techniques": ["Encres naturelles", "aquarelle", "acrylique", "collage", "gelli plate"],
     "description": "Artiste mixed media utilisant encres naturelles, aquarelle, acrylique et collage.",
     "niveau": ["Intermédiaire"],
@@ -290,7 +290,7 @@
   {
     "id": "C033",
     "nom": "Vikki Reed",
-    "url": "https://www.youtube.com/search?q=Vikki+Reed+Mixed+Media",
+    "url": "https://www.youtube.com/@VikkiReed",
     "techniques": ["Gelli plate", "collage", "pochoirs", "upcycling"],
     "description": "Mixed media et upcycling : fonds colorés, collage, gelli plate et pochoirs.",
     "niveau": ["Intermédiaire"],
@@ -497,7 +497,7 @@
   {
     "id": "C056",
     "nom": "Larkin Green Studio",
-    "url": "https://www.youtube.com/watch?v=nfvYNI0MmTI&list=PL3fDA44YlqruDua8il073dUR94WQDKNIT",
+    "url": "https://www.youtube.com/@LarkinGreenStudio",
     "techniques": ["sumi-e"],
     "description": "Sumi-e : configuration du matériel (les « quatre trésors » : pinceau, encre, papier, pierre à encre), démonstrations de traits, compositions minimalistes.",
     "niveau": [],
