@@ -97,7 +97,7 @@
     mettreAJourHeure();
     chargerMeteo();
     chargerDicton();
-    chargerTechniques(); // ✅ Fonction corrigée
+    chargerTechniques(); // ✅ Nom corrigé
   }
 
   // --- 1. Couleur du jour ---
@@ -178,105 +178,105 @@
       });
   }
 
-// --- 5. SÉLECTEUR DE TECHNIQUE (basé sur techniques.csv, avec lien YouTube)
-let techniques = [];
+  // --- 5. SÉLECTEUR DE TECHNIQUE (basé sur techniques.csv, avec lien YouTube)
+  let techniques = [];
 
-function chargerTechniques() {
-  fetch('data/techniques.csv')
-    .then(r => r.text())
-    .then(csv => {
-      const lignes = csv.trim().split('\n').slice(1); // sauter l'en-tête
-      techniques = lignes
-        .filter(ligne => ligne.trim() !== '')
-        .map(ligne => {
-          const parts = ligne.split(';'); // séparateur : point-virgule
-          if (parts.length < 8) return null; // on attend 8 colonnes
+  function chargerTechniques() {
+    fetch('data/techniques.csv')
+      .then(r => r.text())
+      .then(csv => {
+        const lignes = csv.trim().split('\n').slice(1); // sauter l'en-tête
+        techniques = lignes
+          .filter(ligne => ligne.trim() !== '')
+          .map(ligne => {
+            const parts = ligne.split(';'); // séparateur : point-virgule
+            if (parts.length < 8) return null; // on attend 8 colonnes
 
-          return {
-            id: parts[0].trim(),
-            nom: parts[1].replace(/"/g, '').trim(),
-            description: parts[2].replace(/"/g, '').trim(),
-            materiel: parts[3].replace(/"/g, '').trim(),
-            niveau: parts[4].replace(/"/g, '').trim(),
-            image: parts[5].replace(/"/g, '').trim(),
-            lien_youtube: parts[7].replace(/"/g, '').trim() // colonne 8 = lien YouTube
-          };
-        })
-        .filter(Boolean);
-    })
-    .catch(err => {
-      console.error("Erreur chargement techniques :", err);
-      document.getElementById("technique").innerText = "❌ Erreur de chargement des techniques.";
-    });
-}
-
-function choisirTechnique() {
-  const techEl = document.getElementById("technique");
-  const matEl = document.getElementById("materiel");
-  const lienEl = document.getElementById("lien");
-
-  if (techniques.length === 0) {
-    techEl.innerHTML = `<em>Chargement en cours…</em>`;
-    matEl.innerText = "";
-    lienEl.style.display = "none";
-    return;
+            return {
+              id: parts[0].trim(),
+              nom: parts[1].replace(/"/g, '').trim(),
+              description: parts[2].replace(/"/g, '').trim(),
+              materiel: parts[3].replace(/"/g, '').trim(),
+              niveau: parts[4].replace(/"/g, '').trim(),
+              image: parts[5].replace(/"/g, '').trim(),
+              lien_youtube: parts[7].replace(/"/g, '').trim() // colonne 8 = lien YouTube
+            };
+          })
+          .filter(Boolean);
+      })
+      .catch(err => {
+        console.error("Erreur chargement techniques :", err);
+        document.getElementById("technique").innerText = "❌ Erreur de chargement des techniques.";
+      });
   }
 
-  const tech = techniques[Math.floor(Math.random() * techniques.length)];
+  // Fonction appelée quand on clique sur "Découvrir"
+  function choisirTechnique() {
+    const techEl = document.getElementById("technique");
+    const matEl = document.getElementById("materiel");
+    const lienEl = document.getElementById("lien");
 
-  // Badges niveau
-  const badgesNiveau = tech.niveau
-    .split(',')
-    .map(n => n.trim())
-    .map(n => `<span style="background:#3b82f6; color:white; padding:2px 6px; margin:2px 3px; border-radius:4px; font-size:0.8em;">${n}</span>`)
-    .join("");
+    if (techniques.length === 0) {
+      techEl.innerHTML = `<em>Chargement en cours…</em>`;
+      matEl.innerText = "";
+      lienEl.style.display = "none";
+      return;
+    }
 
-  // Image
-let img = document.getElementById("preview-technique");
-if (!img) {
-  img = document.createElement("img");
-  img.id = "preview-technique";
-  img.alt = tech.nom;
-  img.style = `
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin: 12px 0;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    object-position: center;
-  `;
-  matEl.insertAdjacentElement("afterend", img);
-}
-img.src = tech.image;
+    const tech = techniques[Math.floor(Math.random() * techniques.length)];
 
-  // Affichage
-  techEl.innerHTML = `
-    <strong style="font-size:1.3em;">${tech.nom}</strong><br>
-    ${badgesNiveau}<br>
-    <em style="font-size:0.95em; color:#555;">“${tech.description}”</em>
-  `;
-  matEl.innerText = `🖌️ Matériel : ${tech.materiel}`;
+    // Badges niveau
+    const badgesNiveau = tech.niveau
+      .split(',')
+      .map(n => n.trim())
+      .map(n => `<span style="background:#3b82f6; color:white; padding:2px 6px; margin:2px 3px; border-radius:4px; font-size:0.8em;">${n}</span>`)
+      .join("");
 
-  // 🔗 Lien YouTube (si présent)
-  if (tech.lien_youtube && tech.lien_youtube.startsWith('http')) {
-    lienEl.href = tech.lien_youtube;
-    lienEl.textContent = "▶️ Voir la chaîne YouTube";
-    lienEl.target = "_blank";
-    lienEl.rel = "noopener";
-    lienEl.style.cssText = `
-      display: inline-block;
-      margin-top: 10px;
-      color: #1e40af;
-      text-decoration: none;
-      font-weight: bold;
+    // Image
+    let img = document.getElementById("preview-technique");
+    if (!img) {
+      img = document.createElement("img");
+      img.id = "preview-technique";
+      img.alt = tech.nom;
+      img.style = `
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin: 12px 0;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        object-position: center;
+      `;
+      matEl.insertAdjacentElement("afterend", img);
+    }
+    img.src = tech.image;
+
+    // Affichage
+    techEl.innerHTML = `
+      <strong style="font-size:1.3em;">${tech.nom}</strong><br>
+      ${badgesNiveau}<br>
+      <em style="font-size:0.95em; color:#555;">“${tech.description}”</em>
     `;
-  } else {
-    lienEl.style.display = "none";
+    matEl.innerText = `🖌️ Matériel : ${tech.materiel}`;
+
+    // 🔗 Lien YouTube (si présent)
+    if (tech.lien_youtube && tech.lien_youtube.startsWith('http')) {
+      lienEl.href = tech.lien_youtube;
+      lienEl.textContent = "▶️ Voir la chaîne YouTube";
+      lienEl.target = "_blank";
+      lienEl.rel = "noopener";
+      lienEl.style.cssText = `
+        display: inline-block;
+        margin-top: 10px;
+        color: #1e40af;
+        text-decoration: none;
+        font-weight: bold;
+      `;
+    } else {
+      lienEl.style.display = "none";
+    }
   }
-}
+</script>
 
-
-
-
-
+</body>
+</html>
