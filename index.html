@@ -25,9 +25,9 @@
 
 <!-- 🔒 GESTION DU MOT DE PASSE -->
 <div id="message-erreur">
-    <h1>🚫 Accès refusé</h1>
-    <p>Le mot de passe est incorrect.</p>
-    <p>Veuillez rafraîchir la page (F5) pour réessayer.</p>
+  <h1>🚫 Accès refusé</h1>
+  <p>Le mot de passe est incorrect.</p>
+  <p>Veuillez rafraîchir la page (F5) pour réessayer.</p>
 </div>
 
 <!-- LE CONTENU DU SITE (Caché par défaut) -->
@@ -60,7 +60,6 @@
   <!-- 💬 DICTON DU JOUR -->
   <div class="box">
     <h2>💬 Proverbe du jour</h2>
-    <!-- CORRECTION ICI : L'ID est bien "proverbes" au pluriel -->
     <p id="proverbes">Chargement...</p>
   </div>
 
@@ -70,7 +69,7 @@
     <button onclick="choisirTechnique()">Découvrir</button>
     <p id="technique"></p>
     <p id="materiel"></p>
-    <p><a id="lien" style="display:none;" href="#">→ Voir la fiche complète</a></p>
+    <p><a id="lien" style="display:none;" href="#">→ Voir sur YouTube</a></p>
   </div>
 
   <footer>
@@ -98,7 +97,7 @@
     mettreAJourHeure();
     chargerMeteo();
     chargerDicton();
-    chargerTechniques();
+    chargerDonneesCreatives(); // ✅ Fonction corrigée
   }
 
   // --- 1. Couleur du jour ---
@@ -136,159 +135,155 @@
       });
   }
 
-// --- 4. Proverbe du jour (Basé sur la DATE, séparateur VIRGULE) ---
-function chargerDicton() {
-  // On cherche le fichier à la racine
-  fetch('proverbes.csv')
-    .then(r => r.text())
-    .then(csv => {
-      const lignes = csv.trim().split('\n');
-      
-      const tousLesProverbes = lignes.map(ligne => {
-        const parts = ligne.split(','); // Séparateur virgule
+  // --- 4. Proverbe du jour (CSV, séparateur virgule) ---
+  function chargerDicton() {
+    fetch('proverbes.csv')
+      .then(r => r.text())
+      .then(csv => {
+        const lignes = csv.trim().split('\n');
         
-        if (parts.length >= 3) {
-          const date = parts[0].trim();
-          const auteur = parts[parts.length - 1].trim(); // Dernier élément = Auteur
-          // Tout ce qui est au milieu = Texte
-          const texte = parts.slice(1, parts.length - 1).join(',').replace(/"/g, '').trim();
-          
-          return { date, texte, auteur };
+        const tousLesProverbes = lignes.map(ligne => {
+          const parts = ligne.split(',');
+          if (parts.length >= 3) {
+            const date = parts[0].trim();
+            const auteur = parts[parts.length - 1].trim();
+            const texte = parts.slice(1, parts.length - 1).join(',').replace(/"/g, '').trim();
+            return { date, texte, auteur };
+          }
+          return null;
+        }).filter(item => item !== null);
+
+        const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+        const dateDuJour = new Date().toLocaleDateString('fr-FR', options); 
+
+        let choix = tousLesProverbes.find(p => p.date === dateDuJour);
+        if (!choix && tousLesProverbes.length > 0) {
+          choix = tousLesProverbes[Math.floor(Math.random() * tousLesProverbes.length)];
         }
-        return null;
-      }).filter(item => item !== null);
 
-      // Date du jour format JJ/MM/AAAA
-      const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
-      const dateDuJour = new Date().toLocaleDateString('fr-FR', options); 
-      
-      console.log("Date cherchée :", dateDuJour); 
-
-      let choix = tousLesProverbes.find(p => p.date === dateDuJour);
-
-      if (!choix && tousLesProverbes.length > 0) {
-        choix = tousLesProverbes[Math.floor(Math.random() * tousLesProverbes.length)];
-      }
-
-      if (choix) {
-        // CORRECTION IMPORTANTE : On vise l'ID "proverbes" (pluriel)
-        const element = document.getElementById("proverbes");
-        if (element) {
+        if (choix) {
+          const element = document.getElementById("proverbes");
+          if (element) {
             element.innerHTML = `
               <strong>« ${choix.texte} »</strong><br>
               <span style="font-size:0.9em; color:#666; font-style:italic;">— ${choix.auteur}</span>
             `;
+          }
         }
-      }
-    })
-    .catch(error => {
-      console.error(error);
-      // En cas d'erreur, on affiche le message dans "proverbes"
-      const el = document.getElementById("proverbes");
-      if(el) el.innerText = "Chargement du proverbe impossible.";
-    });
-}
-// --- 5. SÉLECTEUR DE TECHNIQUE + CHAÎNES YOUTUBE ---
-let techniques = [];
-let chaines = [];
-let liens = [];
-
-// Fonction pour charger les données
-function chargerDonneesCreatives() {
-  Promise.all([
-    fetch('data/techniques.json').then(r => r.json()),
-    fetch('data/chaines.json').then(r => r.json()),
-    fetch('data/liens.csv').then(r => r.text())
-  ])
-  .then(([dataTech, dataChan, csvLiens]) => {
-    techniques = dataTech;
-    chaines = dataChan;
-
-    liens = csvLiens
-      .trim()
-      .split('\n')
-      .slice(1)
-      .map(ligne => {
-        const [techId, chanId] = ligne.split(';').map(item => item.trim());
-        return { technique_id: techId, chaine_id: chanId };
+      })
+      .catch(error => {
+        console.error(error);
+        const el = document.getElementById("proverbes");
+        if(el) el.innerText = "Chargement du proverbe impossible.";
       });
+  }
 
-    console.log("✅ Données chargées :", {
-      techniques: techniques.length,
-      chaines: chaines.length,
-      liens: liens.length,
-      exemple: liens[0]
+  // --- 5. SÉLECTEUR DE TECHNIQUE + CHAÎNES YOUTUBE ---
+  let techniques = [];
+  let chaines = [];
+  let liens = [];
+
+  // Fonction chargée au démarrage
+  function chargerDonneesCreatives() {
+    Promise.all([
+      fetch('data/techniques.json').then(r => r.json()),
+      fetch('data/chaines.json').then(r => r.json()),
+      fetch('data/liens.csv').then(r => r.text())
+    ])
+    .then(([dataTech, dataChan, csvLiens]) => {
+      techniques = dataTech;
+      chaines = dataChan;
+
+      liens = csvLiens
+        .trim()
+        .split('\n')
+        .slice(1)
+        .map(ligne => {
+          const [techId, chanId] = ligne.split(';').map(item => item.trim());
+          return { technique_id: techId, chaine_id: chanId };
+        });
+
+      console.log("✅ Données chargées :", {
+        techniques: techniques.length,
+        chaines: chaines.length,
+        liens: liens.length,
+        exemple: liens[0]
+      });
+    })
+    .catch(err => {
+      console.error("❌ Erreur chargement des données :", err);
+      const techEl = document.getElementById("technique");
+      const matEl = document.getElementById("materiel");
+      const lienEl = document.getElementById("lien");
+
+      techEl.innerHTML = `<em style="color:#999;">⚠️ Erreur : données non chargées</em>`;
+      matEl.innerText = "";
+      lienEl.style.display = "none";
     });
-  })
-  .catch(err => {
-    console.error("❌ Erreur chargement des données :", err);
+  }
+
+  // Fonction appelée quand on clique sur "Découvrir"
+  function choisirTechnique() {
     const techEl = document.getElementById("technique");
     const matEl = document.getElementById("materiel");
     const lienEl = document.getElementById("lien");
 
-    techEl.innerHTML = `<em style="color:#999;">⚠️ Erreur : données non chargées</em>`;
-    matEl.innerText = "";
-    lienEl.style.display = "none";
-  });
-}
+    if (techniques.length === 0) {
+      techEl.innerHTML = `<em>Chargement en cours…</em>`;
+      matEl.innerText = "";
+      lienEl.style.display = "none";
+      return;
+    }
 
-// Fonction appelée quand on clique sur "Découvrir"
-function choisirTechnique() {
-  const techEl = document.getElementById("technique");
-  const matEl = document.getElementById("materiel");
-  const lienEl = document.getElementById("lien");
+    const tech = techniques[Math.floor(Math.random() * techniques.length)];
 
-  if (techniques.length === 0) {
-    techEl.innerHTML = `<em>Chargement en cours…</em>`;
-    matEl.innerText = "";
-    lienEl.style.display = "none";
-    return;
-  }
+    const chainesLiees = liens
+      .filter(lien => lien.technique_id === tech.id)
+      .map(lien => chaines.find(c => c.id === lien.chaine_id))
+      .filter(Boolean);
 
-  const tech = techniques[Math.floor(Math.random() * techniques.length)];
+    const chaine = chainesLiees.length > 0 
+      ? chainesLiees[Math.floor(Math.random() * chainesLiees.length)]
+      : null;
 
-  const chainesLiees = liens
-    .filter(lien => lien.technique_id === tech.id)
-    .map(lien => chaines.find(c => c.id === lien.chaine_id))
-    .filter(Boolean);
+    const badgesNiveau = tech.niveau
+      .map(n => `<span style="background:#3b82f6; color:white; padding:2px 6px; margin:2px 3px; border-radius:4px; font-size:0.8em;">${n}</span>`)
+      .join("");
 
-  const chaine = chainesLiees.length > 0 
-    ? chainesLiees[Math.floor(Math.random() * chainesLiees.length)]
-    : null;
+    let img = document.getElementById("preview-technique");
+    if (!img) {
+      img = document.createElement("img");
+      img.id = "preview-technique";
+      img.alt = tech.nom;
+      img.style = "max-width:100%; border-radius:8px; margin:12px 0; box-shadow:0 2px 8px rgba(0,0,0,0.1);";
+      matEl.insertAdjacentElement("afterend", img);
+    }
+    img.src = tech.image;
 
-  const badgesNiveau = tech.niveau
-    .map(n => `<span style="background:#3b82f6; color:white; padding:2px 6px; margin:2px 3px; border-radius:4px; font-size:0.8em;">${n}</span>`)
-    .join("");
-
-  let img = document.getElementById("preview-technique");
-  if (!img) {
-    img = document.createElement("img");
-    img.id = "preview-technique";
-    img.alt = tech.nom;
-    img.style = "max-width:100%; border-radius:8px; margin:12px 0; box-shadow:0 2px 8px rgba(0,0,0,0.1);";
-    matEl.insertAdjacentElement("afterend", img);
-  }
-  img.src = tech.image;
-
-  techEl.innerHTML = `
-    <strong style="font-size:1.3em;">${tech.nom}</strong><br>
-    ${badgesNiveau}<br>
-    <em style="font-size:0.95em; color:#555;">“${tech.description}”</em>
-  `;
-  matEl.innerText = `🖌️ Matériel : ${tech.materiel}`;
-
-  if (chaine && chaine.url && chaine.url.trim().startsWith('http')) {
-    lienEl.href = chaine.url.trim();
-    lienEl.textContent = `▶️ Voir sur : ${chaine.nom}`;
-    lienEl.target = "_blank";
-    lienEl.style.cssText = `
-      display: inline-block;
-      margin-top: 10px;
-      color: #1e40af;
-      text-decoration: none;
-      font-weight: bold;
+    techEl.innerHTML = `
+      <strong style="font-size:1.3em;">${tech.nom}</strong><br>
+      ${badgesNiveau}<br>
+      <em style="font-size:0.95em; color:#555;">“${tech.description}”</em>
     `;
-  } else {
-    lienEl.style.display = "none";
+    matEl.innerText = `🖌️ Matériel : ${tech.materiel}`;
+
+    if (chaine && chaine.url && chaine.url.trim().startsWith('http')) {
+      lienEl.href = chaine.url.trim();
+      lienEl.textContent = `▶️ Voir sur : ${chaine.nom}`;
+      lienEl.target = "_blank";
+      lienEl.rel = "noopener";
+      lienEl.style.cssText = `
+        display: inline-block;
+        margin-top: 10px;
+        color: #1e40af;
+        text-decoration: none;
+        font-weight: bold;
+      `;
+    } else {
+      lienEl.style.display = "none";
+    }
   }
-}
+</script>
+
+</body>
+</html>
