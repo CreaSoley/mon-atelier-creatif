@@ -1,0 +1,110 @@
+[
+  {
+    "id": "T001",
+    "nom": "Acrylique",
+    "description": "Peinture à base d’eau, séchant rapidement, permettant des effets opaques ou transparents selon la dilution.",
+    "materiel": "Peinture acrylique, pinceaux, spatules, toiles, papier épais, palette.",
+    "niveau": ["débutant", "intermédiaire", "avancé"],
+    "image": "https://i.pinimg.com/736x/5c/ce/0e/5cce0e75e62c9f168b35cfb24f501491.jpg",
+    "lien": "#"
+  },
+  {
+    "id": "T002",
+    "nom": "Aquarelle",
+    "description": "Peinture légère et transparente utilisant des pigments dilués dans l’eau, idéale pour les effets de fluidité.",
+    "materiel": "Peintures aquarelles, pinceaux ronds souples, papier 300 g, palette, eau.",
+    "niveau": ["débutant", "intermédiaire"],
+    "image": "https://i.pinimg.com/736x/ed/15/83/ed158364215401214b1207e3eec26a8d.jpg",
+    "lien": "#"
+  },
+  {
+    "id": "T003",
+    "nom": "Collage",
+    "description": "Assemblage de papiers, images, tissus ou objets pour créer une composition artistique.",
+    "materiel": "Ciseaux, colle, papiers variés, magazines, supports rigides.",
+    "niveau": ["débutant"],
+    "image": "https://i.pinimg.com/736x/f7/59/91/f7599155a3acd8a1eb7ebbe8642cac80.jpg",
+    "lien": "#"
+  },
+  {
+    "id": "T004",
+    "nom": "Gelli Plate",
+    "description": "Impression monotype avec une plaque de gel pour créer des textures et motifs uniques.",
+    "materiel": "Plaque Gelli, peinture acrylique, brayer (rouleau), pochoirs, papier.",
+    "niveau": ["intermédiaire"],
+    "image": "https://i.pinimg.com/736x/9c/6a/e9/9c6ae98987557377026ff661e5a80647.jpg",
+    "lien": "#"
+  },
+  {
+    "id": "T005",
+    "nom": "Junk Journal",
+    "description": "Carnet artistique créé à partir de papiers recyclés, enveloppes, pages de livres, etc.",
+    "materiel": "Papier recyclé, colle, agrafeuse, reliure, décorations, tampons.",
+    "niveau": ["intermédiaire"],
+    "image": "https://i.pinimg.com/736x/07/44/28/07442820fd5c9800f060347bfabf7c4f.jpg",
+    "lien": "#"
+  },
+  {
+    "id": "T006",
+    "nom": "Art Journal",
+    "description": "Journal créatif mêlant dessin, collage, peinture et écriture pour exprimer ses émotions.",
+    "materiel": "Carnet, peinture, feutres, colle, images, gesso, pochoirs.",
+    "niveau": ["débutant", "intermédiaire", "avancé"],
+    "image": "https://i.pinimg.com/736x/76/0f/06/760f06c2159f886b51cd18433e5e2b3c.jpg",
+    "lien": "#"
+  },
+  {
+    "id": "T007",
+    "nom": "Zentangle",
+    "description": "Méthode de dessin répétitif et méditatif basée sur des motifs abstraits.",
+    "materiel": "Feutres fins, papier, crayon, gomme.",
+    "niveau": ["débutant"],
+    "image": "https://i.pinimg.com/736x/8a/c2/93/8ac293182309d9f8a6eb121fb7d3e119.jpg",
+    "lien": "#"
+  },
+  {
+    "id": "T008",
+    "nom": "Texture",
+    "description": "Technique consistant à créer du relief ou de la matière sur un support artistique.",
+    "materiel": "Pâte de structure, gesso, spatule, pinceaux, tissus, papier texturé.",
+    "niveau": ["intermédiaire"],
+    "image": "https://i.pinimg.com/736x/21/09/45/2109453fa77fe2e5f1a761b3701e59d8.jpg",
+    "lien": "#"
+  },
+  {
+    "id": "T009",
+    "nom": "Spray / Encre en spray",
+    "description": "Application d’encres liquides sous forme de brume pour des effets de dégradés et fonds colorés.",
+    "materiel": "Encres en spray, pochoirs, papier, gants, protection de surface.",
+    "niveau": ["débutant", "intermédiaire"],
+    "image": "https://i.pinimg.com/1200x/e8/01/e7/e801e792b0b5b03d169e5a17f1df2b1f.jpg",
+    "lien": "#"
+  },
+  {
+    "id": "T010",
+    "nom": "Pochoir",
+    "description": "Utilisation de formes découpées pour reproduire des motifs avec peinture, encre ou pâte.",
+    "materiel": "Pochoirs, peinture ou encre, pinceaux tamponneurs, ruban adhésif.",
+    "niveau": ["débutant"],
+    "image": "https://i.pinimg.com/1200x/f6/ca/2b/f6ca2bc51c91d3a7170d74436b8b250c.jpg",
+    "lien": "#"
+  },
+  {
+    "id": "T011",
+    "nom": "Tampons",
+    "description": "Création de motifs répétés grâce à des tampons en caoutchouc ou silicone.",
+    "materiel": "Tampons, encreurs, papier, lingettes nettoyantes.",
+    "niveau": ["débutant"],
+    "image": "https://i.pinimg.com/736x/aa/c1/be/aac1be333ae07447be337bbb27cd83c0.jpg",
+    "lien": "#"
+  },
+  {
+    "id": "T012",
+    "nom": "Reliure créative",
+    "description": "Assemblage original de pages pour créer des carnets ou albums personnalisés.",
+    "materiel": "Aiguilles, fil, papier, carton, outils de perçage, colle.",
+    "niveau": ["intermédiaire"],
+    "image": "https://i.pinimg.com/736x/5c/02/04/5c02041784007009ce4a247701f1e413.jpg",
+    "lien": "#"
+  }
+]
