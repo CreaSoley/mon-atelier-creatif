@@ -7,6 +7,29 @@
   <title>Mon Atelier CrÃ©atif</title>
   <link rel="stylesheet" href="assets/css/style.css" />
   <style>
+   <script>
+  const motDePasse = "Art2025"; // â† Change-le si tu veux
+  const essai = prompt("Mot de passe familial ?");
+
+  if (essai !== motDePasse) {
+    // On remplace TOUT le contenu de la page
+    document.body.innerHTML = `
+      <div style="
+        text-align: center;
+        margin-top: 50px;
+        color: red;
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      ">
+        <h1>ðŸ” AccÃ¨s refusÃ©</h1>
+        <p>Le mot de passe est incorrect.</p>
+        <p>Veuillez rafraÃ®chir la page si vous souhaitez rÃ©essayer.</p>
+      </div>
+    `;
+    // On arrÃªte ici : plus rien ne s'exÃ©cute aprÃ¨s
+    throw new Error("AccÃ¨s bloquÃ©");
+  }
+</script>
     body {
       font-family: 'Segoe UI', sans-serif;
       max-width: 900px;
