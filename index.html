@@ -178,112 +178,92 @@
       });
   }
 
-  // --- 5. SÉLECTEUR DE TECHNIQUE + CHAÎNES YOUTUBE ---
-  let techniques = [];
-  let chaines = [];
-  let liens = [];
+// --- 5. SÉLECTEUR DE TECHNIQUE (basé sur techniques.csv, avec lien YouTube)
+let techniques = [];
 
-  // Fonction chargée au démarrage
-  function chargerDonneesCreatives() {
-    Promise.all([
-      fetch('data/techniques.json').then(r => r.json()),
-      fetch('data/chaines.json').then(r => r.json()),
-      fetch('data/liens.csv').then(r => r.text())
-    ])
-    .then(([dataTech, dataChan, csvLiens]) => {
-      techniques = dataTech;
-      chaines = dataChan;
-
-      liens = csvLiens
-        .trim()
-        .split('\n')
-        .slice(1)
+function chargerTechniques() {
+  fetch('data/techniques.csv')
+    .then(r => r.text())
+    .then(csv => {
+      const lignes = csv.trim().split('\n').slice(1); // sauter l'en-tête
+      techniques = lignes
+        .filter(ligne => ligne.trim() !== '')
         .map(ligne => {
-          const [techId, chanId] = ligne.split(';').map(item => item.trim());
-          return { technique_id: techId, chaine_id: chanId };
-        });
+          const parts = ligne.split(';'); // séparateur : point-virgule
+          if (parts.length < 8) return null; // on attend 8 colonnes
 
-      console.log("✅ Données chargées :", {
-        techniques: techniques.length,
-        chaines: chaines.length,
-        liens: liens.length,
-        exemple: liens[0]
-      });
+          return {
+            id: parts[0].trim(),
+            nom: parts[1].replace(/"/g, '').trim(),
+            description: parts[2].replace(/"/g, '').trim(),
+            materiel: parts[3].replace(/"/g, '').trim(),
+            niveau: parts[4].replace(/"/g, '').trim(),
+            image: parts[5].replace(/"/g, '').trim(),
+            lien_youtube: parts[7].replace(/"/g, '').trim() // colonne 8 = lien YouTube
+          };
+        })
+        .filter(Boolean);
     })
     .catch(err => {
-      console.error("❌ Erreur chargement des données :", err);
-      const techEl = document.getElementById("technique");
-      const matEl = document.getElementById("materiel");
-      const lienEl = document.getElementById("lien");
-
-      techEl.innerHTML = `<em style="color:#999;">⚠️ Erreur : données non chargées</em>`;
-      matEl.innerText = "";
-      lienEl.style.display = "none";
+      console.error("Erreur chargement techniques :", err);
+      document.getElementById("technique").innerText = "❌ Erreur de chargement des techniques.";
     });
+}
+
+function choisirTechnique() {
+  const techEl = document.getElementById("technique");
+  const matEl = document.getElementById("materiel");
+  const lienEl = document.getElementById("lien");
+
+  if (techniques.length === 0) {
+    techEl.innerHTML = `<em>Chargement en cours…</em>`;
+    matEl.innerText = "";
+    lienEl.style.display = "none";
+    return;
   }
 
-  // Fonction appelée quand on clique sur "Découvrir"
-  function choisirTechnique() {
-    const techEl = document.getElementById("technique");
-    const matEl = document.getElementById("materiel");
-    const lienEl = document.getElementById("lien");
+  const tech = techniques[Math.floor(Math.random() * techniques.length)];
 
-    if (techniques.length === 0) {
-      techEl.innerHTML = `<em>Chargement en cours…</em>`;
-      matEl.innerText = "";
-      lienEl.style.display = "none";
-      return;
-    }
+  // Badges niveau
+  const badgesNiveau = tech.niveau
+    .split(',')
+    .map(n => n.trim())
+    .map(n => `<span style="background:#3b82f6; color:white; padding:2px 6px; margin:2px 3px; border-radius:4px; font-size:0.8em;">${n}</span>`)
+    .join("");
 
-    const tech = techniques[Math.floor(Math.random() * techniques.length)];
+  // Image
+  let img = document.getElementById("preview-technique");
+  if (!img) {
+    img = document.createElement("img");
+    img.id = "preview-technique";
+    img.alt = tech.nom;
+    img.style = "max-width:100%; border-radius:8px; margin:12px 0; box-shadow:0 2px 8px rgba(0,0,0,0.1);";
+    matEl.insertAdjacentElement("afterend", img);
+  }
+  img.src = tech.image;
 
-    const chainesLiees = liens
-      .filter(lien => lien.technique_id === tech.id)
-      .map(lien => chaines.find(c => c.id === lien.chaine_id))
-      .filter(Boolean);
+  // Affichage
+  techEl.innerHTML = `
+    <strong style="font-size:1.3em;">${tech.nom}</strong><br>
+    ${badgesNiveau}<br>
+    <em style="font-size:0.95em; color:#555;">“${tech.description}”</em>
+  `;
+  matEl.innerText = `🖌️ Matériel : ${tech.materiel}`;
 
-    const chaine = chainesLiees.length > 0 
-      ? chainesLiees[Math.floor(Math.random() * chainesLiees.length)]
-      : null;
-
-    const badgesNiveau = tech.niveau
-      .map(n => `<span style="background:#3b82f6; color:white; padding:2px 6px; margin:2px 3px; border-radius:4px; font-size:0.8em;">${n}</span>`)
-      .join("");
-
-    let img = document.getElementById("preview-technique");
-    if (!img) {
-      img = document.createElement("img");
-      img.id = "preview-technique";
-      img.alt = tech.nom;
-      img.style = "max-width:100%; border-radius:8px; margin:12px 0; box-shadow:0 2px 8px rgba(0,0,0,0.1);";
-      matEl.insertAdjacentElement("afterend", img);
-    }
-    img.src = tech.image;
-
-    techEl.innerHTML = `
-      <strong style="font-size:1.3em;">${tech.nom}</strong><br>
-      ${badgesNiveau}<br>
-      <em style="font-size:0.95em; color:#555;">“${tech.description}”</em>
+  // 🔗 Lien YouTube (si présent)
+  if (tech.lien_youtube && tech.lien_youtube.startsWith('http')) {
+    lienEl.href = tech.lien_youtube;
+    lienEl.textContent = "▶️ Voir la chaîne YouTube";
+    lienEl.target = "_blank";
+    lienEl.rel = "noopener";
+    lienEl.style.cssText = `
+      display: inline-block;
+      margin-top: 10px;
+      color: #1e40af;
+      text-decoration: none;
+      font-weight: bold;
     `;
-    matEl.innerText = `🖌️ Matériel : ${tech.materiel}`;
-
-    if (chaine && chaine.url && chaine.url.trim().startsWith('http')) {
-      lienEl.href = chaine.url.trim();
-      lienEl.textContent = `▶️ Voir sur : ${chaine.nom}`;
-      lienEl.target = "_blank";
-      lienEl.rel = "noopener";
-      lienEl.style.cssText = `
-        display: inline-block;
-        margin-top: 10px;
-        color: #1e40af;
-        text-decoration: none;
-        font-weight: bold;
-      `;
-    } else {
-      lienEl.style.display = "none";
-    }
+  } else {
+    lienEl.style.display = "none";
   }
-</script>
-
-</body>
-</html>
+}
