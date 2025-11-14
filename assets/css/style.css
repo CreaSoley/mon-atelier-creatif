@@ -1,0 +1,47 @@
+/* style.css - Design responsive pour Mon Atelier Créatif */
+
+/* Base */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 15px;
+  background: #faf7f0;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Responsive : ajuste pour petits Ã©crans */
+@media (max-width: 600px) {
+  body {
+    font-size: 16px;
+    padding: 10px;
+  }
+  .box {
+    padding: 15px;
+  }
+  button {
+    padding: 12px 18px;
+    font-size: 16px;
+    width: 100%;
+    margin: 5px 0;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  footer {
+    font-size: 0.9em;
+    text-align: center;
+  }
+}
+
+/* Pour tablettes */
+@media (min-width: 601px) and (max-width: 900px) {
+  body {
+    padding: 20px;
+  }
+  .box {
+    margin: 15px 0;
+  }
+}
