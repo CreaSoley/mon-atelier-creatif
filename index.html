@@ -228,36 +228,57 @@ function choisirTechnique() {
     return;
   }
 
+  // Choisir une technique
   const tech = techniques[Math.floor(Math.random() * techniques.length)];
 
-  // Affichage enrichi
-  techEl.innerHTML = `
-    <strong>${tech.nom}</strong><br>
-    <small>Niveau : <i>${tech.niveau.join(" • ")}</i></small><br>
-    <em style="font-size:0.95em;">“${tech.description}”</em>
-  `;
+  // Trouver les chaînes liées
+  const chainesLiees = liens
+    .filter(lien => lien.technique_id === tech.id)
+    .map(lien => chaines.find(c => c.id === lien.chaine_id))
+    .filter(Boolean);
 
-  matEl.innerText = `Matériel : ${tech.materiel}`;
+  const chaine = chainesLiees.length > 0 
+    ? chainesLiees[Math.floor(Math.random() * chainesLiees.length)]
+    : null;
 
-  // Gestion de l'image
-  const imgId = "preview-technique";
-  let img = document.getElementById(imgId);
+  // Badges niveau
+  const badgesNiveau = tech.niveau
+    .map(n => `<span style="background:#3b82f6; color:white; padding:2px 6px; margin:2px 3px; border-radius:4px; font-size:0.8em;">${n}</span>`)
+    .join("");
+
+  // Image
+  let img = document.getElementById("preview-technique");
   if (!img) {
     img = document.createElement("img");
-    img.id = imgId;
+    img.id = "preview-technique";
     img.alt = tech.nom;
-    img.style = "max-width: 100%; border-radius: 8px; margin: 12px 0; box-shadow: 0 2px 6px rgba(0,0,0,0.1);";
+    img.style = "max-width:100%; border-radius:8px; margin:12px 0; box-shadow:0 2px 8px rgba(0,0,0,0.1);";
     matEl.insertAdjacentElement("afterend", img);
   }
   img.src = tech.image;
 
-  // Lien
-  lienEl.href = tech.lien;
-  lienEl.textContent = "→ Explorer cette technique";
-  lienEl.style.display = "inline";
+  // Affichage
+  techEl.innerHTML = `
+    <strong style="font-size:1.3em;">${tech.nom}</strong><br>
+    ${badgesNiveau}<br>
+    <em style="font-size:0.95em; color:#555;">“${tech.description}”</em>
+  `;
+  matEl.innerText = `🖌️ Matériel : ${tech.materiel}`;
+
+  // 🔗 Lien CLIQUABLE
+  if (chaine && chaine.url && chaine.url.trim().startsWith('http')) {
+    lienEl.href = chaine.url.trim();        // URL propre
+    lienEl.textContent = `▶️ Voir sur : ${chaine.nom}`;  // Texte simple
+    lienEl.target = "_blank";               // Ouvre dans un nouvel onglet
+    lienEl.style.cssText = ` 
+      display: inline-block;
+      margin-top: 10px;
+      color: #1e40af;
+      text-decoration: none;
+      font-weight: bold;
+    `;
+    lienEl.style.opacity = "1";
+  } else {
+    lienEl.style.display = "none";
   }
-</script>
-
-</body>
-</html>
-
+}
