@@ -9,6 +9,31 @@
   <style>
     #contenu-site { display: none; }
     #message-erreur { display: none; text-align: center; margin-top: 50px; color: red; font-family: Arial, sans-serif; }
+
+    /* === AJUSTEMENTS DEMANDÉS (position, line-height, left, letter-spacing) === */
+    #technique {
+      position: relative; /* ← position relative pour pouvoir déplacer les badges */
+    }
+    #technique .badges-niveau {
+      position: relative;
+      left: -100px; /* ← décalage à gauche comme tu l'as demandé */
+      line-height: 60px; /* ← line-height 60px pour les badges niveau */
+      display: inline-block;
+    }
+    #materiel {
+      letter-spacing: -1px; /* ← letter-spacing -1px pour le matériel */
+      margin-top: 15px;
+    }
+    #preview-technique {
+      width: 100% !important;
+      height: 400px !important;
+      object-fit: cover !important;
+      object-position: center !important;
+      border-radius: 15px !important;
+      margin: 20px 0 !important;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15) !important;
+      display: block !important;
+    }
   </style>
 </head>
 <body>
@@ -73,8 +98,8 @@ function lancerScripts() {
   mettreAJourHeure();
   chargerMeteo();
   chargerDicton();
-  chargerTechniques(); // chargement des techniques
-  choisirTechnique();  // affiche une technique dès l'ouverture
+  chargerTechniques();
+  choisirTechnique(); // affiche dès l'ouverture
 }
 
 // --- 1. Couleur du jour ---
@@ -137,7 +162,7 @@ function chargerDicton() {
     .catch(() => document.getElementById("proverbes").innerText = "Proverbe indisponible");
 }
 
-// --- 5. TECHNIQUES (depuis CSV) ---
+// --- 5. TECHNIQUES (depuis CSV) – VERSION PARFAITE AVEC TES AJUSTEMENTS CSS ---
 let techniques = [];
 
 function chargerTechniques() {
@@ -179,10 +204,10 @@ function choisirTechnique() {
 
   const tech = techniques[Math.floor(Math.random() * techniques.length)];
 
-  // Badges niveau
-  const badgesNiveau = tech.niveau.split(',').map(n => n.trim()).map(n => 
+  // Badges niveau (dans une div pour pouvoir appliquer le left: -100px)
+  const badgesNiveau = `<div class="badges-niveau">${tech.niveau.split(',').map(n => n.trim()).map(n => 
     `<span style="background:#3b82f6; color:white; padding:2px 6px; margin:2px 3px; border-radius:4px; font-size:0.8em;">${n}</span>`
-  ).join("");
+  ).join("")}</div>`;
 
   // Affichage texte
   techEl.innerHTML = `
@@ -192,7 +217,7 @@ function choisirTechnique() {
   `;
   matEl.innerText = `🖌️ Matériel : ${tech.materiel}`;
 
-  // Image – même taille pour toutes (400px de haut, recadrée proprement)
+  // Image – même taille pour toutes
   if (tech.image) {
     let img = document.getElementById("preview-technique");
     if (!img) {
@@ -203,7 +228,6 @@ function choisirTechnique() {
     }
     img.src = tech.image;
     img.alt = tech.nom;
-    img.style.cssText = "width:100%; height:400px; object-fit:cover; object-position:center; border-radius:15px; margin:20px 0; box-shadow:0 6px 20px rgba(0,0,0,0.15); display:block;";
   } else {
     const oldImg = document.getElementById("preview-technique");
     if (oldImg) oldImg.remove();
@@ -224,4 +248,3 @@ function choisirTechnique() {
 </script>
 </body>
 </html>
-
