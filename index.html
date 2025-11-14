@@ -140,27 +140,70 @@
       });
   }
 
-  // --- 4. Proverbe du jour (depuis CSV) ---
-  let proverbes = [];
-  function chargerProverbe() {
-   fetch('dictons.csv')
-      .then(r => r.text())
-      .then(csv => {
-        proverbes = csv.trim().split('\n').filter(ligne => ligne.trim() !== '');
-        choisirproverbe();
-      })
-      .catch(() => {
-        document.getElementById("dicton").innerText = "Proverbe du jour indisponible (vérifier chemin CSV)";
-      });
-  }
+// --- 4. Proverbe du jour (Basé sur la DATE, séparateur VIRGULE) ---
+function chargerDicton() {
+  fetch('proverbes.csv')
+    .then(r => r.text())
+    .then(csv => {
+      // 1. Lecture du fichier
+      const lignes = csv.trim().split('\n');
+      
+      const tousLesProverbes = lignes.map(ligne => {
+        // On découpe la ligne par les virgules
+        const parts = ligne.split(',');
+        
+        if (parts.length >= 3) {
+          // La date est le 1er élément
+          const date = parts[0].trim();
+          
+          // L'auteur est le DERNIER élément
+          const auteur = parts[parts.length - 1].trim();
+          
+          // Le texte est TOUT ce qu'il y a entre la date et l'auteur
+          // (Cela permet d'avoir des virgules dans le proverbe sans bugger)
+          const texte = parts.slice(1, parts.length - 1).join(',').replace(/"/g, '').trim();
+          
+          return { date, texte, auteur };
+        }
+        return null;
+      }).filter(item => item !== null);
 
-  function choisirProverbe() {
-    if (dictons.length > 0) {
-      const alea = proverbe[Math.floor(Math.random() * proverbe.length)];
-      document.getElementById("proverbe").innerText = alea.trim();
-    }
-  }
+      // 2. Trouver la date d'aujourd'hui (Format JJ/MM/AAAA)
+      // Important : Assure-toi que ton ordi/navigateur est bien à l'heure
+      const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+      const dateDuJour = new Date().toLocaleDateString('fr-FR', options); 
+      // Exemple de résultat attendu : "24/02/2025"
 
+      console.log("Date cherchée :", dateDuJour); // Pour t'aider à débuguer si besoin
+
+      // 3. Comparaison
+      let choix = tousLesProverbes.find(p => p.date === dateDuJour);
+
+      // 4. Sécurité : Si la date n'est pas trouvée, on prend un hasard
+      if (!choix && tousLesProverbes.length > 0) {
+        console.log("Pas de proverbe pour cette date, choix aléatoire.");
+        choix = tousLesProverbes[Math.floor(Math.random() * tousLesProverbes.length)];
+      }
+
+      // 5. Affichage
+      if (choix) {
+        // ⚠️ Vérifie bien ici si ton ID HTML est "dicton" ou "proverbe"
+        const element = document.getElementById("dicton") || document.getElementById("proverbe");
+        
+        if (element) {
+            element.innerHTML = `
+              <strong>« ${choix.texte} »</strong><br>
+              <span style="font-size:0.9em; color:#666; font-style:italic;">— ${choix.auteur}</span>
+            `;
+        }
+      }
+    })
+    .catch(error => {
+      console.error(error);
+      const el = document.getElementById("dicton") || document.getElementById("proverbe");
+      if(el) el.innerText = "Chargement du proverbe impossible.";
+    });
+}
   // --- 5. Sélecteur de technique (depuis techniques.csv) ---
   let techniques = [];
   function chargerTechniques() {
@@ -208,6 +251,7 @@
 </body>
 
 </html>
+
 
 
 
