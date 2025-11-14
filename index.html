@@ -4,163 +4,205 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="noindex, nofollow" />
-  <title>Mon Atelier CrÃ©atif</title>
+  <title>Mon Atelier Créatif</title>
   <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    /* On cache le contenu du site par défaut pour la sécurité */
+    #contenu-site {
+      display: none;
+    }
+    /* Style simple pour le message d'erreur */
+    #message-erreur {
+      display: none;
+      text-align: center;
+      margin-top: 50px;
+      color: red;
+      font-family: Arial, sans-serif;
+    }
+  </style>
 </head>
 <body>
 
-<!-- ðŸ”’ MOT DE PASSE FAMILIAL (bloque tout si erronÃ©) -->
+<!-- 🔒 GESTION DU MOT DE PASSE -->
+<div id="message-erreur">
+    <h1>🚫 Accès refusé</h1>
+    <p>Le mot de passe est incorrect.</p>
+    <p>Veuillez rafraîchir la page (F5) pour réessayer.</p>
+</div>
+
+<!-- LE CONTENU DU SITE (Caché par défaut) -->
+<div id="contenu-site">
+
+  <!-- 🏠 PAGE D'ACCUEIL -->
+  <h1>✨ Bienvenue dans mon atelier</h1>
+  <p>Un espace doux pour créer, expérimenter et partager.</p>
+
+  <!-- 🎨 COULEUR DU JOUR -->
+  <div class="box">
+    <h2>🎨 Couleur du jour</h2>
+    <button onclick="genererCouleur()">Générer une couleur</button>
+    <div id="couleur" style="width:100px; height:80px; margin:10px; border:1px solid #ccc;"></div>
+    <p id="code"></p>
+  </div>
+
+  <!-- ⏰ HEURE ACTUELLE -->
+  <div class="box">
+    <h2>⏰ Heure actuelle</h2>
+    <p id="heure"></p>
+  </div>
+
+  <!-- 🌥️ MÉTÉO -->
+  <div class="box">
+    <h2>🌥️ Météo</h2>
+    <p id="meteo">Chargement...</p>
+  </div>
+
+  <!-- 💬 DICTON DU JOUR -->
+  <div class="box">
+    <h2>💬 Dicton du jour</h2>
+    <p id="dicton">Chargement...</p>
+  </div>
+
+  <!-- 🛠️ SÉLECTEUR DE TECHNIQUE CRÉATIVE -->
+  <div class="box">
+    <h2>🛠️ Quelle technique ce soir ?</h2>
+    <button onclick="choisirTechnique()">Découvrir</button>
+    <p id="technique"></p>
+    <p id="materiel"></p>
+    <p><a id="lien" style="display:none;" href="#">→ Voir la fiche complète</a></p>
+  </div>
+
+  <footer>
+    Mon Atelier Créatif • Un projet personnel • 2025
+  </footer>
+
+</div> <!-- Fin du contenu-site -->
+
+<!-- ✨ SCRIPTS JS -->
 <script>
-  const motDePasse = "Art2025"; // â† Change ce mot de passe si tu veux
+  // --- 0. VÉRIFICATION MOT DE PASSE ---
+  // Note : Ce système n'est pas sécurisé à 100% (un expert peut voir le code),
+  // mais c'est suffisant pour un usage familial simple.
+  const motDePasse = "Art2025"; 
   const essai = prompt("Mot de passe familial ?");
 
-  if (essai !== motDePasse) {
-    document.body.innerHTML = `
-      <div style="
-        text-align: center;
-        margin-top: 50px;
-        color: red;
-        font-family: Arial, sans-serif;
-        padding: 20px;
-        line-height: 1.6;
-      ">
-        <h1>ðŸ” AccÃ¨s refusÃ©</h1>
-        <p>Le mot de passe est incorrect.</p>
-        <p>Veuillez rafraÃ®chir la page si vous souhaitez rÃ©essayer.</p>
-      </div>
-    `;
-    throw new Error("AccÃ¨s bloquÃ©");
+  if (essai === motDePasse) {
+    // Si le mot de passe est bon, on affiche le site
+    document.getElementById('contenu-site').style.display = 'block';
+    lancerScripts(); // On lance les fonctions seulement si connecté
+  } else {
+    // Sinon, on affiche l'erreur
+    document.getElementById('message-erreur').style.display = 'block';
+    // On change la couleur de fond pour marquer l'erreur
+    document.body.style.backgroundColor = "#f8d7da";
   }
-</script>
 
-<!-- ðŸ  PAGE D'ACCUEIL -->
-<h1>âœ¨ Bienvenue dans mon atelier</h1>
-<p>Un espace doux pour crÃ©er, expÃ©rimenter et partager.</p>
-
-<!-- ðŸŽ¨ COULEUR DU JOUR -->
-<div class="box">
-  <h2>ðŸŽ¨ Couleur du jour</h2>
-  <button onclick="genererCouleur()">GÃ©nÃ©rer une couleur</button>
-  <div id="couleur" style="width:100px; height:80px; margin:10px;"></div>
-  <p id="code"></p>
-</div>
-
-<!-- â° HEURE ACTUELLE -->
-<div class="box">
-  <h2>â° Heure actuelle</h2>
-  <p id="heure"></p>
-</div>
-
-<!-- ðŸŒ¤ï¸ MÃ‰TÃ‰O (Paris par dÃ©faut - modifie latitude/longitude si besoin) -->
-<div class="box">
-  <h2>ðŸŒ¤ï¸ MÃ©tÃ©o</h2>
-  <p id="meteo">Chargement...</p>
-</div>
-
-<!-- ðŸ—£ï¸ DICTON DU JOUR -->
-<div class="box">
-  <h2>ðŸ’¬ Dicton du jour</h2>
-  <p id="dicton">Chargement...</p>
-</div>
-
-<!-- ðŸŽ² SÃ‰LECTEUR DE TECHNIQUE CRÃ‰ATIVE -->
-<div class="box">
-  <h2>ðŸ› ï¸ Quelle technique ce soir ?</h2>
-  <button onclick="choisirTechnique()">DÃ©couvrir</button>
-  <p id="technique"></p>
-  <p id="materiel"></p>
-  <p><a id="lien" style="display:none;" href="#">â†’ Voir la fiche complÃ¨te</a></p>
-</div>
-
-<footer>
-  Mon Atelier CrÃ©atif â€¢ Un projet personnel â€¢ 2025
-</footer>
-
-<!-- âœ¨ SCRIPTS JS -->
-<script>
-// --- 1. Couleur du jour ---
-function genererCouleur() {
-  const r = Math.floor(Math.random() * 256);
-  const g = Math.floor(Math.random() * 256);
-  const b = Math.floor(Math.random() * 256);
-  const hex = "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
-  document.getElementById("couleur").style.backgroundColor = `rgb(${r},${g},${b})`;
-  document.getElementById("code").innerText = "Code HEX : " + hex;
-}
-
-// --- 2. Heure dynamique ---
-function mettreAJourHeure() {
-  const now = new Date();
-  document.getElementById("heure").innerText = now.toLocaleString('fr-FR');
-}
-setInterval(mettreAJourHeure, 1000);
-mettreAJourHeure();
-
-// --- 3. MÃ©tÃ©o (via Open-Meteo) ---
-fetch('https://api.open-meteo.com/v1/forecast?latitude=48.85&longitude=2.35&current=temperature_2m,weather_code&timezone=Europe%2FParis')
-  .then(r => r.json())
-  .then(data => {
-    const temp = data.current.temperature_2m;
-    const wc = data.current.weather_code;
-    const weather = {
-      0: "Ciel dÃ©gagÃ©", 1: "Ciel partiellement nuageux", 2: "Nuageux", 3: "TrÃ¨s nuageux",
-      45: "Brouillard", 48: "Brouillard givrant", 51: "Bruine lÃ©gÃ¨re", 61: "Pluie modÃ©rÃ©e"
-    }[wc] || "Temps inconnu";
-    document.getElementById("meteo").innerText = `${temp} Â°C â€¢ ${weather}`;
-  })
-  .catch(() => {
-    document.getElementById("meteo").innerText = "MÃ©tÃ©o non disponible";
-  });
-
-// --- 4. Dicton du jour (depuis CSV) ---
-let dictons = [];
-fetch('assets/js/dictons.csv')
-  .then(r => r.text())
-  .then(csv => {
-    dictons = csv.trim().split('\n').filter(ligne => ligne.trim() !== '');
-    choisirDicton();
-  })
-  .catch(() => {
-    document.getElementById("dicton").innerText = "Proverbe du jour indisponible";
-  });
-
-function choisirDicton() {
-  if (dictons.length > 0) {
-    const alea = dictons[Math.floor(Math.random() * dictons.length)];
-    document.getElementById("dicton").innerText = alea.trim();
+  // --- FONCTIONS DU SITE ---
+  function lancerScripts() {
+    mettreAJourHeure();
+    chargerMeteo();
+    chargerDicton();
+    chargerTechniques();
   }
-}
 
-// --- 5. SÃ©lecteur de technique (depuis techniques.csv) ---
-let techniques = [];
-fetch('data/techniques.csv')
-  .then(r => r.text())
-  .then(csv => {
-    const lignes = csv.trim().split('\n').slice(1); // saute l'en-tÃªte
-    techniques = lignes
-      .filter(ligne => ligne.trim() !== '')
-      .map(ligne => {
-        const [t, m, d, n, u] = ligne.split(',').map(champ => champ.replace(/"/g, '').trim());
-        return { t, m, d, n, u };
+  // --- 1. Couleur du jour ---
+  function genererCouleur() {
+    const r = Math.floor(Math.random() * 256);
+    const g = Math.floor(Math.random() * 256);
+    const b = Math.floor(Math.random() * 256);
+    const hex = "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+    document.getElementById("couleur").style.backgroundColor = `rgb(${r},${g},${b})`;
+    document.getElementById("code").innerText = "Code HEX : " + hex;
+  }
+
+  // --- 2. Heure dynamique ---
+  function mettreAJourHeure() {
+    const now = new Date();
+    document.getElementById("heure").innerText = now.toLocaleString('fr-FR');
+  }
+  setInterval(mettreAJourHeure, 1000);
+
+  // --- 3. Météo (via Open-Meteo) ---
+  function chargerMeteo() {
+    fetch('https://api.open-meteo.com/v1/forecast?latitude=48.85&longitude=2.35&current=temperature_2m,weather_code&timezone=Europe%2FParis')
+      .then(r => r.json())
+      .then(data => {
+        const temp = data.current.temperature_2m;
+        const wc = data.current.weather_code;
+        const weather = {
+          0: "Ciel dégagé", 1: "Partiellement nuageux", 2: "Nuageux", 3: "Très nuageux",
+          45: "Brouillard", 48: "Brouillard givrant", 51: "Bruine légère", 61: "Pluie modérée"
+        }[wc] || "Temps inconnu";
+        document.getElementById("meteo").innerText = `${temp} °C • ${weather}`;
+      })
+      .catch(() => {
+        document.getElementById("meteo").innerText = "Météo non disponible";
       });
-  })
-  .catch(() => {
-    document.getElementById("technique").innerText = "Erreur de chargement des techniques.";
-  });
-
-function choisirTechnique() {
-  if (techniques.length === 0) {
-    document.getElementById("technique").innerText = "Chargement en coursâ€¦";
-    return;
   }
 
-  const tech = techniques[Math.floor(Math.random() * techniques.length)];
-  document.getElementById("technique").innerHTML = `<strong>${tech.t}</strong>`;
-  document.getElementById("materiel").innerText = `MatÃ©riel : ${tech.m} | DurÃ©e : ${tech.d}`;
-  const lien = document.getElementById("lien");
-  lien.href = tech.u;
-  lien.style.display = "inline";
-}
+  // --- 4. Dicton du jour (depuis CSV) ---
+  let dictons = [];
+  function chargerDicton() {
+    fetch('assets/js/dictons.csv')
+      .then(r => r.text())
+      .then(csv => {
+        dictons = csv.trim().split('\n').filter(ligne => ligne.trim() !== '');
+        choisirDicton();
+      })
+      .catch(() => {
+        document.getElementById("dicton").innerText = "Proverbe du jour indisponible (vérifier chemin CSV)";
+      });
+  }
+
+  function choisirDicton() {
+    if (dictons.length > 0) {
+      const alea = dictons[Math.floor(Math.random() * dictons.length)];
+      document.getElementById("dicton").innerText = alea.trim();
+    }
+  }
+
+  // --- 5. Sélecteur de technique (depuis techniques.csv) ---
+  let techniques = [];
+  function chargerTechniques() {
+    fetch('data/techniques.csv')
+      .then(r => r.text())
+      .then(csv => {
+        // Attention: Assure-toi que ton CSV a bien une ligne d'en-tête à ignorer
+        const lignes = csv.trim().split('\n').slice(1); 
+        techniques = lignes
+          .filter(ligne => ligne.trim() !== '')
+          .map(ligne => {
+            // Gestion simple des CSV
+            const parts = ligne.split(',');
+            if(parts.length >= 3) {
+                return { 
+                    t: parts[0].replace(/"/g, '').trim(), 
+                    m: parts[1].replace(/"/g, '').trim(), 
+                    d: parts[2].replace(/"/g, '').trim(), 
+                    u: (parts[4] || "#").replace(/"/g, '').trim() 
+                };
+            }
+            return null;
+          }).filter(item => item !== null);
+      })
+      .catch(() => {
+        document.getElementById("technique").innerText = "Erreur de chargement des techniques.";
+      });
+  }
+
+  function choisirTechnique() {
+    if (techniques.length === 0) {
+      document.getElementById("technique").innerText = "Chargement en cours ou fichier vide...";
+      return;
+    }
+
+    const tech = techniques[Math.floor(Math.random() * techniques.length)];
+    document.getElementById("technique").innerHTML = `<strong>${tech.t}</strong>`;
+    document.getElementById("materiel").innerText = `Matériel : ${tech.m} | Durée : ${tech.d}`;
+    const lien = document.getElementById("lien");
+    lien.href = tech.u;
+    lien.style.display = "inline";
+  }
 </script>
 
 </body>
