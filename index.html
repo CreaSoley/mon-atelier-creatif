@@ -83,12 +83,18 @@
   // --- 0. VÉRIFICATION MOT DE PASSE ---
   const motDePasse = "KokoMango27*"; 
   const essai = prompt("Mot de passe familial ?");
+  const messageErreur = document.getElementById('message-erreur');
 
   if (essai === motDePasse) {
     document.getElementById('contenu-site').style.display = 'block';
     lancerScripts();
+  } else if (essai === null) {
+    // Gestion du cas où l'utilisateur annule le prompt
+    messageErreur.querySelector('p:nth-of-type(1)').textContent = "Vous avez annulé l'accès.";
+    messageErreur.style.display = 'block';
+    document.body.style.backgroundColor = "#f8d7da";
   } else {
-    document.getElementById('message-erreur').style.display = 'block';
+    messageErreur.style.display = 'block';
     document.body.style.backgroundColor = "#f8d7da";
   }
 
@@ -97,7 +103,8 @@
     mettreAJourHeure();
     chargerMeteo();
     chargerDicton();
-    chargerTechniques(); // ✅ Charge les données créatives
+    chargerTechniques();
+    genererCouleur(); // Affiche une couleur immédiatement au chargement
   }
 
   // --- 1. Couleur du jour ---
@@ -105,48 +112,87 @@
     const r = Math.floor(Math.random() * 256);
     const g = Math.floor(Math.random() * 256);
     const b = Math.floor(Math.random() * 256);
-    const hex = "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
-    document.getElementById("couleur").style.backgroundColor = `rgb(${r},${g},${b})`;
-    document.getElementById("code").innerText = "Code HEX : " + hex;
+    // Méthode plus lisible pour générer le code hexadécimal
+    const hex = `#\({r.toString(16).padStart(2, '0')}\){g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
+    
+    const couleurEl = document.getElementById("couleur");
+    const codeEl = document.getElementById("code");
+    
+    if (couleurEl && codeEl) {
+      couleurEl.style.backgroundColor = `rgb(${r},\({g},\){b})`;
+      codeEl.innerText = `Code HEX : ${hex}`;
+    }
   }
 
   // --- 2. Heure dynamique ---
   function mettreAJourHeure() {
     const now = new Date();
-    document.getElementById("heure").innerText = now.toLocaleString('fr-FR');
+    const heureEl = document.getElementById("heure");
+    if (heureEl) {
+      heureEl.innerText = now.toLocaleString('fr-FR');
+    }
   }
   setInterval(mettreAJourHeure, 1000);
 
   // --- 3. Météo (via Open-Meteo) ---
   function chargerMeteo() {
+    const meteoEl = document.getElementById("meteo");
+    if (!meteoEl) return;
+
     fetch('https://api.open-meteo.com/v1/forecast?latitude=48.85&longitude=2.35&current=temperature_2m,weather_code&timezone=Europe%2FParis')
       .then(r => r.json())
       .then(data => {
         const temp = data.current.temperature_2m;
         const wc = data.current.weather_code;
-        const weather = {
-          0: "Ciel dégagé", 1: "Partiellement nuageux", 2: "Nuageux", 3: "Très nuageux",
-          45: "Brouillard", 48: "Brouillard givrant", 51: "Bruine légère", 61: "Pluie modérée"
-        }[wc] || "Temps inconnu";
-        document.getElementById("meteo").innerText = `${temp} °C • ${weather}`;
+        // Liste complétée des codes météo Open-Meteo les plus courants
+        const weatherLabels = {
+          0: "Ciel dégagé",
+          1: "Principalement clair",
+          2: "Partiellement nuageux",
+          3: "Très nuageux",
+          45: "Brouillard",
+          48: "Brouillard givrant",
+          51: "Bruine légère",
+          53: "Bruine modérée",
+          55: "Bruine dense",
+          61: "Pluie légère",
+          63: "Pluie modérée",
+          65: "Pluie forte",
+          71: "Neige légère",
+          73: "Neige modérée",
+          75: "Neige forte",
+          80: "Averses légères",
+          81: "Averses modérées",
+          82: "Averses fortes",
+          95: "Orages modérés",
+          96: "Orages avec grêle légère",
+          99: "Orages avec grêle forte"
+        };
+        const weather = weatherLabels[wc] || `Temps inconnu (code ${wc})`;
+        meteoEl.innerText = `${temp} °C • ${weather}`;
       })
       .catch(() => {
-        document.getElementById("meteo").innerText = "Météo non disponible";
+        meteoEl.innerText = "Météo non disponible";
       });
   }
 
   // --- 4. Proverbe du jour (CSV, séparateur virgule) ---
   function chargerDicton() {
+    const proverbesEl = document.getElementById("proverbes");
+    if (!proverbesEl) return;
+
     fetch('proverbes.csv')
       .then(r => r.text())
       .then(csv => {
         const lignes = csv.trim().split('\n');
+        // On saute la première ligne : c'est l'en-tête du CSV
+        const lignesDonnees = lignes.slice(1);
         
-        const tousLesProverbes = lignes.map(ligne => {
+        const tousLesProverbes = lignesDonnees.map(ligne => {
           const parts = ligne.split(',');
           if (parts.length >= 3) {
-            const date = parts[0].trim();
-            const auteur = parts[parts.length - 1].trim();
+            const date = parts[0].trim().replace(/"/g, '');
+            const auteur = parts[parts.length - 1].trim().replace(/"/g, '');
             const texte = parts.slice(1, parts.length - 1).join(',').replace(/"/g, '').trim();
             return { date, texte, auteur };
           }
@@ -162,108 +208,129 @@
         }
 
         if (choix) {
-          const element = document.getElementById("proverbes");
-          if (element) {
-            element.innerHTML = `
-              <strong>« ${choix.texte} »</strong><br>
-              <span style="font-size:0.9em; color:#666; font-style:italic;">— ${choix.auteur}</span>
-            `;
-          }
+          proverbesEl.innerHTML = `
+            <strong>« ${choix.texte} »</strong><br>
+            <span style="font-size:0.9em; color:#666; font-style:italic;">— ${choix.auteur}</span>
+          `;
+        } else {
+          proverbesEl.innerText = "Aucun proverbe disponible aujourd'hui.";
         }
       })
       .catch(error => {
         console.error(error);
-        const el = document.getElementById("proverbes");
-        if(el) el.innerText = "Chargement du proverbe impossible.";
+        proverbesEl.innerText = "Chargement du proverbe impossible.";
       });
   }
+
   // --- 5. SÉLECTEUR DE TECHNIQUE (basé sur techniques.csv, avec lien YouTube)
-let techniques = [];
+  let techniques = [];
 
-function chargerTechniques() {
-  fetch('data/techniques.csv')
-    .then(r => r.text())
-    .then(csv => {
-      const lignes = csv.trim().split('\n').slice(1); // sauter l'en-tête
-      techniques = lignes
-        .filter(ligne => ligne.trim() !== '')
-        .map(ligne => {
-          const parts = ligne.split(';'); // séparateur : point-virgule
-          if (parts.length < 8) return null; // on attend 8 colonnes
+  function chargerTechniques() {
+    const techEl = document.getElementById("technique");
+    if (!techEl) return;
 
-          return {
-            id: parts[0].trim(),
-            nom: parts[1].replace(/"/g, '').trim(),
-            description: parts[2].replace(/"/g, '').trim(),
-            materiel: parts[3].replace(/"/g, '').trim(),
-            niveau: parts[4].replace(/"/g, '').trim(),
-            image: parts[5].replace(/"/g, '').trim(),
-            lien_youtube: parts[7].replace(/"/g, '').trim() // colonne 8 = lien YouTube
-          };
-        })
-        .filter(Boolean);
-    })
-    .catch(err => {
-      console.error("Erreur chargement techniques :", err);
-      document.getElementById("technique").innerText = "❌ Erreur de chargement des techniques.";
-    });
-}
+    fetch('data/techniques.csv')
+      .then(r => r.text())
+      .then(csv => {
+        const lignes = csv.trim().split('\n').slice(1); // sauter l'en-tête
+        techniques = lignes
+          .filter(ligne => ligne.trim() !== '')
+          .map(ligne => {
+            const parts = ligne.split(';'); // séparateur : point-virgule
+            if (parts.length < 8) return null; // on attend 8 colonnes
 
-function choisirTechnique() {
-  const techEl = document.getElementById("technique");
-  const matEl = document.getElementById("materiel");
-  const lienEl = document.getElementById("lien");
-
-  if (techniques.length === 0) {
-    techEl.innerHTML = `<em>Chargement en cours…</em>`;
-    matEl.innerText = "";
-    lienEl.style.display = "none";
-    return;
+            return {
+              id: parts[0].trim().replace(/"/g, ''),
+              nom: parts[1].replace(/"/g, '').trim(),
+              description: parts[2].replace(/"/g, '').trim(),
+              materiel: parts[3].replace(/"/g, '').trim(),
+              niveau: parts[4].replace(/"/g, '').trim(),
+              image: parts[5].replace(/"/g, '').trim(),
+              lien_youtube: parts[7].replace(/"/g, '').trim() // colonne 8 = lien YouTube
+            };
+          })
+          .filter(Boolean);
+      })
+      .catch(err => {
+        console.error("Erreur chargement techniques :", err);
+        techEl.innerText = "❌ Erreur de chargement des techniques.";
+      });
   }
 
-  const tech = techniques[Math.floor(Math.random() * techniques.length)];
+  function choisirTechnique() {
+    const techEl = document.getElementById("technique");
+    const matEl = document.getElementById("materiel");
+    const lienEl = document.getElementById("lien");
 
-  // Badges niveau
-  const badgesNiveau = tech.niveau
-    .split(',')
-    .map(n => n.trim())
-    .map(n => `<span style="background:#3b82f6; color:white; padding:2px 6px; margin:2px 3px; border-radius:4px; font-size:0.8em;">${n}</span>`)
-    .join("");
+    if (!techEl || !matEl || !lienEl) return;
 
-  // Image
-  let img = document.getElementById("preview-technique");
-  if (!img) {
-    img = document.createElement("img");
-    img.id = "preview-technique";
-    img.alt = tech.nom;
-    img.style = "max-width:100%; border-radius:8px; margin:12px 0; box-shadow:0 2px 8px rgba(0,0,0,0.1);";
-    matEl.insertAdjacentElement("afterend", img);
-  }
-  img.src = tech.image;
+    if (techniques.length === 0) {
+      techEl.innerHTML = `<em>Aucune technique disponible pour le moment.</em>`;
+      matEl.innerText = "";
+      lienEl.style.display = "none";
+      // Cacher l'image si elle existe
+      const img = document.getElementById("preview-technique");
+      if (img) img.style.display = "none";
+      return;
+    }
 
-  // Affichage
-  techEl.innerHTML = `
-    <strong style="font-size:1.3em;">${tech.nom}</strong><br>
-    ${badgesNiveau}<br>
-    <em style="font-size:0.95em; color:#555;">“${tech.description}”</em>
-  `;
-  matEl.innerText = `🖌️ Matériel : ${tech.materiel}`;
+    const tech = techniques[Math.floor(Math.random() * techniques.length)];
 
-  // 🔗 Lien YouTube (si présent)
-  if (tech.lien_youtube && tech.lien_youtube.startsWith('http')) {
-    lienEl.href = tech.lien_youtube;
-    lienEl.textContent = "▶️ Voir la chaîne YouTube";
-    lienEl.target = "_blank";
-    lienEl.rel = "noopener";
-    lienEl.style.cssText = `
-      display: inline-block;
-      margin-top: 10px;
-      color: #1e40af;
-      text-decoration: none;
-      font-weight: bold;
+    // Badges niveau : filtrer les niveaux vides
+    const badgesNiveau = tech.niveau
+      .split(',')
+      .map(n => n.trim())
+      .filter(n => n !== '')
+      .map(n => `<span style="background:#3b82f6; color:white; padding:2px 6px; margin:2px 3px; border-radius:4px; font-size:0.8em;">${n}</span>`)
+      .join("");
+
+    // Image
+    let img = document.getElementById("preview-technique");
+    if (!img) {
+      img = document.createElement("img");
+      img.id = "preview-technique";
+      img.style = "max-width:100%; border-radius:8px; margin:12px 0; box-shadow:0 2px 8px rgba(0,0,0,0.1);";
+      // Masquer l'image si elle ne se charge pas
+      img.onerror = function() {
+        this.style.display = "none";
+      };
+      matEl.insertAdjacentElement("afterend", img);
+    }
+
+    // Mise à jour de l'image
+    if (tech.image && tech.image.trim() !== '') {
+      img.src = tech.image;
+      img.alt = `Prévisualisation de la technique : ${tech.nom}`;
+      img.style.display = "block";
+    } else {
+      img.style.display = "none";
+    }
+
+    // Affichage
+    techEl.innerHTML = `
+      <strong style="font-size:1.3em;">${tech.nom}</strong><br>
+      ${badgesNiveau}<br>
+      <em style="font-size:0.95em; color:#555;">“${tech.description}”</em>
     `;
-  } else {
-    lienEl.style.display = "none";
-  }
-}
+    matEl.innerText = `🖌️ Matériel : ${tech.materiel}`;
 
+    // 🔗 Lien YouTube (si présent)
+    if (tech.lien_youtube && tech.lien_youtube.trim() !== '' && tech.lien_youtube.startsWith('http')) {
+      lienEl.href = tech.lien_youtube;
+      lienEl.textContent = "▶️ Voir la démonstration sur YouTube";
+      lienEl.target = "_blank";
+      lienEl.rel = "noopener noreferrer";
+      lienEl.style.cssText = `
+        display: inline-block;
+        margin-top: 10px;
+        color: #1e40af;
+        text-decoration: none;
+        font-weight: bold;
+      `;
+    } else {
+      lienEl.style.display = "none";
+    }
+  }
+</script>
+</body>
+</html>
