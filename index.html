@@ -188,34 +188,52 @@ function chargerDicton() {
       if(el) el.innerText = "Chargement du proverbe impossible.";
     });
 }
-
- // --- 5. SÉLECTEUR DE TECHNIQUE (JSON enrichi) ---
+// --- 5. SÉLECTEUR DE TECHNIQUE + CHAÎNES YOUTUBE ---
 let techniques = [];
+let chaines = [];
+let liens = [];
 
-function chargerTechniques() {
-  fetch('data/techniques.json')
-    .then(r => {
-      if (!r.ok) throw new Error("Fichier non trouvé");
-      return r.json();
-    })
-    .then(data => {
-      if (!Array.isArray(data) || data.length === 0) {
-        throw new Error("Données invalides ou vides");
-      }
-      techniques = data;
-    })
-    .catch(err => {
-      console.error("Erreur chargement techniques :", err);
-      const techEl = document.getElementById("technique");
-      const matEl = document.getElementById("materiel");
-      const lienEl = document.getElementById("lien");
+// 🔗 Charge TOUTES les données au démarrage
+Promise.all([
+  fetch('data/techniques.json').then(r => r.json()),
+  fetch('data/chaines.json').then(r => r.json()),
+  fetch('data/liens.csv').then(r => r.text())
+])
+.then(([dataTech, dataChan, csvLiens]) => {
+  // Stocker les données
+  techniques = dataTech;
+  chaines = dataChan;
 
-      techEl.innerHTML = `<em style="color:#999;">⚠️ Erreur : techniques non chargées</em>`;
-      matEl.innerText = "";
-      lienEl.style.display = "none";
+  // Parser le CSV des liens
+  liens = csvLiens
+    .trim()
+    .split('\n')
+    .slice(1) // sauter l'en-tête
+    .map(ligne => {
+      const [techId, chanId] = ligne.split(';').map(item => item.trim());
+      return { technique_id: techId, chaine_id: chanId };
     });
-}
 
+  // ✅ Debug : vérifie que tout est bien chargé
+  console.log("✅ Données chargées :", {
+    techniques: techniques.length,
+    chaines: chaines.length,
+    liens: liens.length,
+    exemple: liens[0]
+  });
+})
+.catch(err => {
+  console.error("❌ Erreur chargement des données :", err);
+  const techEl = document.getElementById("technique");
+  const matEl = document.getElementById("materiel");
+  const lienEl = document.getElementById("lien");
+
+  techEl.innerHTML = `<em style="color:#999;">⚠️ Erreur : données non chargées</em>`;
+  matEl.innerText = "";
+  lienEl.style.display = "none";
+});
+
+// 🔮 Fonction appelée quand on clique sur "Découvrir"
 function choisirTechnique() {
   const techEl = document.getElementById("technique");
   const matEl = document.getElementById("materiel");
@@ -228,25 +246,26 @@ function choisirTechnique() {
     return;
   }
 
-  // Choisir une technique
+  // 🎲 Choisir une technique aléatoire
   const tech = techniques[Math.floor(Math.random() * techniques.length)];
 
-  // Trouver les chaînes liées
+  // 🔍 Trouver toutes les chaînes liées à cette technique
   const chainesLiees = liens
     .filter(lien => lien.technique_id === tech.id)
     .map(lien => chaines.find(c => c.id === lien.chaine_id))
-    .filter(Boolean);
+    .filter(Boolean); // supprime les 'undefined'
 
+  // 🎯 Choisir une chaîne aléatoire parmi celles liées (ou aucune)
   const chaine = chainesLiees.length > 0 
     ? chainesLiees[Math.floor(Math.random() * chainesLiees.length)]
     : null;
 
-  // Badges niveau
+  // 🏷️ Générer les badges de niveau
   const badgesNiveau = tech.niveau
     .map(n => `<span style="background:#3b82f6; color:white; padding:2px 6px; margin:2px 3px; border-radius:4px; font-size:0.8em;">${n}</span>`)
     .join("");
 
-  // Image
+  // 🖼️ Gérer l'image
   let img = document.getElementById("preview-technique");
   if (!img) {
     img = document.createElement("img");
@@ -257,7 +276,7 @@ function choisirTechnique() {
   }
   img.src = tech.image;
 
-  // Affichage
+  // 💬 Affichage final
   techEl.innerHTML = `
     <strong style="font-size:1.3em;">${tech.nom}</strong><br>
     ${badgesNiveau}<br>
@@ -265,20 +284,19 @@ function choisirTechnique() {
   `;
   matEl.innerText = `🖌️ Matériel : ${tech.materiel}`;
 
-  // 🔗 Lien CLIQUABLE
- if (chaine && chaine.url && chaine.url.trim().startsWith('http')) {
-  lienEl.href = chaine.url.trim();
-  lienEl.textContent = `▶️ Voir sur : ${chaine.nom}`;
-  lienEl.target = "_blank";  // ✅ Ouvre dans un nouvel onglet
-  lienEl.style.cssText = `
-    display: inline-block;
-    margin-top: 10px;
-    color: #1e40af;
-    text-decoration: none;
-    font-weight: bold;
-  `;
-} else {
-  lienEl.style.display = "none";
+  // 🔗 Lien CLIQUABLE vers YouTube
+  if (chaine && chaine.url && chaine.url.trim().startsWith('http')) {
+    lienEl.href = chaine.url.trim();
+    lienEl.textContent = `▶️ Voir sur : ${chaine.nom}`;
+    lienEl.target = "_blank";  // Ouvre dans un nouvel onglet
+    lienEl.style.cssText = `
+      display: inline-block;
+      margin-top: 10px;
+      color: #1e40af;
+      text-decoration: none;
+      font-weight: bold;
+    `;
+  } else {
+    lienEl.style.display = "none";
+  }
 }
-}
-
