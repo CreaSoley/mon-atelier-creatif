@@ -266,19 +266,19 @@ function choisirTechnique() {
   matEl.innerText = `🖌️ Matériel : ${tech.materiel}`;
 
   // 🔗 Lien CLIQUABLE
-  if (chaine && chaine.url && chaine.url.trim().startsWith('http')) {
-    lienEl.href = chaine.url.trim();        // URL propre
-    lienEl.textContent = `▶️ Voir sur : ${chaine.nom}`;  // Texte simple
-    lienEl.target = "_blank";               // Ouvre dans un nouvel onglet
-    lienEl.style.cssText = ` 
-      display: inline-block;
-      margin-top: 10px;
-      color: #1e40af;
-      text-decoration: none;
-      font-weight: bold;
-    `;
-    lienEl.style.opacity = "1";
-  } else {
-    lienEl.style.display = "none";
-  }
+ if (chaine && chaine.url && chaine.url.trim().startsWith('http')) {
+  lienEl.href = chaine.url.trim();
+  lienEl.textContent = `▶️ Voir sur : ${chaine.nom}`;
+  lienEl.target = "_blank";  // ✅ Ouvre dans un nouvel onglet
+  lienEl.style.cssText = `
+    display: inline-block;
+    margin-top: 10px;
+    color: #1e40af;
+    text-decoration: none;
+    font-weight: bold;
+  `;
+} else {
+  lienEl.style.display = "none";
 }
+}
+
