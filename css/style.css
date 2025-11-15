@@ -1,1 +1,90 @@
 
+```css
+/* Styles de base */
+body {
+    font-family: var(--font-sans);
+    background: var(--color-light);
+    color: var(--color-dark);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* Styles réutilisés de votre ancien code */
+/* 1. Sécurité (laisser ici mais sera contrôlé par JS dans techniques.html) */
+#contenu-site {
+    display: none; 
+}
+#message-erreur {
+    display: none;
+    text-align: center;
+    margin-top: 50px;
+    color: #721c24; 
+    font-family: var(--font-sans);
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    padding: var(--spacing-m);
+    border-radius: 8px;
+    max-width: 400px;
+    margin-inline: auto;
+}
+
+/* 3. Styles de base pour les blocs de contenu */
+.box {
+    border: 1px solid #e0e0e0;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    background-color: white;
+}
+
+/* 4. Style pour les badges de niveau créatif */
+.badge {
+    display: inline-block;
+    background: var(--color-primary);
+    color: white;
+    padding: 2px 6px;
+    margin: 2px 3px 6px 0;
+    border-radius: 4px;
+    font-size: 0.8em;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+/* 5. Style pour l'image de la technique (sera utilisé dans inspiration.html) */
+#preview-technique {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 12px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    display: block;
+}
+
+/* 6. Style pour le lien YouTube */
+.youtube-link {
+    display: inline-block;
+    margin-top: 10px;
+    color: var(--color-secondary); 
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Boutons de base (pour le sélecteur créatif) */
+button, .btn {
+    background: var(--color-primary);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+button:hover, .btn:hover {
+    background-color: #2563eb;
+}
+
+/* (Ajouter ici les styles de Navbar et Footer de l'étape 2.6 du plan initial) */
+/* (Ce sera fait lors de l'intégration de index.html) */
+```
+
