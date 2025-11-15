@@ -1,347 +1,76 @@
+```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="robots" content="noindex, nofollow" />
-  <title>Mon Atelier Créatif</title>
-  <link rel="stylesheet" href="assets/css/style.css" />
-  <style>
-    /* 1. Sécurité: On cache le contenu du site par défaut */
-    #contenu-site {
-      display: none;
-    }
-    /* 2. Style simple pour le message d'erreur */
-    #message-erreur {
-      display: none;
-      text-align: center;
-      margin-top: 50px;
-      color: #721c24; /* Couleur d'erreur plus douce */
-      font-family: Arial, sans-serif;
-      background-color: #f8d7da;
-      border: 1px solid #f5c6cb;
-      padding: 20px;
-      border-radius: 8px;
-    }
-    /* 3. Styles de base pour les blocs de contenu */
-    .box {
-      border: 1px solid #e0e0e0;
-      padding: 15px;
-      margin-bottom: 20px;
-      border-radius: 8px;
-      background-color: #f9f9f9;
-    }
-    /* 4. Style pour les badges de niveau créatif */
-    .badge {
-      display: inline-block;
-      background: #3b82f6;
-      color: white;
-      padding: 2px 6px;
-      margin: 2px 3px 6px 0;
-      border-radius: 4px;
-      font-size: 0.8em;
-      line-height: 1.2;
-      white-space: nowrap;
-    }
-    /* 5. Style pour l'image de la technique */
-    #preview-technique {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-      margin: 12px 0;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      display: block;
-    }
-    /* 6. Style pour le lien YouTube */
-    .youtube-link {
-        display: inline-block;
-        margin-top: 10px;
-        color: #c026d3; /* Couleur violette */
-        text-decoration: none;
-        font-weight: bold;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎨 [Ton Nom] – Univers Créatif</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/theme.css">
+    <style>
+        /* Styles spécifiques de la page d'accueil */
+        .page-content {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+        .hero { text-align: center; padding: 40px 0; }
+        /* Ajoutez le style des sections CTA et Proverbe ici */
+    </style>
 </head>
-<body>
+<body class="accueil">
+    
+    <!-- NAVIGATION (Base de l'étape 2.6 du plan initial) -->
+    <nav class="navbar">
+        <h1 class="logo">✨ [Ton Nom]</h1>
+        <ul class="nav-menu">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="pages/inspiration.html">Inspiration</a></li>
+            <li><a href="pages/portfolio.html">Portfolio</a></li>
+            <li><a href="pages/carnet.html">Carnet</a></li>
+            <li><a href="pages/techniques.html">Techniques</a></li>
+            <li><a href="pages/a-propos.html">À propos</a></li>
+        </ul>
+    </nav>
 
-<!-- 🔒 GESTION DU MOT DE PASSE -->
-<div id="message-erreur">
-  <h1>🚫 Accès refusé</h1>
-  <p>Le mot de passe est incorrect.</p>
-  <p>Veuillez rafraîchir la page (F5) pour réessayer.</p>
-</div>
+    <div class="page-content">
+        <!-- Section HERO -->
+        <section class="hero">
+            <h2>Bienvenue dans mon univers artistique</h2>
+            <p class="tagline">Exploration entre technique et intuition</p>
+            <img src="assets/images/hero.jpg" alt="Univers créatif" class="hero-image">
+        </section>
 
-<!-- LE CONTENU DU SITE (Caché par défaut) -->
-<div id="contenu-site">
+        <!-- 📜 PROVERBE DU JOUR (Intégration de l'ancien widget) -->
+        <section class="proverbe-section">
+            <div id="proverbe-du-jour" class="box">
+                <!-- Rempli par js/proverbe-du-jour.js -->
+                <p class="proverbe-text">Chargement du proverbe...</p>
+            </div>
+        </section>
 
-  <!-- 🏠 PAGE D'ACCUEIL -->
-  <h1>✨ Bienvenue dans mon atelier</h1>
-  <p>Un espace doux pour créer, expérimenter et partager.</p>
+        <!-- ⏰ HEURE ACTUELLE (Réutilisation de l'ancien widget simple) -->
+        <div class="box">
+            <h2>⏰ Date & Heure actuelle</h2>
+            <p id="heure">Chargement...</p>
+        </div>
 
-  <!-- 🎨 COULEUR DU JOUR -->
-  <div class="box">
-    <h2>🎨 Couleur du jour</h2>
-    <button onclick="genererCouleur()">Générer une couleur</button>
-    <div id="couleur" style="width:100px; height:80px; margin:10px; border:1px solid #ccc;"></div>
-    <p id="code"></p>
-  </div>
-
-  <!-- ⏰ HEURE ACTUELLE -->
-  <div class="box">
-    <h2>⏰ Heure actuelle</h2>
-    <p id="heure"></p>
-  </div>
-
-  <!-- 🌥️ MÉTÉO -->
-  <div class="box">
-    <h2>🌥️ Météo</h2>
-    <p id="meteo">Chargement...</p>
-  </div>
-
-  <!-- 💬 DICTON DU JOUR -->
-  <div class="box">
-    <h2>💬 Proverbe du jour</h2>
-    <p id="proverbes">Chargement...</p>
-  </div>
-
-  <!-- 🛠️ SÉLECTEUR DE TECHNIQUE CRÉATIVE -->
-  <div class="box">
-    <h2>🛠️ Activité du jour ?</h2>
-    <button onclick="choisirTechnique()">Découvrir</button>
-    <div id="resultat-technique">
-        <p id="technique"></p>
-        <p id="materiel"></p>
-        <!-- Le lien sera mis à jour ou masqué par JS -->
-        <a id="lien" class="youtube-link" style="display:none;" href="#" target="_blank" rel="noopener"></a>
+        <!-- Boutons CTA -->
+        <section class="cta-buttons">
+            <a href="pages/inspiration.html" class="btn">💡 Inspiration</a>
+            <a href="pages/portfolio.html" class="btn">🖼️ Portfolio</a>
+            <a href="pages/carnet.html" class="btn">📓 Carnet</a>
+            <a href="pages/techniques.html" class="btn">🔒 Techniques</a>
+        </section>
     </div>
-  </div>
 
-  <footer>
-    Mon Atelier Créatif • Un projet personnel • 2025
-  </footer>
+    <footer>
+        Mon Atelier Créatif • Un projet personnel • 2025
+    </footer>
 
-</div> <!-- Fin du contenu-site -->
-
-<!-- ✨ SCRIPTS JS -->
-<script>
-  // AVERTISSEMENT: Stocker le mot de passe côté client n'est PAS sécurisé
-  // et ne doit être utilisé que pour des projets personnels sans aucune donnée sensible.
-
-  // --- 0. VÉRIFICATION MOT DE PASSE ---
-  const MOT_DE_PASSE_SECRET = "KokoMango27*"; 
-  const essai = prompt("Mot de passe familial ?");
-
-  if (essai === MOT_DE_PASSE_SECRET) {
-    document.getElementById('contenu-site').style.display = 'block';
-    lancerScripts();
-  } else {
-    document.getElementById('message-erreur').style.display = 'block';
-  }
-
-  // --- FONCTIONS DU SITE ---
-  function lancerScripts() {
-    mettreAJourHeure();
-    chargerMeteo();
-    chargerDicton();
-    chargerTechniques(); 
-  }
-
-  // --- 1. Couleur du jour ---
-  function genererCouleur() {
-    // Utilisation de la notation hexadécimale pour la couleur
-    const hex = '#' + Math.floor(Math.random()*16777215).toString(16).padStart(6, '0');
-    document.getElementById("couleur").style.backgroundColor = hex;
-    document.getElementById("code").innerText = "Code HEX : " + hex;
-  }
-
-  // --- 2. Heure dynamique ---
-  function mettreAJourHeure() {
-    const now = new Date();
-    document.getElementById("heure").innerText = now.toLocaleString('fr-FR', {
-        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', 
-        hour: '2-digit', minute: '2-digit', second: '2-digit'
-    });
-  }
-  setInterval(mettreAJourHeure, 1000);
-
-  // --- 3. Météo (via Open-Meteo) ---
-  function chargerMeteo() {
-    fetch('https://api.open-meteo.com/v1/forecast?latitude=48.85&longitude=2.35&current=temperature_2m,weather_code&timezone=Europe%2FParis')
-      .then(r => {
-          if (!r.ok) throw new Error('Erreur réseau');
-          return r.json();
-      })
-      .then(data => {
-        const temp = data.current.temperature_2m;
-        const wc = data.current.weather_code;
-        // Meilleure gestion des codes météo
-        const weather = {
-          0: "Ciel dégagé ☀️", 1: "Peu nuageux 🌤️", 2: "Nuageux ☁️", 3: "Très nuageux 🌫️",
-          45: "Brouillard", 48: "Brouillard givrant", 51: "Bruine légère 💧", 53: "Bruine modérée 🌧️",
-          61: "Pluie légère 🌧️", 63: "Pluie modérée ☔"
-        }[wc] || "Temps inconnu";
-        document.getElementById("meteo").innerText = `${temp.toFixed(1)} °C à Paris • ${weather}`;
-      })
-      .catch(() => {
-        document.getElementById("meteo").innerText = "Météo non disponible";
-      });
-  }
-
-  // --- 4. Proverbe du jour (CSV, séparateur virgule) ---
-  function chargerDicton() {
-    fetch('proverbes.csv')
-      .then(r => r.text())
-      .then(csv => {
-        const lignes = csv.trim().split('\n');
-        
-        // Fonction pour nettoyer et extraire les parties d'une ligne
-        const parseLigne = (ligne) => {
-            // Regex simple pour gérer les champs entourés de guillemets et séparés par des virgules
-            const parts = [];
-            let current = "";
-            let inQuotes = false;
-            
-            for (let i = 0; i < ligne.length; i++) {
-                const char = ligne[i];
-
-                if (char === '"') {
-                    inQuotes = !inQuotes;
-                } else if (char === ',' && !inQuotes) {
-                    parts.push(current.trim());
-                    current = "";
-                } else {
-                    current += char;
-                }
-            }
-            parts.push(current.trim()); // Ajoute la dernière partie
-
-            if (parts.length >= 3) {
-                const date = parts[0].trim();
-                const auteur = parts[parts.length - 1].trim();
-                // Le texte est tout ce qui se trouve entre la date et l'auteur
-                const texte = parts.slice(1, parts.length - 1).join(',').replace(/"/g, '').trim();
-                return { date, texte, auteur };
-            }
-            return null;
-        };
-
-
-        const tousLesProverbes = lignes
-            .map(parseLigne)
-            .filter(item => item !== null);
-
-        const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
-        const dateDuJour = new Date().toLocaleDateString('fr-FR', options); 
-
-        let choix = tousLesProverbes.find(p => p.date === dateDuJour);
-        if (!choix && tousLesProverbes.length > 0) {
-          // Si pas de date du jour, choisir un aléatoire
-          choix = tousLesProverbes[Math.floor(Math.random() * tousLesProverbes.length)];
-        }
-
-        const element = document.getElementById("proverbes");
-        if (choix && element) {
-            element.innerHTML = `
-              <strong>« ${choix.texte} »</strong><br>
-              <span style="font-size:0.9em; color:#666; font-style:italic;">— ${choix.auteur}</span>
-            `;
-        } else if (element) {
-            element.innerText = "Aucun proverbe trouvé.";
-        }
-      })
-      .catch(error => {
-        console.error("Erreur de chargement des proverbes:", error);
-        const el = document.getElementById("proverbes");
-        if(el) el.innerText = "Chargement du proverbe impossible.";
-      });
-  }
-
-  // --- 5. SÉLECTEUR DE TECHNIQUE (CSV séparé par ; )
-  let techniques = [];
-
-  function chargerTechniques() {
-    fetch('data/techniques.csv')
-      .then(r => r.text())
-      .then(csv => {
-        // Séparateur : point-virgule (;)
-        const lignes = csv.trim().split('\n').slice(1); // sauter l'en-tête
-        techniques = lignes
-          .filter(ligne => ligne.trim() !== '')
-          .map(ligne => {
-            const parts = ligne.split(';'); 
-            if (parts.length < 8) return null; 
-
-            return {
-              id: parts[0].trim(),
-              nom: parts[1].replace(/"/g, '').trim(),
-              description: parts[2].replace(/"/g, '').trim(),
-              materiel: parts[3].replace(/"/g, '').trim(),
-              niveau: parts[4].replace(/"/g, '').trim(),
-              image: parts[5].replace(/"/g, '').trim(),
-              lien_youtube: parts[7].replace(/"/g, '').trim() // colonne 8
-            };
-          })
-          .filter(Boolean);
-      })
-      .catch(err => {
-        console.error("Erreur chargement techniques :", err);
-        document.getElementById("technique").innerText = "❌ Erreur de chargement des techniques.";
-      });
-  }
-
-  function choisirTechnique() {
-    const techEl = document.getElementById("technique");
-    const matEl = document.getElementById("materiel");
-    const lienEl = document.getElementById("lien");
-    const resultatConteneur = document.getElementById("resultat-technique");
-
-    if (techniques.length === 0) {
-      techEl.innerHTML = `<em>Chargement en cours… Veuillez réessayer.</em>`;
-      matEl.innerText = "";
-      lienEl.style.display = "none";
-      return;
-    }
-
-    const tech = techniques[Math.floor(Math.random() * techniques.length)];
-
-    // 1. Badges niveau (utilise la classe CSS .badge)
-    const badgesNiveau = tech.niveau
-      .split(',')
-      .map(n => n.trim())
-      .map(n => `<span class="badge">${n}</span>`)
-      .join(" ");
-
-    // 2. Image Handling: Créer ou mettre à jour l'élément <img>
-    let img = document.getElementById("preview-technique");
-    if (!img) {
-      // Si l'image n'existe pas, on la crée et l'insère dans le conteneur de résultats
-      img = document.createElement("img");
-      img.id = "preview-technique";
-      img.alt = tech.nom;
-      // Insérer l'image AVANT le matériel
-      resultatConteneur.insertBefore(img, matEl); 
-    }
-    img.src = tech.image;
-    img.style.display = tech.image ? 'block' : 'none'; // Cacher si l'URL est vide
-
-    // 3. Affichage du texte
-    techEl.innerHTML = `
-      <strong style="font-size:1.3em; display:block; margin-bottom: 5px;">${tech.nom}</strong>
-      ${badgesNiveau}
-      <em style="font-size:0.95em; color:#555; display:block; margin-top:5px;">“${tech.description}”</em>
-    `;
-    matEl.innerText = `🖌️ Matériel : ${tech.materiel}`;
-
-    // 4. Lien YouTube
-    if (tech.lien_youtube && tech.lien_youtube.startsWith('http')) {
-      lienEl.href = tech.lien_youtube;
-      lienEl.textContent = "▶️ Voir la ressource vidéo";
-      lienEl.style.display = "inline-block";
-    } else {
-      lienEl.style.display = "none";
-    }
-  }
-</script>
+    <!-- Scripts pour l'accueil -->
+    <script src="js/script.js"></script>
+    <script src="js/proverbe-du-jour.js"></script>
 </body>
 </html>
-
+```
