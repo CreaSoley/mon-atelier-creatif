@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -15,25 +14,37 @@
             padding: 0 20px;
         }
         .hero { text-align: center; padding: 40px 0; }
-        /* Ajoutez le style des sections CTA et Proverbe ici */
+        /* Style pour le widget "Petit Défi" */
+        .widget-section {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+        #widget-defis {
+            text-align: center;
+        }
+        #widget-defis h2 {
+            font-family: var(--font-subtitle);
+            color: var(--color-secondary);
+        }
     </style>
 </head>
 <body class="accueil">
-    
-    <!-- NAVIGATION (Base de l'étape 2.6 du plan initial) -->
-   <!-- Dans la balise <nav> de index.html et inspiration.html -->
-<nav class="navbar">
-    <!-- Remplacez le texte par une image -->
-   <a href="index.html" class="logo-link">
-    <img src="assets/images/logo-creasoley.svg" alt="CreaSoley - Logo" class="logo-img">
-    <span class="logo-title">CreaSoley</span>
-</a>
-    <ul class="nav-menu">
-        <li><a href="index.html">Accueil</a></li>
-        <li><a href="pages/inspiration.html">Inspiration</a></li>
-        <!-- ... -->
-    </ul>
-</nav>
+
+    <!-- NAVIGATION -->
+    <nav class="navbar">
+        <a href="index.html" class="logo-link">
+            <img src="assets/images/logo-creasoley.png" alt="CreaSoley - Logo" class="logo-img"> <!-- Vérifiez l'extension (.png ou .svg) -->
+            <span class="logo-title">CreaSoley</span>
+        </a>
+        <ul class="nav-menu">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="pages/inspiration.html">Inspiration</a></li>
+            <li><a href="pages/portfolio.html">Portfolio</a></li>
+            <li><a href="pages/carnet.html">Carnet</a></li>
+            <li><a href="pages/techniques.html">Techniques</a></li>
+        </ul>
+    </nav>
 
     <div class="page-content">
         <!-- Section HERO -->
@@ -43,26 +54,25 @@
             <img src="assets/images/hero.jpg" alt="Univers créatif" class="hero-image">
         </section>
 
-        <!-- 📜 PROVERBE DU JOUR (Intégration de l'ancien widget) -->
+        <!-- PROVERBE DU JOUR -->
         <section class="proverbe-section">
             <div id="proverbe-du-jour" class="box">
-                <!-- Rempli par js/proverbe-du-jour.js -->
                 <p class="proverbe-text">Chargement du proverbe...</p>
             </div>
         </section>
 
-        <!-- PETIT DEFI DU JOUR -->
-<section class="widget-section">
-    <div class="box" id="widget-defis">
-        <h2>🧩 Petit Défi Créatif</h2>
-        <div id="resultat-defi">
-            <p>Tire un défi pour stimuler ta créativité !</p>
-        </div>
-        <button class="btn" onclick="genererDefi()">Nouveau Défi</button>
-    </div>
-</section>
+        <!-- PETIT DÉFI (NOUVEAU) -->
+        <section class="widget-section">
+            <div class="box" id="widget-defis">
+                <h2>🧩 Petit Défi Créatif</h2>
+                <div id="resultat-defi">
+                    <p>Tire un défi pour stimuler ta créativité !</p>
+                </div>
+                <button class="btn" onclick="genererDefi()">Nouveau Défi</button>
+            </div>
+        </section>
 
-        <!-- Boutons CTA -->
+        <!-- BOUTONS CTA -->
         <section class="cta-buttons">
             <a href="pages/inspiration.html" class="btn">💡 Inspiration</a>
             <a href="pages/portfolio.html" class="btn">🖼️ Portfolio</a>
@@ -75,15 +85,9 @@
         Mon Atelier Créatif • Un projet personnel • 2025
     </footer>
 
-    <!-- Scripts pour l'accueil -->
+    <!-- SCRIPTS -->
     <script src="js/script.js"></script>
     <script src="js/proverbe-du-jour.js"></script>
+    <script src="js/defis-artistiques.js"></script>  <!-- AJOUTÉ -->
 </body>
 </html>
-```
-
-
-
-
-
-
