@@ -220,6 +220,29 @@ footer {
     margin-top: 2rem;
 }
 
+/* Logo dans la navigation */
+.logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+}
+
+.logo-img {
+    height: 40px; /* Ajustez selon la taille de votre logo */
+    width: auto;
+    margin-right: 10px;
+}
+
+/* Pour le titre "CreaSoley" à côté du logo (optionnel) */
+.logo-title {
+    font-family: var(--font-custom); /* Nous définirons cette police plus tard */
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    margin: 0;
+}
+
 /* Assurez-vous que .box contient des styles de padding et border-radius */
 /* (Ajouter ici les styles de Navbar et Footer de l'étape 2.6 du plan initial) */
 /* (Ce sera fait lors de l'intégration de index.html) */
