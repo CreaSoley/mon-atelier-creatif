@@ -1,1 +1,23 @@
 
+[
+    {
+        "titre": "Le contour aveugle",
+        "defi": "Dessinez un objet sans jamais regarder le papier, en ne levant pas le crayon.",
+        "duree": "10 minutes"
+    },
+    {
+        "titre": "Monochrome émotionnel",
+        "defi": "Utilisez une seule couleur (et ses nuances) pour représenter un sentiment fort.",
+        "duree": "30 minutes"
+    },
+    {
+        "titre": "Le collage des mots",
+        "defi": "Découpez cinq mots aléatoires dans des journaux et construisez une image autour.",
+        "duree": "Une heure"
+    },
+    {
+        "titre": "La texture cachée",
+        "defi": "Créez une texture visuelle en utilisant uniquement des matériaux que vous ne dessinez pas habituellement.",
+        "duree": "45 minutes"
+    }
+]
