@@ -3,59 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>💡 Inspiration – [CreaSoley]</title>
+    <title>💡 Inspiration – CreaSoley</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/theme.css">
     <style>
-        /* Grille des widgets */
+        /* Styles spécifiques à la page Inspiration */
         .widget-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
             margin-top: 2rem;
         }
-        /* Style pour les aperçus de couleur */
-        #couleur-preview {
-            width: 100%;
-            height: 80px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            transition: background-color 0.3s;
-        }
-        /* Style pour les images des techniques */
-        #preview-technique {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            margin: 12px 0;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            display: none; /* Masquée par défaut */
-        }
     </style>
 </head>
 <body>
-    <!-- NAVIGATION -->
-    <!-- Dans la balise <nav> de index.html et inspiration.html -->
-<nav class="navbar">
-    <!-- Remplacez le texte par une image -->
-    <a href="index.html" class="logo-link">
-        <img src="assets/images/logo-creasoley.svg" alt="CreaSoley - Logo" class="logo-img">
-    </a>
-    <ul class="nav-menu">
-        <li><a href="index.html">Accueil</a></li>
-        <li><a href="pages/inspiration.html">Inspiration</a></li>
-        <!-- ... -->
-    </ul>
-</nav>
+    <!-- NAVIGATION (corrigée) -->
+    <nav class="navbar">
+        <a href="../index.html" class="logo-link">
+            <img src="../assets/images/logo-creasoley.svg" alt="CreaSoley - Logo" class="logo-img">
+            <span class="logo-title">CreaSoley</span>
+        </a>
+        <ul class="nav-menu">
+            <li><a href="../index.html">Accueil</a></li>
+            <li><a href="inspiration.html">Inspiration</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="carnet.html">Carnet</a></li>
+            <li><a href="techniques.html">Techniques</a></li>
+        </ul>
+    </nav>
 
     <div class="page-content">
-        <h1>💡 Espace d'Impulsion Créative</h1>
+        <h1>💡 Espace d'Impulsion Créative</h1> <!-- Police JuneInRock appliquée via CSS -->
         <p>Tire une carte, attrape une couleur, et laisse la météo te guider.</p>
 
-        <!-- GRILLE DES WIDGETS -->
         <section class="widget-grid">
-            <!-- 1. TECHNIQUE ALÉATOIRE (GAS) -->
+            <!-- TECHNIQUE ALÉATOIRE -->
             <div class="box" id="widget-technique">
                 <h2>🎲 Activité du jour</h2>
                 <button onclick="choisirTechnique()">Découvrir</button>
@@ -64,20 +46,19 @@
                 </div>
             </div>
 
-            <!-- 2. COULEUR DU JOUR -->
+            <!-- COULEUR DU JOUR -->
             <div class="box" id="widget-couleur">
                 <h2>🎨 Couleur du jour</h2>
                 <button onclick="genererCouleur()">Nouvelle couleur</button>
-                <div id="couleur-preview"></div>
+                <div id="couleur-preview" style="width:100%; height:80px; margin:10px 0; border:1px solid #ccc; border-radius: 4px;"></div>
                 <p id="code">#Chargement</p>
             </div>
 
-            <!-- 3. MÉTÉO POÉTIQUE -->
+            <!-- MÉTÉO POÉTIQUE (géolocalisée) -->
             <div class="box" id="widget-meteo">
                 <h2>☀️ Météo Poétique</h2>
                 <p id="meteo">Chargement...</p>
             </div>
-
         </section>
     </div>
 
@@ -85,9 +66,9 @@
         Mon Atelier Créatif • Un projet personnel • 2025
     </footer>
 
-    <!-- Scripts de la page Inspiration -->
+    <!-- Scripts -->
     <script src="../js/techniques-aleatoires.js"></script>
     <script src="../js/couleur-du-jour.js"></script>
-    <script src="../js/meteo-poetique.js"></script>
+    <script src="../js/meteo-poetique.js"></script> <!-- Script géolocalisé -->
 </body>
 </html>
