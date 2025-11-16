@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🖼️ Portfolio – CreaSoley</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/theme.css">
+    <style>
+        /* Styles spécifiques pour les accordéons */
+        .accordion {
+            max-width: 800px;
+            margin: 2rem auto;
+        }
+
+        .accordion-item {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            background: var(--color-primary);
+            color: white;
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: var(--font-title);
+            font-size: 1.4rem;
+        }
+
+        .accordion-header:hover {
+            background: #2563eb;
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background: white;
+        }
+
+        .accordion-content.active {
+            max-height: 1000px; /* Valeur arbitraire pour l'animation */
+            padding: 20px;
+        }
+
+        .oeuvre-image {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        .oeuvre-description {
+            line-height: 1.6;
+            color: var(--color-dark);
+        }
+    </style>
+</head>
+<body>
+    <!-- Bandeau (identique aux autres pages) -->
+    <nav class="navbar">
+        <a href="../index.html" class="logo-link">
+            <img src="../assets/images/logo-creasoley.svg" alt="CreaSoley - Logo" class="logo-img">
+            <span class="logo-title">CreaSoley</span>
+        </a>
+        <ul class="nav-menu">
+            <li><a href="../index.html">Accueil</a></li>
+            <li><a href="inspiration.html">Inspiration</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="carnet.html">Carnet</a></li>
+            <li><a href="techniques.html">Techniques</a></li>
+        </ul>
+    </nav>
+
+    <div class="page-content">
+        <!-- Titre de la page -->
+        <h1>🖼️ Mes Créations Artistiques</h1>
+        <p>Découvrez mes œuvres, inspirations et processus créatifs.</p>
+
+        <!-- Accordion pour les œuvres -->
+        <div class="accordion">
+            <!-- Œuvre 1 -->
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>L'Esprit des Couleurs</span>
+                    <span>⌄</span>
+                </div>
+                <div class="accordion-content">
+                    <img src="../assets/images/oeuvre1.jpg" alt="L'Esprit des Couleurs" class="oeuvre-image">
+                    <div class="oeuvre-description">
+                        <h3>Peinture à l'huile (2023)</h3>
+                        <p>Exploration des contrastes chauds/froids sur toile. Cette œuvre représente l'équilibre entre les émotions contradictoires, avec des touches de bleu électrique et d'orange brûlé.</p>
+                        <p><strong>Techniques utilisées :</strong> Empâtement, glacis, jeu de textures.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Œuvre 2 -->
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>Flux Numérique</span>
+                    <span>⌄</span>
+                </div>
+                <div class="accordion-content">
+                    <img src="../assets/images/oeuvre2.jpg" alt="Flux Numérique" class="oeuvre-image">
+                    <div class="oeuvre-description">
+                        <h3>Art Génératif (2024)</h3>
+                        <p>Création algorithmique de motifs organiques. Ce projet explore la relation entre le hasard et la structure, généré avec du code JavaScript et p5.js.</p>
+                        <p><strong>Outils :</strong> p5.js, Processing.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ajoutez d'autres œuvres ici -->
+        </div>
+    </div>
+
+    <footer>
+        Mon Atelier Créatif • Un projet personnel • 2025
+    </footer>
+
+    <!-- Script pour l'accordéon -->
+    <script>
+        function toggleAccordion(header) {
+            const content = header.nextElementSibling;
+            const isActive = content.classList.contains('active');
+
+            // Ferme tous les accordéons
+            document.querySelectorAll('.accordion-content').forEach(item => {
+                item.classList.remove('active');
+            });
+
+            // Ouvre/cache l'accordéon cliqué
+            if (!isActive) {
+                content.classList.add('active');
+                header.querySelector('span:last-child').textContent = '⌄';
+            } else {
+                header.querySelector('span:last-child').textContent = '⌄';
+            }
+        }
+    </script>
+</body>
+</html>
