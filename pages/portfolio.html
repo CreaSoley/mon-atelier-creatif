@@ -44,42 +44,42 @@
         }
 
         .accordion-content.active {
-            max-height: 1000px; /* Valeur arbitraire pour l'animation */
+            max-height: 2000px; /* Valeur suffisante pour plusieurs œuvres */
             padding: 20px;
         }
 
-       /* Styles pour les œuvres dans l'accordéon */
-.oeuvre {
-    margin-bottom: 20px;
-    padding-bottom: 20px;
-    border-bottom: 1px dashed #ddd;
-}
+        /* Styles pour les œuvres */
+        .oeuvre {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed #ddd;
+        }
 
-.oeuvre:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-    padding-bottom: 0;
-}
+        .oeuvre:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
 
-.oeuvre-image {
-    width: 100%;
-    max-height: 300px;
-    object-fit: cover;
-    border-radius: 5px;
-    margin-bottom: 10px;
-}
+        .oeuvre-image {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
 
-.oeuvre-details {
-    line-height: 1.6;
-}
+        .oeuvre-details {
+            line-height: 1.6;
+        }
 
-.oeuvre-details p {
-    margin: 5px 0;
-}
+        .oeuvre-details p {
+            margin: 5px 0;
+        }
     </style>
 </head>
 <body>
-    <!-- Bandeau (identique aux autres pages) -->
+    <!-- Bandeau -->
     <nav class="navbar">
         <a href="../index.html" class="logo-link">
             <img src="../assets/images/logo-creasoley.svg" alt="CreaSoley - Logo" class="logo-img">
@@ -95,62 +95,87 @@
     </nav>
 
     <div class="page-content">
-        <!-- Titre de la page -->
         <h1>🖼️ Mes Créations Artistiques</h1>
         <p>Découvrez mes œuvres, inspirations et processus créatifs.</p>
 
-        <!-- Accordion pour les œuvres -->
-       <div class="accordion">
-    <!-- Technique : Aquarelle -->
-    <div class="accordion-item">
-        <div class="accordion-header" onclick="toggleAccordion(this)">
-            <span>Aquarelle</span>
-            <span>⌄</span>
-        </div>
-        <div class="accordion-content">
-            <!-- Œuvre 1 -->
-            <div class="oeuvre">
-                <h3>Tâches sombres</h3>
-                <img src="../assets/images/aquarelle001.jpg" alt="Tâches sombres" class="oeuvre-image">
-                <div class="oeuvre-details">
-                    <p><strong>Année :</strong> 2023</p>
-                    <p><strong>Processus créatif :</strong> Description du processus (ex: "Superposition de couches humides pour créer des dégradés fluides.")</p>
-                    <p><strong>Techniques :</strong> Papiers spécifiques, pigments utilisés, outils (pinceaux, éponges).</p>
+        <!-- Accordion -->
+        <div class="accordion">
+            <!-- Aquarelle -->
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>Aquarelle</span>
+                    <span class="arrow">⌄</span>
+                </div>
+                <div class="accordion-content">
+                    <!-- Œuvre 1 -->
+                    <div class="oeuvre">
+                        <h3>Tâches sombres</h3>
+                        <img src="../assets/images/aquarelle001.jpg" alt="Tâches sombres" class="oeuvre-image">
+                        <div class="oeuvre-details">
+                            <p><strong>Année :</strong> 2023</p>
+                            <p><strong>Processus créatif :</strong> Superposition de couches humides.</p>
+                            <p><strong>Techniques :</strong> Papiers spécifiques, pigments.</p>
+                        </div>
+                    </div>
+                    <!-- Œuvre 2 -->
+                    <div class="oeuvre">
+                        <h3>Splash</h3>
+                        <img src="../assets/images/aquarelle002.jpg" alt="Splash" class="oeuvre-image">
+                        <div class="oeuvre-details">
+                            <p><strong>Année :</strong> 2024</p>
+                            <p><strong>Processus créatif :</strong> Technique wet-on-wet.</p>
+                            <p><strong>Techniques :</strong> Aquarelle et pinceaux.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Œuvre 2 -->
-            <div class="oeuvre">
-                <h3>Splash</h3>
-                <img src="../assets/images/aquarelle002.jpg" alt="Splash" class="oeuvre-image">
-                <div class="oeuvre-details">
-                    <p><strong>Année :</strong> 2024</p>
-                    <p><strong>Processus créatif :</strong> J'ai fait du grand n'importe quoi et ça a fonctionné</p>
-                    <p><strong>Techniques :</strong> Aquarelle et pinceaux</p>
+            <!-- Huile -->
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>Huile</span>
+                    <span class="arrow">⌄</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="oeuvre">
+                        <h3>Dans ma tête</h3>
+                        <img src="../assets/images/huile001.jpg" alt="Dans ma tête" class="oeuvre-image">
+                        <div class="oeuvre-details">
+                            <p><strong>Année :</strong> 2022</p>
+                            <p><strong>Processus créatif :</strong> Empâtement et glacis.</p>
+                            <p><strong>Techniques :</strong> Médiums, pinceaux.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Technique : Huile -->
-    <div class="accordion-item">
-        <div class="accordion-header" onclick="toggleAccordion(this)">
-            <span>Huile</span>
-            <span>⌄</span>
-        </div>
-        <div class="accordion-content">
-            <!-- Œuvre 1 -->
-            <div class="oeuvre">
-                <h3>Dans ma tête</h3>
-                <img src="../assets/images/huile001.jpg" alt="Dans ma tête" class="oeuvre-image">
-                <div class="oeuvre-details">
-                    <p><strong>Année :</strong> 2022</p>
-                    <p><strong>Processus créatif :</strong> Des trucs de ouf</p>
-                    <p><strong>Techniques :</strong> Médiums, pinceaux, temps de séchage.</p>
-                </div>
-            </div>
-        </div>
-    </div>
+    <footer>
+        Mon Atelier Créatif • Un projet personnel • 2025
+    </footer>
 
-    <!-- Ajoutez d'autres techniques ici (Acrylique, Collage, etc.) -->
-</div>
+    <!-- Script pour les accordéons -->
+    <script>
+        function toggleAccordion(header) {
+            const content = header.nextElementSibling;
+            const arrow = header.querySelector('.arrow');
+            const isActive = content.classList.contains('active');
+
+            // Ferme tous les accordéons ouverts
+            document.querySelectorAll('.accordion-content').forEach(item => {
+                item.classList.remove('active');
+            });
+            document.querySelectorAll('.arrow').forEach(item => {
+                item.textContent = '⌄';
+            });
+
+            // Ouvre l'accordéon cliqué
+            if (!isActive) {
+                content.classList.add('active');
+                arrow.textContent = '⌃';
+            }
+        }
+    </script>
+</body>
+</html>
