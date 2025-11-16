@@ -1,11 +1,13 @@
-<!-- pages/inspiration.html (fin) -->
-    <footer>
-        Mon Atelier Créatif • Un projet personnel • 2025
-    </footer>
-
-    <!-- Scripts de la page Inspiration -->
-    <script src="../js/techniques-aleatoires.js"></script>
-    <script src="../js/couleur-du-jour.js"></script>
-    <script src="../js/meteo-poetique.js"></script>
-</body>
-</html>
+<!-- 4. PETITS DÉFIS ARTISTIQUES -->
+<div class="box" id="widget-defis">
+    <h2>🧩 Petit Défi</h2>
+    <div id="resultat-defi">
+        <p>Chargement des défis...</p>
+    </div>
+    <button onclick="genererDefi()">Nouveau défi</button>
+</div>
+<!-- Scripts de la page Inspiration -->
+<script src="../js/techniques-aleatoires.js"></script>
+<script src="../js/couleur-du-jour.js"></script>
+<script src="../js/meteo-poetique.js"></script>
+<script src="../js/defis-artistiques.js"></script> <!-- NOUVEAU -->
