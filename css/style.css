@@ -171,15 +171,33 @@ footer {
     transform: translateY(0);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+/* BOUTONS CTA (centrés et espacés) */
+.cta-buttons {
+    display: flex;
+    flex-direction: column; /* Empile les boutons verticalement */
+    align-items: center;   /* Centre horizontalement */
+    gap: 15px;              /* Espace entre les boutons */
+    padding: 40px 20px 60px;
+    max-width: 500px;       /* Limite la largeur */
+    margin: 0 auto;         /* Centre le bloc entier */
+}
 
-/* ===== PROVERBE DU JOUR (avec dégradé rose/orange) ===== */
+@media (min-width: 768px) {
+    /* Sur desktop, remets les boutons en ligne */
+    .cta-buttons {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .btn {
+        margin: 5px; /* Espace autour des boutons */
+    }
+}
+
+/* PROVERBE DU JOUR (couleur bleue comme le titre) */
 .proverbe-section {
     padding: var(--spacing-l) var(--spacing-m);
-    background: hsla(333, 100%, 53%, 1);
-    background: linear-gradient(90deg, hsla(333, 100%, 53%, 1) 0%, hsla(33, 94%, 57%, 1) 100%);
-    background: -moz-linear-gradient(90deg, hsla(333, 100%, 53%, 1) 0%, hsla(33, 94%, 57%, 1) 100%);
-    background: -webkit-linear-gradient(90deg, hsla(333, 100%, 53%, 1) 0%, hsla(33, 94%, 57%, 1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#FF0F7B", endColorstr="#F89B29", GradientType=1);
+    background: var(--color-primary); /* Fond bleu uniforme */
     text-align: center;
     margin: var(--spacing-m) auto;
     max-width: 80%;
@@ -191,5 +209,35 @@ footer {
     font-family: var(--font-title);
     font-size: 1.5rem;
     font-style: italic;
-    color: #0B3866;
-    
+    color: white; /* Texte blanc pour contraste */
+    margin-bottom: var(--spacing-s);
+    line-height: 1.8;
+}
+
+.proverbe-origin {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+/* PETIT DÉFI (même bleu que le titre) */
+#widget-defis {
+    background: var(--color-primary); /* Fond bleu */
+    color: white; /* Texte blanc */
+    border: none; /* Supprime la bordure par défaut */
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+}
+
+#widget-defis h2 {
+    color: white; /* Titre en blanc */
+    font-family: var(--font-subtitle);
+    margin-bottom: 15px;
+}
+
+#widget-defis .btn {
+    background: white; /* Bouton blanc */
+    color: var(--color-primary); /* Texte bleu */
+    border: 2px solid var(--color-primary); /* Bordure bleue */
+}
