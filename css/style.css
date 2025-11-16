@@ -83,7 +83,134 @@ button, .btn {
 button:hover, .btn:hover {
     background-color: #2563eb;
 }
+/* --- NAVIGATION --- */
+.navbar {
+    background: var(--color-primary);
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
 
+.logo {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.nav-menu {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-menu a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 0;
+    transition: opacity 0.3s;
+}
+
+.nav-menu a:hover {
+    opacity: 0.8;
+}
+
+/* --- FOOTER --- */
+footer {
+    background: var(--color-dark);
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 40px;
+    font-size: 0.9em;
+}
+
+/* --- ACCUEIL et HERO --- */
+.page-content {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 0 20px;
+}
+
+.hero { 
+    text-align: center; 
+    padding: 40px 0; 
+}
+
+.hero h2 {
+    font-size: 2.5rem;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+}
+
+.hero-image {
+    max-width: 100%;
+    height: auto;
+    max-height: 400px;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* --- CTA BUTTONS (Correction Responsive) --- */
+
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Espace entre les boutons */
+    flex-wrap: wrap; 
+    padding: 40px 20px;
+}
+
+.btn {
+    /* Styles de base pour les boutons sont déjà définis */
+    min-width: 180px; /* Assure que le bouton a une taille minimale */
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
+/* --- MEDIA QUERIES (Smartphone) --- */
+
+@media (max-width: 768px) {
+    /* Navigation sur mobile */
+    .navbar {
+        flex-direction: column;
+        text-align: center;
+    }
+    .nav-menu {
+        flex-direction: column;
+        gap: 0.5rem;
+        padding-top: 10px;
+    }
+    .nav-menu a {
+        display: block;
+        padding: 5px 0;
+    }
+    
+    /* Boutons CTA empilés */
+    .cta-buttons {
+        flex-direction: column; 
+        align-items: center;
+        padding: 20px 10px;
+    }
+    
+    .btn {
+        width: 90%; /* Prend 90% de la largeur disponible */
+        max-width: 350px;
+        margin-bottom: 10px;
+    }
+
+    .hero h2 {
+        font-size: 1.8rem;
+    }
+}
 /* (Ajouter ici les styles de Navbar et Footer de l'étape 2.6 du plan initial) */
 /* (Ce sera fait lors de l'intégration de index.html) */
 ```
