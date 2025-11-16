@@ -1,0 +1,11 @@
+<!-- pages/inspiration.html (fin) -->
+    <footer>
+        Mon Atelier Créatif • Un projet personnel • 2025
+    </footer>
+
+    <!-- Scripts de la page Inspiration -->
+    <script src="../js/techniques-aleatoires.js"></script>
+    <script src="../js/couleur-du-jour.js"></script>
+    <script src="../js/meteo-poetique.js"></script>
+</body>
+</html>
