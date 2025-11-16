@@ -48,18 +48,34 @@
             padding: 20px;
         }
 
-        .oeuvre-image {
-            width: 100%;
-            max-height: 300px;
-            object-fit: cover;
-            border-radius: 5px;
-            margin-bottom: 15px;
-        }
+       /* Styles pour les œuvres dans l'accordéon */
+.oeuvre {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px dashed #ddd;
+}
 
-        .oeuvre-description {
-            line-height: 1.6;
-            color: var(--color-dark);
-        }
+.oeuvre:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.oeuvre-image {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.oeuvre-details {
+    line-height: 1.6;
+}
+
+.oeuvre-details p {
+    margin: 5px 0;
+}
     </style>
 </head>
 <body>
@@ -84,66 +100,57 @@
         <p>Découvrez mes œuvres, inspirations et processus créatifs.</p>
 
         <!-- Accordion pour les œuvres -->
-        <div class="accordion">
+       <div class="accordion">
+    <!-- Technique : Aquarelle -->
+    <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span>Aquarelle</span>
+            <span>⌄</span>
+        </div>
+        <div class="accordion-content">
             <!-- Œuvre 1 -->
-            <div class="accordion-item">
-                <div class="accordion-header" onclick="toggleAccordion(this)">
-                    <span>Griboullis</span>
-                    <span>⌄</span>
-                </div>
-                <div class="accordion-content">
-                    <img src="../assets/images/oeuvre001.png" alt="Griboullis" class="oeuvre-image">
-                    <div class="oeuvre-description">
-                        <h3>Image numérique (2023)</h3>
-                        <p>Exploration des contrastes chauds/froids sur toile. Cette œuvre représente l'équilibre entre les émotions contradictoires, avec des touches de bleu électrique et d'orange brûlé.</p>
-                        <p><strong>Techniques utilisées :</strong> Empâtement, glacis, jeu de textures.</p>
-                    </div>
+            <div class="oeuvre">
+                <h3>Titre de l'œuvre 1</h3>
+                <img src="../assets/images/aquarelle1.jpg" alt="Aquarelle - Œuvre 1" class="oeuvre-image">
+                <div class="oeuvre-details">
+                    <p><strong>Année :</strong> 2023</p>
+                    <p><strong>Processus créatif :</strong> Description du processus (ex: "Superposition de couches humides pour créer des dégradés fluides.")</p>
+                    <p><strong>Techniques :</strong> Papiers spécifiques, pigments utilisés, outils (pinceaux, éponges).</p>
                 </div>
             </div>
 
             <!-- Œuvre 2 -->
-            <div class="accordion-item">
-                <div class="accordion-header" onclick="toggleAccordion(this)">
-                    <span>Flux Numérique</span>
-                    <span>⌄</span>
-                </div>
-                <div class="accordion-content">
-                    <img src="../assets/images/oeuvre2.jpg" alt="Flux Numérique" class="oeuvre-image">
-                    <div class="oeuvre-description">
-                        <h3>Art Génératif (2024)</h3>
-                        <p>Création algorithmique de motifs organiques. Ce projet explore la relation entre le hasard et la structure, généré avec du code JavaScript et p5.js.</p>
-                        <p><strong>Outils :</strong> p5.js, Processing.</p>
-                    </div>
+            <div class="oeuvre">
+                <h3>Titre de l'œuvre 2</h3>
+                <img src="../assets/images/aquarelle2.jpg" alt="Aquarelle - Œuvre 2" class="oeuvre-image">
+                <div class="oeuvre-details">
+                    <p><strong>Année :</strong> 2024</p>
+                    <p><strong>Processus créatif :</strong> Autre description...</p>
+                    <p><strong>Techniques :</strong> Autres détails...</p>
                 </div>
             </div>
-
-            <!-- Ajoutez d'autres œuvres ici -->
         </div>
     </div>
 
-    <footer>
-        Mon Atelier Créatif • Un projet personnel • 2025
-    </footer>
+    <!-- Technique : Huile -->
+    <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span>Huile</span>
+            <span>⌄</span>
+        </div>
+        <div class="accordion-content">
+            <!-- Œuvre 1 -->
+            <div class="oeuvre">
+                <h3>Titre de l'œuvre</h3>
+                <img src="../assets/images/huile1.jpg" alt="Huile - Œuvre 1" class="oeuvre-image">
+                <div class="oeuvre-details">
+                    <p><strong>Année :</strong> 2022</p>
+                    <p><strong>Processus créatif :</strong> Description...</p>
+                    <p><strong>Techniques :</strong> Médiums, pinceaux, temps de séchage.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <!-- Script pour l'accordéon -->
-    <script>
-        function toggleAccordion(header) {
-            const content = header.nextElementSibling;
-            const isActive = content.classList.contains('active');
-
-            // Ferme tous les accordéons
-            document.querySelectorAll('.accordion-content').forEach(item => {
-                item.classList.remove('active');
-            });
-
-            // Ouvre/cache l'accordéon cliqué
-            if (!isActive) {
-                content.classList.add('active');
-                header.querySelector('span:last-child').textContent = '⌄';
-            } else {
-                header.querySelector('span:last-child').textContent = '⌄';
-            }
-        }
-    </script>
-</body>
-</html>
+    <!-- Ajoutez d'autres techniques ici (Acrylique, Collage, etc.) -->
+</div>
