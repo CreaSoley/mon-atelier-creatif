@@ -1,10 +1,11 @@
-<!-- WIDGET 3 : DÉFI CRÉATIF -->
-<div class="widget">
-    <h2>Défi créatif</h2>
-    <button class="btn-tirer" onclick="tirerDefi()">Tirer un défi</button>
-    <div id="resultat-defi" style="margin-top:1.5rem; font-size:1.1rem; min-height:80px;">
-        Prête à sortir de ta zone de confort ?
+<!-- 4. PETITS DÉFIS ARTISTIQUES -->
+<div class="box" id="widget-defis">
+    <h2>🧩 Petit Défi</h2>
+    <div id="resultat-defi">
+        <p>Chargement des défis...</p>
     </div>
+    <!-- CORRECTION : on appelle bien genererDefi() -->
+    <button onclick="genererDefi()">Nouveau défi</button>
 </div>
 <!-- Scripts de la page Inspiration -->
 <script src="../js/techniques-aleatoires.js"></script>
