@@ -211,6 +211,16 @@ footer {
         font-size: 1.8rem;
     }
 }
+/* --- WIDGETS ET GRILLES (Style global) --- */
+.widget-grid {
+    display: grid;
+    /* Crée une grille qui s'adapte avec des colonnes de minimum 300px */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 2rem;
+}
+
+/* Assurez-vous que .box contient des styles de padding et border-radius */
 /* (Ajouter ici les styles de Navbar et Footer de l'étape 2.6 du plan initial) */
 /* (Ce sera fait lors de l'intégration de index.html) */
 ```
