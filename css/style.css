@@ -40,11 +40,15 @@ body {
 
 /* ===== NAVIGATION (avec dégradé vert/bleu) ===== */
 .navbar {
-    background: hsla(148, 89%, 78%, 1);
-    background: linear-gradient(90deg, hsla(148, 89%, 78%, 1) 0%, hsla(210, 81%, 22%, 1) 100%);
-    background: -moz-linear-gradient(90deg, hsla(148, 89%, 78%, 1) 0%, hsla(210, 81%, 22%, 1) 100%);
-    background: -webkit-linear-gradient(90deg, hsla(148, 89%, 78%, 1) 0%, hsla(210, 81%, 22%, 1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#95F9C3", endColorstr="#0B3866", GradientType=1);
+   background: hsla(171, 87%, 67%, 1);
+
+background: linear-gradient(90deg, hsla(171, 87%, 67%, 1) 0%, hsla(236, 100%, 72%, 1) 100%);
+
+background: -moz-linear-gradient(90deg, hsla(171, 87%, 67%, 1) 0%, hsla(236, 100%, 72%, 1) 100%);
+
+background: -webkit-linear-gradient(90deg, hsla(171, 87%, 67%, 1) 0%, hsla(236, 100%, 72%, 1) 100%);
+
+filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#61F4DE", endColorstr="#6E78FF", GradientType=1 );
     color: white;
     padding: var(--spacing-s) var(--spacing-m);
     display: flex;
