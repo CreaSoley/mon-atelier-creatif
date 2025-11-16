@@ -1,5 +1,26 @@
 
 ```css
+/* Polices personnalisées */
+@font-face {
+    font-family: 'JuneInRock';
+    src: url('../assets/fonts/June\ in\ Rock.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'RocketThunder';
+    src: url('../assets/fonts/Rocket\ Thunder\ Script.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Variables de polices */
+:root {
+    --font-title: 'JuneInRock', cursive; /* Pour "CreaSoley" et titres principaux */
+    --font-subtitle: 'RocketThunder', cursive; /* Pour sous-titres (ex: "Activités du jour") */
+    --font-text: 'Arial', sans-serif; /* Pour le texte et boutons */
+}
 /* Styles de base */
 body {
     font-family: var(--font-sans);
