@@ -154,7 +154,7 @@ footer {
 }
 
 #widget-defis h2 {
-    color: var(--color-primary); /* Bleu pour "Petit Défi Créatif" */
+    color: var(--color-primary); /* Même bleu que "Proverbe du jour" */
     font-family: var(--font-subtitle);
     margin-bottom: 15px;
     text-align: center;
@@ -179,7 +179,7 @@ footer {
     font-family: var(--font-title);
     font-size: 1.5rem;
     font-style: italic;
-    color: white; /* Texte blanc pour contraste */
+    color: #000000; /* Noir */
     margin-bottom: var(--spacing-s);
     line-height: 1.8;
 }
