@@ -136,7 +136,7 @@ footer {
     padding-bottom: 5px;
 }
 
-/* ===== BOUTONS (avec dégradé turquoise/bleu) ===== */
+/* ===== BOUTONS (même dégradé que le bandeau) ===== */
 .btn {
     font-family: var(--font-text);
     background: hsla(171, 87%, 67%, 1);
@@ -162,6 +162,9 @@ footer {
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     opacity: 0.9;
+    /* Optionnel : inverser le dégradé au survol */
+    background: hsla(236, 100%, 72%, 1);
+    background: linear-gradient(90deg, hsla(236, 100%, 72%, 1) 0%, hsla(171, 87%, 67%, 1) 100%);
 }
 
 .btn:active {
