@@ -115,14 +115,15 @@ footer {
 
 .hero {
     text-align: center;
-    padding: 40px 0;
+    padding: 20px 0 40px; /* Réduit l'espace en haut (20px au lieu de 40px) */
 }
 
 .hero h2 {
     font-family: var(--font-title);
-    font-size: 3.5rem;  /* Titre agrandi */
-    color: #0B3866;     /* Couleur bleue profonde */
+    font-size: 3.5rem;
+    color: var(--color-primary); /* Restaure la couleur précédente (bleu #3b82f6) */
     margin-bottom: var(--spacing-s);
+    margin-top: 0; /* Supprime la marge supérieure par défaut */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
