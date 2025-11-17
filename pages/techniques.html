@@ -1,1 +1,411 @@
-const API = "https://script.google.com/macros/s/AKfycbxc7xElqx6CK_cbcFA26jBHZziVTRdnfK0k-2sNHJiRB0V-efFBtq-edqPt1726WHC-uw/exec";
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Techniques Créatives – CreaSoley</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/theme.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: var(--color-light);
+      margin: 0;
+      padding: 0;
+    }
+
+    .tech-page {
+      max-width: 900px;
+      margin: 2rem auto 3rem;
+      padding: 0 20px;
+    }
+
+    .tech-page h1 {
+      font-family: "JuneInRock", Arial, sans-serif;
+      font-size: 2.2rem;
+      text-align: center;
+      color: #0B3866;
+      margin-bottom: 0.5rem;
+    }
+
+    .tech-intro {
+      text-align: center;
+      font-size: 0.95rem;
+      color: #555;
+      margin-bottom: 2rem;
+    }
+
+    .tech-form-section {
+      display: grid;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .tech-block {
+      padding: 1.2rem 1.4rem;
+      border-radius: 10px;
+      background: #ffffff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+
+    .tech-block h2 {
+      font-family: "RocketThunder", Arial, sans-serif;
+      font-size: 1.4rem;
+      margin: 0 0 0.4rem;
+      color: var(--color-primary);
+    }
+
+    label {
+      font-weight: bold;
+      display: inline-block;
+      margin-bottom: 0.3rem;
+    }
+
+    input[type="text"], select {
+      width: 100%;
+      padding: 8px 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    fieldset {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 0.8rem 1rem;
+      margin: 0;
+    }
+
+    legend {
+      font-weight: bold;
+      padding: 0 0.3rem;
+    }
+
+    .tech-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .tech-btn {
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.9rem;
+      background: hsla(171, 87%, 67%, 1);
+      background: linear-gradient(90deg, hsla(171, 87%, 67%, 1) 0%, hsla(236, 100%, 72%, 1) 100%);
+      color: #fff;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .tech-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 7px 18px rgba(0,0,0,0.18);
+    }
+
+    .tech-card {
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      margin-top: 20px;
+      background: white;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+
+    .tech-card h2 {
+      margin-top: 0;
+      color: var(--color-primary);
+    }
+
+    .tech-card img {
+      max-width: 100%;
+      margin-top: 10px;
+      border-radius: 8px;
+    }
+
+    .tech-card p {
+      margin: 0.4rem 0;
+    }
+
+    .tech-card .meta {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .technique-card {
+      border: 1px solid #eee;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      background: #fafafa;
+    }
+
+    .technique-card:hover {
+      background: #f0f4ff;
+    }
+
+    #favorites {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BANDEAU -->
+  <nav class="navbar">
+    <a href="../index.html" class="logo-link">
+      <img src="../assets/images/logo-creasoley.svg" alt="CreaSoley - Logo" class="logo-img">
+      <span class="logo-title">CreaSoley</span>
+    </a>
+    <ul class="nav-menu">
+      <li><a href="../index.html">Accueil</a></li>
+      <li><a href="inspiration.html">Inspiration</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="carnet.html">Carnet</a></li>
+      <li><a href="techniques.html">Techniques</a></li>
+    </ul>
+  </nav>
+
+  <main class="tech-page">
+    <h1>🎨 Techniques Créatives</h1>
+    <p class="tech-intro">
+      Recherche une technique, explore par niveau, tire au hasard et génère une fiche PDF prête à imprimer.
+    </p>
+
+    <!-- Zone recherche / filtres -->
+    <section class="tech-form-section">
+      <!-- Recherche par nom -->
+      <div class="tech-block">
+        <h2>Par nom</h2>
+        <label for="techInput">Nom de la technique :</label>
+        <input type="text" id="techInput" placeholder="Ex : Sumi-e, Acrylique..." />
+        <div class="tech-actions">
+          <button class="tech-btn" onclick="searchByName()">Rechercher</button>
+          <button class="tech-btn" onclick="clearResult()">Effacer</button>
+        </div>
+      </div>
+
+      <!-- Filtre par niveaux -->
+      <div class="tech-block">
+        <h2>Par niveau</h2>
+        <fieldset>
+          <legend>Niveaux à inclure :</legend>
+          <label><input type="checkbox" name="level" value="Débutant" checked> Débutant</label><br>
+          <label><input type="checkbox" name="level" value="Intermédiaire" checked> Intermédiaire</label><br>
+          <label><input type="checkbox" name="level" value="Avancé" checked> Avancé</label>
+        </fieldset>
+        <div class="tech-actions">
+          <button class="tech-btn" onclick="searchByLevels()">Filtrer</button>
+          <button class="tech-btn" onclick="showAll()">Tout afficher</button>
+        </div>
+      </div>
+
+      <!-- Tirage aléatoire -->
+      <div class="tech-block">
+        <h2>Tirage aléatoire</h2>
+        <p style="margin:0 0 0.5rem;">Laisse le hasard choisir ton prochain terrain de jeu.</p>
+        <div class="tech-actions">
+          <button class="tech-btn" onclick="randomTechnique()">✨ Technique aléatoire</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Résultat -->
+    <section id="result" class="tech-card" style="display:none;"></section>
+
+    <!-- Favoris -->
+    <section id="favorites" style="display:none;"></section>
+  </main>
+
+  <footer>
+    Mon Atelier Créatif • 2025
+  </footer>
+
+  <script>
+    // 1) METS ICI TON URL DE DÉPLOIEMENT APPS SCRIPT
+    // ex: const API = "https://script.google.com/macros/s/AKfycbxc7xElqx6CK_cbcFA26jBHZziVTRdnfK0k-2sNHJiRB0V-efFBtq-edqPt1726WHC-uw/exec";
+    const API = "https://script.google.com/macros/s/AKfycbxc7xElqx6CK_cbcFA26jBHZziVTRdnfK0k-2sNHJiRB0V-efFBtq-edqPt1726WHC-uw/exec";
+
+    // ------------------- FONCTIONS API -------------------
+
+    async function searchByName() {
+      const name = document.getElementById("techInput").value.trim();
+      if (!name) return alert("Veuillez entrer un nom de technique.");
+      const data = await fetchJson(`${API}?action=getTechnique&name=${encodeURIComponent(name)}`);
+      render(data);
+    }
+
+    async function searchByLevels() {
+      const levels = Array.from(document.querySelectorAll('input[name="level"]:checked')).map(el => el.value);
+      if (!levels.length) return alert("Sélectionnez au moins un niveau.");
+
+      // Pour chaque niveau, on appelle l'API puis on concatène les résultats
+      const promises = levels.map(level =>
+        fetchJson(`${API}?action=getByLevel&level=${encodeURIComponent(level)}`)
+      );
+      const results = await Promise.all(promises);
+      const allTechniques = results.flat().filter(Boolean);
+
+      if (!allTechniques.length) return alert("Aucune technique trouvée pour ces niveaux.");
+
+      renderList(allTechniques);
+    }
+
+    async function showAll() {
+      const all = await fetchJson(`${API}?action=getAll`);
+      if (!Array.isArray(all) || !all.length) return alert("Aucune technique disponible.");
+      renderList(all);
+    }
+
+    async function randomTechnique() {
+      const data = await fetchJson(`${API}?action=getRandom`);
+      render(data);
+    }
+
+    async function fetchJson(url) {
+      try {
+        const res = await fetch(url);
+        if (!res.ok) throw new Error(`Erreur ${res.status}: ${res.statusText}`);
+        const json = await res.json();
+        return json;
+      } catch (e) {
+        console.error(e);
+        alert("Impossible de contacter le serveur de techniques pour le moment.");
+        throw e;
+      }
+    }
+
+    // ------------------- AFFICHAGE -------------------
+
+    function render(obj) {
+      if (!obj) return;
+      if (obj.error) {
+        alert(obj.error);
+        return;
+      }
+
+      const div = document.getElementById("result");
+      div.style.display = "block";
+
+      const nom        = obj.nom || "Technique sans nom";
+      const categorie  = obj.catégorie || obj.categorie || "";
+      const niveau     = obj.niveau || "";
+      const description= obj.description || "";
+      const materiel   = obj["matériel_necessaire"] || obj["matériel_nécessaire"] || obj.materiel_necessaire || "";
+      const lienYT     = obj["lien_youtube"] || "";
+      const photo      = obj.photo || "";
+      const galerie    = obj.galerie || "";
+
+      div.innerHTML = `
+        <h2>${nom}</h2>
+        <p class="meta"><strong>Catégorie :</strong> ${categorie}</p>
+        <p class="meta"><strong>Niveau :</strong> ${niveau}</p>
+        <p>${description}</p>
+        <p><strong>Matériel nécessaire :</strong> ${materiel || "Non spécifié"}</p>
+        ${lienYT ? `<p><a href="${lienYT}" target="_blank" rel="noopener">🎥 Voir la vidéo</a></p>` : ""}
+        ${photo ? `<img src="${photo}" alt="${nom}">` : ""}
+        ${galerie ? `<p><strong>Galerie :</strong> <a href="${galerie}" target="_blank" rel="noopener">${galerie}</a></p>` : ""}
+        <div style="margin-top: 15px;">
+          <button class="tech-btn" onclick="downloadPDF('${nom.replace(/'/g, "\\'")}')">📄 Télécharger le PDF</button>
+          <button class="tech-btn" onclick="saveFavorite('${nom.replace(/'/g, "\\'")}')">⭐ Ajouter aux favoris</button>
+        </div>
+      `;
+    }
+
+    function renderList(techniques) {
+      const div = document.getElementById("result");
+      div.style.display = "block";
+
+      div.innerHTML = `
+        <h2>Résultats (${techniques.length})</h2>
+        ${techniques.map(obj => {
+          const nom = obj.nom || "Sans titre";
+          const niveau = obj.niveau || "";
+          const desc = (obj.description || "").toString();
+          const extrait = desc.length > 120 ? desc.substring(0, 120) + "..." : desc;
+          const payload = encodeURIComponent(JSON.stringify(obj)); // on ne l'utilise pas ici pour rester simple
+
+          return `
+            <div class="technique-card" onclick='render(${JSON.stringify(obj).replace(/'/g, "\\'")})'>
+              <h3>${nom}</h3>
+              <p><strong>Niveau :</strong> ${niveau}</p>
+              <p>${extrait}</p>
+            </div>
+          `;
+        }).join("")}
+      `;
+    }
+
+    function clearResult() {
+      const div = document.getElementById("result");
+      div.style.display = "none";
+      div.innerHTML = "";
+    }
+
+    // ------------------- PDF -------------------
+
+    async function downloadPDF(name) {
+      if (!name) return alert("Nom de technique manquant.");
+      try {
+        const res = await fetch(`${API}?action=getPDF&name=${encodeURIComponent(name)}`);
+        if (!res.ok) throw new Error("Échec de la génération du PDF");
+        const blob = await res.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `${name}.pdf`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+      } catch (e) {
+        alert("Erreur lors du téléchargement du PDF : " + e.message);
+      }
+    }
+
+    // ------------------- FAVORIS -------------------
+
+    function saveFavorite(name) {
+      let favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+      if (!favorites.includes(name)) {
+        favorites.push(name);
+        localStorage.setItem("favorites", JSON.stringify(favorites));
+        alert(`${name} ajouté aux favoris !`);
+        showFavorites();
+      }
+    }
+
+    function showFavorites() {
+      const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+      const div = document.getElementById("favorites");
+      if (!favorites.length) {
+        div.style.display = "none";
+        return;
+      }
+      div.style.display = "block";
+      div.innerHTML = `
+        <h3>🌟 Vos Techniques Favorites</h3>
+        <div style="display:flex; flex-wrap: wrap; gap: 10px;">
+          ${favorites.map(name => `
+            <button class="tech-btn" onclick="renderByName('${name.replace(/'/g, "\\'")}')" style="background:#f0f0f0;color:#333;">
+              ${name}
+            </button>
+          `).join("")}
+        </div>
+      `;
+    }
+
+    async function renderByName(name) {
+      const data = await fetchJson(`${API}?action=getTechnique&name=${encodeURIComponent(name)}`);
+      render(data);
+    }
+
+    document.addEventListener("DOMContentLoaded", showFavorites);
+  </script>
+</body>
+</html>
