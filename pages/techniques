@@ -3,84 +3,187 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Techniques créatives</title>
+  <title>Techniques Créatives</title>
   <style>
     body { font-family: Arial, sans-serif; padding: 20px; max-width: 900px; margin: auto; }
-    h1 { text-align: center; }
+    h1 { text-align: center; color: #3b82f6; }
     .card { padding: 20px; border: 1px solid #ddd; border-radius: 10px; margin-top: 20px; }
-    label { font-weight: bold; }
-    button { padding: 10px 18px; margin-top: 10px; cursor: pointer; }
+    label { font-weight: bold; display: block; margin-top: 10px; }
+    button { padding: 10px 18px; margin: 5px; cursor: pointer; background: #3b82f6; color: white; border: none; border-radius: 5px; }
+    button:hover { background: #2a64d8; }
     img { max-width: 100%; margin-top: 10px; border-radius: 8px; }
+    fieldset { border: 1px solid #ddd; padding: 10px; border-radius: 5px; margin-bottom: 10px; }
+    .technique-card { border: 1px solid #eee; padding: 10px; margin-bottom: 10px; border-radius: 5px; }
   </style>
 </head>
 <body>
-  <h1>Techniques Créatives</h1>
+  <h1>🎨 Techniques Créatives</h1>
 
-  <label>Choisir une technique :</label><br>
-  <input type="text" id="techInput" placeholder="Nom de la technique" />
-  <button onclick="searchByName()">Rechercher</button>
+  <!-- Recherche par nom -->
+  <div>
+    <label>Rechercher une technique :</label>
+    <input type="text" id="techInput" placeholder="Ex: Aquarelle" />
+    <button onclick="searchByName()">Rechercher</button>
+  </div>
 
-  <br><br>
-  <label>Choisir par niveau :</label><br>
-  <select id="levelSelect">
-    <option value="Débutant">Débutant</option>
-    <option value="Intermédiaire">Intermédiaire</option>
-    <option value="Avancé">Avancé</option>
-  </select>
-  <button onclick="searchByLevel()">Voir</button>
+  <!-- Filtre par niveau -->
+  <fieldset>
+    <legend>Filtrer par niveau :</legend>
+    <label><input type="checkbox" name="level" value="Débutant" checked> Débutant</label>
+    <label><input type="checkbox" name="level" value="Intermédiaire" checked> Intermédiaire</label>
+    <label><input type="checkbox" name="level" value="Avancé" checked> Avancé</label>
+    <button onclick="searchByLevels()">Filtrer</button>
+    <button onclick="showAll()">Tout afficher</button>
+  </fieldset>
 
-  <br><br>
-  <button onclick="randomTechnique()">Technique aléatoire</button>
+  <!-- Tirage aléatoire -->
+  <button onclick="randomTechnique()">✨ Technique Aléatoire</button>
 
+  <!-- Résultats -->
   <div id="result" class="card" style="display:none;"></div>
 
-  <script>
-    const API = "https://script.google.com/macros/s/AKfycbz5Jho8zDNyWAsnjzrbA24FGVk4fgqLQcybmbOkz0MzwsjMh3wJ0GjjzxUui_RiWQwe3g/exec"; // Remplacer par l'URL du script déployé
+  <!-- Favoris -->
+  <div id="favorites" style="margin-top: 20px; display: none;"></div>
 
+  <script>
+    // Remplacez par votre URL réelle
+    const API = "https://script.google.com/macros/s/.../exec";
+
+    // Recherche par nom
     async function searchByName() {
-      const name = document.getElementById("techInput").value;
-      if (!name) return alert("Entrez un nom");
+      const name = document.getElementById("techInput").value.trim();
+      if (!name) return alert("Veuillez entrer un nom");
       const data = await fetchJson(`${API}?action=getTechnique&name=${encodeURIComponent(name)}`);
       render(data);
     }
 
-    async function searchByLevel() {
-      const level = document.getElementById("levelSelect").value;
-      const list = await fetchJson(`${API}?action=getByLevel&level=${encodeURIComponent(level)}`);
-      if (!Array.isArray(list) || !list.length) return alert("Aucune technique trouvée.");
-      render(list[0]); // affiche la première
+    // Recherche par niveaux
+    async function searchByLevels() {
+      const levels = Array.from(document.querySelectorAll('input[name="level"]:checked')).map(el => el.value);
+      if (levels.length === 0) return alert("Sélectionnez au moins un niveau");
+
+      const promises = levels.map(level =>
+        fetchJson(`${API}?action=getByLevel&level=${encodeURIComponent(level)}`)
+      );
+
+      const results = await Promise.all(promises);
+      const allTechniques = results.flat();
+      if (!allTechniques.length) return alert("Aucune technique trouvée");
+      renderList(allTechniques);
     }
 
+    // Affiche toutes les techniques
+    async function showAll() {
+      const all = await fetchJson(`${API}?action=getAll`);
+      renderList(all);
+    }
+
+    // Tirage aléatoire
     async function randomTechnique() {
       const data = await fetchJson(`${API}?action=getRandom`);
       render(data);
     }
 
+    // Récupère les données JSON
     async function fetchJson(url) {
       const res = await fetch(url);
+      if (!res.ok) throw new Error(`Erreur ${res.status}: ${res.statusText}`);
       return res.json();
     }
 
+    // Affiche une technique
     function render(obj) {
       if (obj.error) return alert(obj.error);
-
       const div = document.getElementById("result");
       div.style.display = "block";
       div.innerHTML = `
         <h2>${obj.nom}</h2>
         <p><strong>Niveau :</strong> ${obj.niveau}</p>
         <p>${obj.description}</p>
-        <p><strong>Matériel :</strong> ${obj["matiériel nécessaire"] || obj["matériel nécessaire"]}</p>
-        <p><a href="${obj["lien youtube"]}" target="_blank">Vidéo YouTube</a></p>
-        ${obj.photo ? `<img src="${obj.photo}" />` : ""}
-        <p><strong>Galerie :</strong> ${obj.galerie}</p>
-        <button onclick="downloadPDF('${obj.nom}')">Télécharger la fiche PDF</button>
+        <p><strong>Matériel :</strong> ${obj.materiel || "Non spécifié"}</p>
+        ${obj.lienYoutube ? `<p><a href="${obj.lienYoutube}" target="_blank">🎥 Voir la vidéo</a></p>` : ""}
+        ${obj.photo ? `<img src="${obj.photo}" alt="${obj.nom}" />` : ""}
+        <p><strong>Galerie :</strong> ${obj.galerie || "Aucune"}</p>
+        <div style="margin-top: 15px;">
+          <button onclick="downloadPDF('${obj.nom}')">📄 Télécharger le PDF</button>
+          <button onclick="saveFavorite('${obj.nom}')">⭐ Ajouter aux favoris</button>
+        </div>
       `;
     }
 
-    function downloadPDF(name) {
-      window.open(`${API}?action=getPDF&name=${encodeURIComponent(name)}`);
+    // Affiche une liste de techniques
+    function renderList(techniques) {
+      const div = document.getElementById("result");
+      div.style.display = "block";
+      div.innerHTML = `
+        <h2>Résultats (${techniques.length})</h2>
+        ${techniques.map(obj => `
+          <div class="technique-card" onclick="render(${JSON.stringify(obj)})" style="cursor: pointer;">
+            <h3>${obj.nom}</h3>
+            <p><strong>Niveau:</strong> ${obj.niveau}</p>
+            <p>${obj.description.substring(0, 100)}...</p>
+          </div>
+        `).join("")}
+      `;
     }
+
+    // Téléchargement du PDF
+    async function downloadPDF(name) {
+      try {
+        const response = await fetch(`${API}?action=getPDF&name=${encodeURIComponent(name)}`);
+        if (!response.ok) throw new Error("Échec de la génération du PDF");
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `${name}.pdf`;
+        a.click();
+        window.URL.revokeObjectURL(url);
+      } catch (error) {
+        alert("Erreur: " + error.message);
+      }
+    }
+
+    // Gestion des favoris
+    function saveFavorite(name) {
+      let favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+      if (!favorites.includes(name)) {
+        favorites.push(name);
+        localStorage.setItem("favorites", JSON.stringify(favorites));
+        alert(`${name} ajouté aux favoris !`);
+        showFavorites();
+      }
+    }
+
+    function showFavorites() {
+      const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+      const div = document.getElementById("favorites");
+      if (favorites.length === 0) {
+        div.style.display = "none";
+        return;
+      }
+
+      div.style.display = "block";
+      div.innerHTML = `
+        <h3>🌟 Vos Techniques Favorites</h3>
+        <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+          ${favorites.map(name => `
+            <button onclick="renderByName('${name}')" style="padding: 5px 10px; background: #f0f0f0; border-radius: 5px;">
+              ${name} ✖
+            </button>
+          `).join("")}
+        </div>
+      `;
+    }
+
+    // Recherche par nom (pour les favoris)
+    async function renderByName(name) {
+      const data = await fetchJson(`${API}?action=getTechnique&name=${encodeURIComponent(name)}`);
+      render(data);
+    }
+
+    // Charge les favoris au démarrage
+    document.addEventListener("DOMContentLoaded", showFavorites);
   </script>
 </body>
 </html>
