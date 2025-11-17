@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Techniques Créatives</title>
+  <title>Techniques Créatives – CreaSoley</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/theme.css">
   <style>
     body { font-family: Arial, sans-serif; padding: 20px; max-width: 900px; margin: auto; }
     h1 { text-align: center; color: #3b82f6; }
@@ -13,41 +15,63 @@
     button:hover { background: #2a64d8; }
     img { max-width: 100%; margin-top: 10px; border-radius: 8px; }
     fieldset { border: 1px solid #ddd; padding: 10px; border-radius: 5px; margin-bottom: 10px; }
-    .technique-card { border: 1px solid #eee; padding: 10px; margin-bottom: 10px; border-radius: 5px; }
+    .technique-card { border: 1px solid #eee; padding: 10px; margin-bottom: 10px; border-radius: 5px; cursor: pointer; }
   </style>
 </head>
 <body>
-  <h1>🎨 Techniques Créatives</h1>
+  <!-- Bandeau (identique à l'accueil) -->
+  <nav class="navbar">
+    <a href="../index.html" class="logo-link">
+      <img src="../assets/images/logo-creasoley.svg" alt="CreaSoley - Logo" class="logo-img">
+      <span class="logo-title">CreaSoley</span>
+    </a>
+    <ul class="nav-menu">
+      <li><a href="../index.html">Accueil</a></li>
+      <li><a href="inspiration.html">Inspiration</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="carnet.html">Carnet</a></li>
+      <li><a href="techniques.html">Techniques</a></li>
+    </ul>
+  </nav>
 
-  <!-- Recherche par nom -->
-  <div>
-    <label>Rechercher une technique :</label>
-    <input type="text" id="techInput" placeholder="Ex: Aquarelle" />
-    <button onclick="searchByName()">Rechercher</button>
+  <div class="page-content" style="padding: 20px; max-width: 900px; margin: auto;">
+    <h1>🎨 Techniques Créatives</h1>
+
+    <!-- Recherche par nom -->
+    <div>
+      <label>Rechercher une technique :</label>
+      <input type="text" id="techInput" placeholder="Ex: Aquarelle" />
+      <button onclick="searchByName()">Rechercher</button>
+    </div>
+
+    <!-- Filtre par niveau -->
+    <fieldset>
+      <legend>Filtrer par niveau :</legend>
+      <label><input type="checkbox" name="level" value="Débutant" checked> Débutant</label>
+      <label><input type="checkbox" name="level" value="Intermédiaire" checked> Intermédiaire</label>
+      <label><input type="checkbox" name="level" value="Avancé" checked> Avancé</label>
+      <button onclick="searchByLevels()">Filtrer</button>
+      <button onclick="showAll()">Tout afficher</button>
+    </fieldset>
+
+    <!-- Tirage aléatoire -->
+    <button onclick="randomTechnique()">✨ Technique Aléatoire</button>
+
+    <!-- Résultats -->
+    <div id="result" class="card" style="display:none;"></div>
+
+    <!-- Favoris -->
+    <div id="favorites" style="margin-top: 20px; display: none;"></div>
   </div>
 
-  <!-- Filtre par niveau -->
-  <fieldset>
-    <legend>Filtrer par niveau :</legend>
-    <label><input type="checkbox" name="level" value="Débutant" checked> Débutant</label>
-    <label><input type="checkbox" name="level" value="Intermédiaire" checked> Intermédiaire</label>
-    <label><input type="checkbox" name="level" value="Avancé" checked> Avancé</label>
-    <button onclick="searchByLevels()">Filtrer</button>
-    <button onclick="showAll()">Tout afficher</button>
-  </fieldset>
+  <footer style="text-align: center; margin-top: 40px; padding: 10px; background: #f8f9fa;">
+    Mon Atelier Créatif • 2025
+  </footer>
 
-  <!-- Tirage aléatoire -->
-  <button onclick="randomTechnique()">✨ Technique Aléatoire</button>
-
-  <!-- Résultats -->
-  <div id="result" class="card" style="display:none;"></div>
-
-  <!-- Favoris -->
-  <div id="favorites" style="margin-top: 20px; display: none;"></div>
-
+  <!-- Scripts -->
   <script>
-    // Remplacez par votre URL réelle
-    const API = "https://script.google.com/macros/s/.../exec";
+    // Remplacez par votre URL Google Apps Script
+    const API = "https://script.google.com/macros/s/.../exec"; // À remplacer !
 
     // Recherche par nom
     async function searchByName() {
@@ -61,11 +85,7 @@
     async function searchByLevels() {
       const levels = Array.from(document.querySelectorAll('input[name="level"]:checked')).map(el => el.value);
       if (levels.length === 0) return alert("Sélectionnez au moins un niveau");
-
-      const promises = levels.map(level =>
-        fetchJson(`${API}?action=getByLevel&level=${encodeURIComponent(level)}`)
-      );
-
+      const promises = levels.map(level => fetchJson(`${API}?action=getByLevel&level=${encodeURIComponent(level)}`));
       const results = await Promise.all(promises);
       const allTechniques = results.flat();
       if (!allTechniques.length) return alert("Aucune technique trouvée");
@@ -118,7 +138,7 @@
       div.innerHTML = `
         <h2>Résultats (${techniques.length})</h2>
         ${techniques.map(obj => `
-          <div class="technique-card" onclick="render(${JSON.stringify(obj)})" style="cursor: pointer;">
+          <div class="technique-card" onclick="render(${JSON.stringify(obj)})">
             <h3>${obj.nom}</h3>
             <p><strong>Niveau:</strong> ${obj.niveau}</p>
             <p>${obj.description.substring(0, 100)}...</p>
@@ -162,7 +182,6 @@
         div.style.display = "none";
         return;
       }
-
       div.style.display = "block";
       div.innerHTML = `
         <h3>🌟 Vos Techniques Favorites</h3>
@@ -176,7 +195,6 @@
       `;
     }
 
-    // Recherche par nom (pour les favoris)
     async function renderByName(name) {
       const data = await fetchJson(`${API}?action=getTechnique&name=${encodeURIComponent(name)}`);
       render(data);
