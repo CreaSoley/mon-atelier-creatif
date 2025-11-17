@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Techniques créatives</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; max-width: 900px; margin: auto; }
+    h1 { text-align: center; }
+    .card { padding: 20px; border: 1px solid #ddd; border-radius: 10px; margin-top: 20px; }
+    label { font-weight: bold; }
+    button { padding: 10px 18px; margin-top: 10px; cursor: pointer; }
+    img { max-width: 100%; margin-top: 10px; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <h1>Techniques Créatives</h1>
+
+  <label>Choisir une technique :</label><br>
+  <input type="text" id="techInput" placeholder="Nom de la technique" />
+  <button onclick="searchByName()">Rechercher</button>
+
+  <br><br>
+  <label>Choisir par niveau :</label><br>
+  <select id="levelSelect">
+    <option value="Débutant">Débutant</option>
+    <option value="Intermédiaire">Intermédiaire</option>
+    <option value="Avancé">Avancé</option>
+  </select>
+  <button onclick="searchByLevel()">Voir</button>
+
+  <br><br>
+  <button onclick="randomTechnique()">Technique aléatoire</button>
+
+  <div id="result" class="card" style="display:none;"></div>
+
+  <script>
+    const API = "https://script.google.com/macros/s/AKfycbz5Jho8zDNyWAsnjzrbA24FGVk4fgqLQcybmbOkz0MzwsjMh3wJ0GjjzxUui_RiWQwe3g/exec"; // Remplacer par l'URL du script déployé
+
+    async function searchByName() {
+      const name = document.getElementById("techInput").value;
+      if (!name) return alert("Entrez un nom");
+      const data = await fetchJson(`${API}?action=getTechnique&name=${encodeURIComponent(name)}`);
+      render(data);
+    }
+
+    async function searchByLevel() {
+      const level = document.getElementById("levelSelect").value;
+      const list = await fetchJson(`${API}?action=getByLevel&level=${encodeURIComponent(level)}`);
+      if (!Array.isArray(list) || !list.length) return alert("Aucune technique trouvée.");
+      render(list[0]); // affiche la première
+    }
+
+    async function randomTechnique() {
+      const data = await fetchJson(`${API}?action=getRandom`);
+      render(data);
+    }
+
+    async function fetchJson(url) {
+      const res = await fetch(url);
+      return res.json();
+    }
+
+    function render(obj) {
+      if (obj.error) return alert(obj.error);
+
+      const div = document.getElementById("result");
+      div.style.display = "block";
+      div.innerHTML = `
+        <h2>${obj.nom}</h2>
+        <p><strong>Niveau :</strong> ${obj.niveau}</p>
+        <p>${obj.description}</p>
+        <p><strong>Matériel :</strong> ${obj["matiériel nécessaire"] || obj["matériel nécessaire"]}</p>
+        <p><a href="${obj["lien youtube"]}" target="_blank">Vidéo YouTube</a></p>
+        ${obj.photo ? `<img src="${obj.photo}" />` : ""}
+        <p><strong>Galerie :</strong> ${obj.galerie}</p>
+        <button onclick="downloadPDF('${obj.nom}')">Télécharger la fiche PDF</button>
+      `;
+    }
+
+    function downloadPDF(name) {
+      window.open(`${API}?action=getPDF&name=${encodeURIComponent(name)}`);
+    }
+  </script>
+</body>
+</html>
